@@ -33,6 +33,16 @@ gulp.task("html", ["clean"], () => {
         .pipe(gulp.dest(BUILD_DIR + "/static"));
 });
 
+gulp.task("etc", ["clean"], () => {
+    return gulp.src([
+        `${ SOURCE_DIR }/static/**/*.*`,
+        `!${ SOURCE_DIR }/static/js/**/*.*`,
+        `!${ SOURCE_DIR }/static/scss/**/*.*`,
+        `!${ SOURCE_DIR }/static/index.html`
+    ])
+        .pipe(gulp.dest(BUILD_DIR + "/static"));
+});
+
 gulp.task("js", ["clean"], () => {
     return browserify(`${ SOURCE_DIR }/static/js/index.js`, { debug: true })
         .transform(to5ify)
@@ -50,4 +60,4 @@ gulp.task("css", ["clean"], () => {
         .pipe(gulp.dest(`${ BUILD_DIR }/static/css`));
 });
 
-gulp.task("default", ["cls", "html", "js", "css"]);
+gulp.task("default", ["cls", "html", "js", "css", "etc"]);

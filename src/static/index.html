@@ -5,9 +5,10 @@
     <title>iKnow Entity Browser</title>
     <meta name="author" content="ZitRo">
     <link rel="stylesheet" href="css/index.css"/>
-    <script type="text/javascript" src="js/index.js" async></script>
+    <script src="lib/d3.v4.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
 </head>
-<body>
-    <div class="version">v<!-- @echo package.version --></div>
+<body onload="init()">
+    <svg id="graph"></svg>
 </body>
 </html>
