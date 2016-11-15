@@ -1,0 +1,32 @@
+@import "mixins";
+@import "const";
+
+#table {
+
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: $defaultPadding;
+    background: white;
+    overflow: auto;
+    box-shadow: $defaultShadow;
+    @include transition($defaultTransition);
+    @include transform(translate(200%,0));
+    &.active {
+        @include transform(translate(100%,0));
+    }
+
+    .wrapper {
+
+        position: relative;
+
+        table {
+            width: 100%;
+        }
+
+    }
+
+}

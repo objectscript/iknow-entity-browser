@@ -1,0 +1,3746 @@
+{
+  "graph": {
+    "nodes": [
+      {
+        "id": 0,
+        "label": "patient",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 317,
+            "id": 8378,
+            "score": 3626,
+            "spread": 214,
+            "value": "patient"
+          }
+        ]
+      },
+      {
+        "id": 1,
+        "label": "patient",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 317,
+            "id": 8378,
+            "score": 3626,
+            "spread": 214,
+            "value": "patient"
+          }
+        ]
+      },
+      {
+        "id": 2,
+        "label": "patient's family",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 9,
+            "id": 8411,
+            "score": 192,
+            "spread": 6,
+            "value": "patient's family"
+          }
+        ]
+      },
+      {
+        "id": 4,
+        "label": "patient's son",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 8446,
+            "score": 96,
+            "spread": 3,
+            "value": "patient's son"
+          }
+        ]
+      },
+      {
+        "id": 5,
+        "label": "patient's wife",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 8452,
+            "score": 96,
+            "spread": 3,
+            "value": "patient's wife"
+          }
+        ]
+      },
+      {
+        "id": 6,
+        "label": "patient's name",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8430,
+            "score": 85,
+            "spread": 1,
+            "value": "patient's name"
+          }
+        ]
+      },
+      {
+        "id": 7,
+        "label": "patient's healthcare proxy",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8416,
+            "score": 64,
+            "spread": 1,
+            "value": "patient's healthcare proxy"
+          }
+        ]
+      },
+      {
+        "id": 9,
+        "label": "patient identity",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8384,
+            "score": 42,
+            "spread": 1,
+            "value": "patient identity"
+          }
+        ]
+      },
+      {
+        "id": 10,
+        "label": "patient's identity",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 8421,
+            "score": 106,
+            "spread": 2,
+            "value": "patient's identity"
+          }
+        ]
+      },
+      {
+        "id": 11,
+        "label": "documenting patient identity",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3641,
+            "score": 42,
+            "spread": 1,
+            "value": "documenting patient identity"
+          }
+        ]
+      },
+      {
+        "id": 12,
+        "label": "patient's cardiac event",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8404,
+            "score": 42,
+            "spread": 1,
+            "value": "patient's cardiac event"
+          }
+        ]
+      },
+      {
+        "id": 13,
+        "label": "patient's sister",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8444,
+            "score": 42,
+            "spread": 1,
+            "value": "patient's sister"
+          }
+        ]
+      },
+      {
+        "id": 14,
+        "label": "patient's skin",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 8445,
+            "score": 36,
+            "spread": 2,
+            "value": "patient's skin"
+          }
+        ]
+      },
+      {
+        "id": 15,
+        "label": "patient's chart",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8405,
+            "score": 32,
+            "spread": 1,
+            "value": "patient's chart"
+          }
+        ]
+      },
+      {
+        "id": 21,
+        "label": "present",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 142,
+            "id": 8985,
+            "score": 1658,
+            "spread": 121,
+            "value": "present"
+          }
+        ]
+      },
+      {
+        "id": 23,
+        "label": "xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 382,
+            "id": 13207,
+            "score": 1640,
+            "spread": 324,
+            "value": "xyz123"
+          }
+        ]
+      },
+      {
+        "id": 24,
+        "label": "dr. xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 99,
+            "id": 3682,
+            "score": 2057,
+            "spread": 71,
+            "value": "dr. xyz123"
+          }
+        ]
+      },
+      {
+        "id": 25,
+        "label": "dr. xyz123 xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 47,
+            "id": 3683,
+            "score": 1050,
+            "spread": 30,
+            "value": "dr. xyz123 xyz123"
+          }
+        ]
+      },
+      {
+        "id": 26,
+        "label": "dr. xyz123 xyz123 xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3685,
+            "score": 51,
+            "spread": 1,
+            "value": "dr. xyz123 xyz123 xyz123"
+          }
+        ]
+      },
+      {
+        "id": 27,
+        "label": "dr. xyz123 xyz123 d'othee",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 3684,
+            "score": 42,
+            "spread": 2,
+            "value": "dr. xyz123 xyz123 d'othee"
+          }
+        ]
+      },
+      {
+        "id": 28,
+        "label": "attending radiologist dr. xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1982,
+            "score": 32,
+            "spread": 1,
+            "value": "attending radiologist dr. xyz123"
+          }
+        ]
+      },
+      {
+        "id": 29,
+        "label": "drs. xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 20,
+            "id": 18498,
+            "score": 1154,
+            "spread": 20,
+            "value": "drs. xyz123"
+          }
+        ]
+      },
+      {
+        "id": 30,
+        "label": "drs. xyz123 xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 18499,
+            "score": 220,
+            "spread": 6,
+            "value": "drs. xyz123 xyz123"
+          }
+        ]
+      },
+      {
+        "id": 31,
+        "label": "xyz123 xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 27,
+            "id": 13236,
+            "score": 351,
+            "spread": 20,
+            "value": "xyz123 xyz123"
+          }
+        ]
+      },
+      {
+        "id": 32,
+        "label": "doctors xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3640,
+            "score": 64,
+            "spread": 1,
+            "value": "doctors xyz123"
+          }
+        ]
+      },
+      {
+        "id": 33,
+        "label": "drxyz123 xyz123",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3703,
+            "score": 64,
+            "spread": 1,
+            "value": "drxyz123 xyz123"
+          }
+        ]
+      },
+      {
+        "id": 34,
+        "label": "xyz123-xyz123 tube",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 13256,
+            "score": 64,
+            "spread": 1,
+            "value": "xyz123-xyz123 tube"
+          }
+        ]
+      },
+      {
+        "id": 35,
+        "label": "xyz123 present",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 13226,
+            "score": 42,
+            "spread": 2,
+            "value": "xyz123 present"
+          }
+        ]
+      },
+      {
+        "id": 36,
+        "label": "benefits",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 31,
+            "id": 2111,
+            "score": 1444,
+            "spread": 31,
+            "value": "benefits"
+          }
+        ]
+      },
+      {
+        "id": 37,
+        "label": "supervising",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 32,
+            "id": 11260,
+            "score": 1313,
+            "spread": 32,
+            "value": "supervising"
+          }
+        ]
+      },
+      {
+        "id": 38,
+        "label": "supervising staff",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11261,
+            "score": 28,
+            "spread": 1,
+            "value": "supervising staff"
+          }
+        ]
+      },
+      {
+        "id": 42,
+        "label": "alternatives",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 10,
+            "id": 1255,
+            "score": 576,
+            "spread": 10,
+            "value": "alternatives"
+          }
+        ]
+      },
+      {
+        "id": 43,
+        "label": "detail",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 9,
+            "id": 3392,
+            "score": 576,
+            "spread": 9,
+            "value": "detail"
+          }
+        ]
+      },
+      {
+        "id": 44,
+        "label": "detail telephonically",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3393,
+            "score": 64,
+            "spread": 1,
+            "value": "detail telephonically"
+          }
+        ]
+      },
+      {
+        "id": 45,
+        "label": "details",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3395,
+            "score": 64,
+            "spread": 1,
+            "value": "details"
+          }
+        ]
+      },
+      {
+        "id": 50,
+        "label": "full",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 10,
+            "id": 4434,
+            "score": 420,
+            "spread": 10,
+            "value": "full"
+          }
+        ]
+      },
+      {
+        "id": 51,
+        "label": "indications",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 14,
+            "id": 5082,
+            "score": 388,
+            "spread": 14,
+            "value": "indications"
+          }
+        ]
+      },
+      {
+        "id": 52,
+        "label": "site",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 22,
+            "id": 10531,
+            "score": 384,
+            "spread": 19,
+            "value": "site"
+          }
+        ]
+      },
+      {
+        "id": 53,
+        "label": "catheter entry site",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 2587,
+            "score": 51,
+            "spread": 1,
+            "value": "catheter entry site"
+          }
+        ]
+      },
+      {
+        "id": 54,
+        "label": "puncture site",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 9304,
+            "score": 42,
+            "spread": 2,
+            "value": "puncture site"
+          }
+        ]
+      },
+      {
+        "id": 55,
+        "label": "end",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 5,
+            "id": 3831,
+            "score": 362,
+            "spread": 5,
+            "value": "end"
+          }
+        ]
+      },
+      {
+        "id": 58,
+        "label": "addendum",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1070,
+            "score": 51,
+            "spread": 1,
+            "value": "addendum"
+          }
+        ]
+      },
+      {
+        "id": 59,
+        "label": "attending",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1978,
+            "score": 42,
+            "spread": 1,
+            "value": "attending"
+          }
+        ]
+      },
+      {
+        "id": 60,
+        "label": "attending radiologist",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 39,
+            "id": 1981,
+            "score": 1076,
+            "spread": 39,
+            "value": "attending radiologist"
+          }
+        ]
+      },
+      {
+        "id": 61,
+        "label": "attending physician",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 1980,
+            "score": 136,
+            "spread": 7,
+            "value": "attending physician"
+          }
+        ]
+      },
+      {
+        "id": 67,
+        "label": "supine",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 34,
+            "id": 11262,
+            "score": 280,
+            "spread": 34,
+            "value": "supine"
+          }
+        ]
+      },
+      {
+        "id": 68,
+        "label": "uneventful",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 12071,
+            "score": 212,
+            "spread": 2,
+            "value": "uneventful"
+          }
+        ]
+      },
+      {
+        "id": 69,
+        "label": "catheter",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 146,
+            "id": 2585,
+            "score": 202,
+            "spread": 63,
+            "value": "catheter"
+          }
+        ]
+      },
+      {
+        "id": 70,
+        "label": "both foley catheters",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 2323,
+            "score": 85,
+            "spread": 1,
+            "value": "both foley catheters"
+          }
+        ]
+      },
+      {
+        "id": 71,
+        "label": "mikaelsson catheter",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 6844,
+            "score": 85,
+            "spread": 1,
+            "value": "mikaelsson catheter"
+          }
+        ]
+      },
+      {
+        "id": 72,
+        "label": "unasyn",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 12009,
+            "score": 195,
+            "spread": 1,
+            "value": "unasyn"
+          }
+        ]
+      },
+      {
+        "id": 74,
+        "label": "angiographic table",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 22,
+            "id": 1494,
+            "score": 180,
+            "spread": 22,
+            "value": "angiographic table"
+          }
+        ]
+      },
+      {
+        "id": 76,
+        "label": "3 grams",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 403,
+            "score": 169,
+            "spread": 1,
+            "value": "3 grams"
+          }
+        ]
+      },
+      {
+        "id": 77,
+        "label": "no evidence",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 264,
+            "id": 7548,
+            "score": 160,
+            "spread": 185,
+            "value": "no evidence"
+          }
+        ]
+      },
+      {
+        "id": 78,
+        "label": "no radiogrpahic evidence",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7760,
+            "score": 64,
+            "spread": 1,
+            "value": "no radiogrpahic evidence"
+          }
+        ]
+      },
+      {
+        "id": 79,
+        "label": "sheath",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 58,
+            "id": 10373,
+            "score": 136,
+            "spread": 31,
+            "value": "sheath"
+          }
+        ]
+      },
+      {
+        "id": 80,
+        "label": "5 french angiographic sheath",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 605,
+            "score": 42,
+            "spread": 1,
+            "value": "5 french angiographic sheath"
+          }
+        ]
+      },
+      {
+        "id": 81,
+        "label": "6 mmhg",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 721,
+            "score": 128,
+            "spread": 2,
+            "value": "6 mmhg"
+          }
+        ]
+      },
+      {
+        "id": 82,
+        "label": "duration",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 3726,
+            "score": 128,
+            "spread": 2,
+            "value": "duration"
+          }
+        ]
+      },
+      {
+        "id": 83,
+        "label": "entirety",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 3894,
+            "score": 128,
+            "spread": 2,
+            "value": "entirety"
+          }
+        ]
+      },
+      {
+        "id": 84,
+        "label": "type",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 11982,
+            "score": 128,
+            "spread": 2,
+            "value": "type"
+          }
+        ]
+      },
+      {
+        "id": 85,
+        "label": "appropriate requisition",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1651,
+            "score": 121,
+            "spread": 1,
+            "value": "appropriate requisition"
+          }
+        ]
+      },
+      {
+        "id": 86,
+        "label": "consent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 2981,
+            "score": 117,
+            "spread": 5,
+            "value": "consent"
+          }
+        ]
+      },
+      {
+        "id": 87,
+        "label": "informed consent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 28,
+            "id": 5145,
+            "score": 465,
+            "spread": 28,
+            "value": "informed consent"
+          }
+        ]
+      },
+      {
+        "id": 88,
+        "label": "written informed consent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 18730,
+            "score": 212,
+            "spread": 7,
+            "value": "written informed consent"
+          }
+        ]
+      },
+      {
+        "id": 89,
+        "label": "appropriate informed consent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 18420,
+            "score": 79,
+            "spread": 1,
+            "value": "appropriate informed consent"
+          }
+        ]
+      },
+      {
+        "id": 90,
+        "label": "signed informed consent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 18666,
+            "score": 42,
+            "spread": 1,
+            "value": "signed informed consent"
+          }
+        ]
+      },
+      {
+        "id": 91,
+        "label": "general anesthesia",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 4504,
+            "score": 106,
+            "spread": 7,
+            "value": "general anesthesia"
+          }
+        ]
+      },
+      {
+        "id": 92,
+        "label": "general intubation anesthesia",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4507,
+            "score": 64,
+            "spread": 1,
+            "value": "general intubation anesthesia"
+          }
+        ]
+      },
+      {
+        "id": 93,
+        "label": "second liter",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 10194,
+            "score": 106,
+            "spread": 1,
+            "value": "second liter"
+          }
+        ]
+      },
+      {
+        "id": 94,
+        "label": "family",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 4114,
+            "score": 102,
+            "spread": 2,
+            "value": "family"
+          }
+        ]
+      },
+      {
+        "id": 95,
+        "label": "alternative management",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 1254,
+            "score": 100,
+            "spread": 4,
+            "value": "alternative management"
+          }
+        ]
+      },
+      {
+        "id": 96,
+        "label": "22 mmhg",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 353,
+            "score": 96,
+            "spread": 1,
+            "value": "22 mmhg"
+          }
+        ]
+      },
+      {
+        "id": 97,
+        "label": "sedation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 10210,
+            "score": 96,
+            "spread": 3,
+            "value": "sedation"
+          }
+        ]
+      },
+      {
+        "id": 98,
+        "label": "conscious sedation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 2979,
+            "score": 78,
+            "spread": 7,
+            "value": "conscious sedation"
+          }
+        ]
+      },
+      {
+        "id": 99,
+        "label": "no intravenous sedation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7638,
+            "score": 64,
+            "spread": 1,
+            "value": "no intravenous sedation"
+          }
+        ]
+      },
+      {
+        "id": 100,
+        "label": "active participant",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1024,
+            "score": 92,
+            "spread": 1,
+            "value": "active participant"
+          }
+        ]
+      },
+      {
+        "id": 101,
+        "label": "beginning",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 2100,
+            "score": 89,
+            "spread": 3,
+            "value": "beginning"
+          }
+        ]
+      },
+      {
+        "id": 102,
+        "label": "adequate resuscitation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1098,
+            "score": 85,
+            "spread": 1,
+            "value": "adequate resuscitation"
+          }
+        ]
+      },
+      {
+        "id": 103,
+        "label": "approximately 3 liters",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1685,
+            "score": 85,
+            "spread": 1,
+            "value": "approximately 3 liters"
+          }
+        ]
+      },
+      {
+        "id": 104,
+        "label": "fentanyl",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 15,
+            "id": 4153,
+            "score": 84,
+            "spread": 15,
+            "value": "fentanyl"
+          }
+        ]
+      },
+      {
+        "id": 105,
+        "label": "specifically",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 10,
+            "id": 10848,
+            "score": 84,
+            "spread": 10,
+            "value": "specifically"
+          }
+        ]
+      },
+      {
+        "id": 106,
+        "label": "staff radiologist",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 10918,
+            "score": 84,
+            "spread": 6,
+            "value": "staff radiologist"
+          }
+        ]
+      },
+      {
+        "id": 107,
+        "label": "timeout",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 11621,
+            "score": 79,
+            "spread": 4,
+            "value": "timeout"
+          }
+        ]
+      },
+      {
+        "id": 108,
+        "label": "preprocedure timeout",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 8,
+            "id": 8982,
+            "score": 189,
+            "spread": 8,
+            "value": "preprocedure timeout"
+          }
+        ]
+      },
+      {
+        "id": 109,
+        "label": "pre- procedure timeout",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8940,
+            "score": 42,
+            "spread": 1,
+            "value": "pre- procedure timeout"
+          }
+        ]
+      },
+      {
+        "id": 110,
+        "label": "pre-procedural timeout",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8949,
+            "score": 32,
+            "spread": 1,
+            "value": "pre-procedural timeout"
+          }
+        ]
+      },
+      {
+        "id": 111,
+        "label": "pre-procedure timeout",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8951,
+            "score": 32,
+            "spread": 1,
+            "value": "pre-procedure timeout"
+          }
+        ]
+      },
+      {
+        "id": 112,
+        "label": "preprocedural timeout",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8980,
+            "score": 32,
+            "spread": 1,
+            "value": "preprocedural timeout"
+          }
+        ]
+      },
+      {
+        "id": 113,
+        "label": "entire procedure",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 24,
+            "id": 3891,
+            "score": 78,
+            "spread": 24,
+            "value": "entire procedure"
+          }
+        ]
+      },
+      {
+        "id": 115,
+        "label": "m.d.",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 11,
+            "id": 6580,
+            "score": 76,
+            "spread": 8,
+            "value": "m.d."
+          }
+        ]
+      },
+      {
+        "id": 116,
+        "label": "standard sterile fashion",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 30,
+            "id": 10932,
+            "score": 69,
+            "spread": 29,
+            "value": "standard sterile fashion"
+          }
+        ]
+      },
+      {
+        "id": 117,
+        "label": "portosystemic pressure gradient drop",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8803,
+            "score": 67,
+            "spread": 1,
+            "value": "portosystemic pressure gradient drop"
+          }
+        ]
+      },
+      {
+        "id": 118,
+        "label": "stroke",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 16,
+            "id": 11077,
+            "score": 67,
+            "spread": 16,
+            "value": "stroke"
+          }
+        ]
+      },
+      {
+        "id": 119,
+        "label": "150 mcg",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 243,
+            "score": 64,
+            "spread": 2,
+            "value": "150 mcg"
+          }
+        ]
+      },
+      {
+        "id": 120,
+        "label": "all coils",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1223,
+            "score": 64,
+            "spread": 1,
+            "value": "all coils"
+          }
+        ]
+      },
+      {
+        "id": 121,
+        "label": "all critical aspects",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1224,
+            "score": 64,
+            "spread": 1,
+            "value": "all critical aspects"
+          }
+        ]
+      },
+      {
+        "id": 122,
+        "label": "completion",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 2935,
+            "score": 64,
+            "spread": 4,
+            "value": "completion"
+          }
+        ]
+      },
+      {
+        "id": 123,
+        "label": "complication",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 2941,
+            "score": 64,
+            "spread": 6,
+            "value": "complication"
+          }
+        ]
+      },
+      {
+        "id": 124,
+        "label": "complications",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 2942,
+            "score": 306,
+            "spread": 4,
+            "value": "complications"
+          }
+        ]
+      },
+      {
+        "id": 125,
+        "label": "immediate complications",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 5,
+            "id": 4974,
+            "score": 234,
+            "spread": 5,
+            "value": "immediate complications"
+          }
+        ]
+      },
+      {
+        "id": 126,
+        "label": "no immediate post- procedural complications",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7608,
+            "score": 64,
+            "spread": 1,
+            "value": "no immediate post- procedural complications"
+          }
+        ]
+      },
+      {
+        "id": 127,
+        "label": "no complications",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 7488,
+            "score": 221,
+            "spread": 7,
+            "value": "no complications"
+          }
+        ]
+      },
+      {
+        "id": 128,
+        "label": "possible complications",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 10,
+            "id": 8818,
+            "score": 32,
+            "spread": 10,
+            "value": "possible complications"
+          }
+        ]
+      },
+      {
+        "id": 129,
+        "label": "immediate complication",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4973,
+            "score": 64,
+            "spread": 1,
+            "value": "immediate complication"
+          }
+        ]
+      },
+      {
+        "id": 130,
+        "label": "no immediate complication",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7604,
+            "score": 64,
+            "spread": 1,
+            "value": "no immediate complication"
+          }
+        ]
+      },
+      {
+        "id": 131,
+        "label": "concern",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 2956,
+            "score": 64,
+            "spread": 5,
+            "value": "concern"
+          }
+        ]
+      },
+      {
+        "id": 132,
+        "label": "continuous monitoring",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3034,
+            "score": 64,
+            "spread": 1,
+            "value": "continuous monitoring"
+          }
+        ]
+      },
+      {
+        "id": 133,
+        "label": "continuous hemodynamic monitoring",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 3033,
+            "score": 16,
+            "spread": 2,
+            "value": "continuous hemodynamic monitoring"
+          }
+        ]
+      },
+      {
+        "id": 134,
+        "label": "course",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 3168,
+            "score": 64,
+            "spread": 6,
+            "value": "course"
+          }
+        ]
+      },
+      {
+        "id": 135,
+        "label": "etiology",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 3937,
+            "score": 64,
+            "spread": 2,
+            "value": "etiology"
+          }
+        ]
+      },
+      {
+        "id": 136,
+        "label": "evident",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 13,
+            "id": 3955,
+            "score": 64,
+            "spread": 12,
+            "value": "evident"
+          }
+        ]
+      },
+      {
+        "id": 137,
+        "label": "finding",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 9,
+            "id": 4205,
+            "score": 64,
+            "spread": 9,
+            "value": "finding"
+          }
+        ]
+      },
+      {
+        "id": 139,
+        "label": "findings",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 78,
+            "id": 4206,
+            "score": 25,
+            "spread": 74,
+            "value": "findings"
+          }
+        ]
+      },
+      {
+        "id": 140,
+        "label": "procedure/findings",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 9141,
+            "score": 170,
+            "spread": 2,
+            "value": "procedure/findings"
+          }
+        ]
+      },
+      {
+        "id": 141,
+        "label": "fluoroscopic guidance",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 60,
+            "id": 4275,
+            "score": 64,
+            "spread": 41,
+            "value": "fluoroscopic guidance"
+          }
+        ]
+      },
+      {
+        "id": 142,
+        "label": "guarded condition",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4585,
+            "score": 64,
+            "spread": 1,
+            "value": "guarded condition"
+          }
+        ]
+      },
+      {
+        "id": 143,
+        "label": "kefzol iv",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 5736,
+            "score": 64,
+            "spread": 1,
+            "value": "kefzol iv"
+          }
+        ]
+      },
+      {
+        "id": 144,
+        "label": "mac anesthesia",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 6588,
+            "score": 64,
+            "spread": 1,
+            "value": "mac anesthesia"
+          }
+        ]
+      },
+      {
+        "id": 145,
+        "label": "medical necessity",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 6743,
+            "score": 64,
+            "spread": 1,
+            "value": "medical necessity"
+          }
+        ]
+      },
+      {
+        "id": 146,
+        "label": "mr compatible",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7096,
+            "score": 64,
+            "spread": 1,
+            "value": "mr compatible"
+          }
+        ]
+      },
+      {
+        "id": 147,
+        "label": "nature",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 7261,
+            "score": 64,
+            "spread": 7,
+            "value": "nature"
+          }
+        ]
+      },
+      {
+        "id": 148,
+        "label": "neuro intensive care unit",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7313,
+            "score": 64,
+            "spread": 1,
+            "value": "neuro intensive care unit"
+          }
+        ]
+      },
+      {
+        "id": 149,
+        "label": "pelvis",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 79,
+            "id": 8482,
+            "score": 64,
+            "spread": 71,
+            "value": "pelvis"
+          }
+        ]
+      },
+      {
+        "id": 150,
+        "label": "persistent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 8584,
+            "score": 64,
+            "spread": 2,
+            "value": "persistent"
+          }
+        ]
+      },
+      {
+        "id": 151,
+        "label": "right common carotid artery",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 17,
+            "id": 9715,
+            "score": 64,
+            "spread": 16,
+            "value": "right common carotid artery"
+          }
+        ]
+      },
+      {
+        "id": 152,
+        "label": "several hours",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 10329,
+            "score": 64,
+            "spread": 1,
+            "value": "several hours"
+          }
+        ]
+      },
+      {
+        "id": 153,
+        "label": "start",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 10939,
+            "score": 64,
+            "spread": 1,
+            "value": "start"
+          }
+        ]
+      },
+      {
+        "id": 155,
+        "label": "surgical intensive care unit",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11298,
+            "score": 64,
+            "spread": 1,
+            "value": "surgical intensive care unit"
+          }
+        ]
+      },
+      {
+        "id": 156,
+        "label": "termination",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11460,
+            "score": 64,
+            "spread": 1,
+            "value": "termination"
+          }
+        ]
+      },
+      {
+        "id": 157,
+        "label": "two options",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11950,
+            "score": 64,
+            "spread": 1,
+            "value": "two options"
+          }
+        ]
+      },
+      {
+        "id": 158,
+        "label": "versed",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 11,
+            "id": 12258,
+            "score": 64,
+            "spread": 11,
+            "value": "versed"
+          }
+        ]
+      },
+      {
+        "id": 159,
+        "label": "wife",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 13140,
+            "score": 64,
+            "spread": 2,
+            "value": "wife"
+          }
+        ]
+      },
+      {
+        "id": 160,
+        "label": "chylous ascites",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 2780,
+            "score": 63,
+            "spread": 1,
+            "value": "chylous ascites"
+          }
+        ]
+      },
+      {
+        "id": 161,
+        "label": "abdomen",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 97,
+            "id": 933,
+            "score": 56,
+            "spread": 83,
+            "value": "abdomen"
+          }
+        ]
+      },
+      {
+        "id": 162,
+        "label": "transjugular intrahepatic portosystemic shunt",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 11842,
+            "score": 53,
+            "spread": 2,
+            "value": "transjugular intrahepatic portosystemic shunt"
+          }
+        ]
+      },
+      {
+        "id": 163,
+        "label": "ascitic fluid",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 1906,
+            "score": 51,
+            "spread": 2,
+            "value": "ascitic fluid"
+          }
+        ]
+      },
+      {
+        "id": 164,
+        "label": "local hemostasis",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 6438,
+            "score": 51,
+            "spread": 1,
+            "value": "local hemostasis"
+          }
+        ]
+      },
+      {
+        "id": 165,
+        "label": "subsequent",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11142,
+            "score": 51,
+            "spread": 1,
+            "value": "subsequent"
+          }
+        ]
+      },
+      {
+        "id": 166,
+        "label": "1 l",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 81,
+            "score": 50,
+            "spread": 1,
+            "value": "1 l"
+          }
+        ]
+      },
+      {
+        "id": 167,
+        "label": "successful creation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11171,
+            "score": 43,
+            "spread": 1,
+            "value": "successful creation"
+          }
+        ]
+      },
+      {
+        "id": 168,
+        "label": "102 degrees fahrenheit",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 153,
+            "score": 42,
+            "spread": 1,
+            "value": "102 degrees fahrenheit"
+          }
+        ]
+      },
+      {
+        "id": 169,
+        "label": "2 grams",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 299,
+            "score": 42,
+            "spread": 1,
+            "value": "2 grams"
+          }
+        ]
+      },
+      {
+        "id": 170,
+        "label": "2 mg",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 301,
+            "score": 42,
+            "spread": 7,
+            "value": "2 mg"
+          }
+        ]
+      },
+      {
+        "id": 171,
+        "label": "43 year old woman",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 547,
+            "score": 42,
+            "spread": 1,
+            "value": "43 year old woman"
+          }
+        ]
+      },
+      {
+        "id": 173,
+        "label": "absolute",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 982,
+            "score": 42,
+            "spread": 1,
+            "value": "absolute"
+          }
+        ]
+      },
+      {
+        "id": 174,
+        "label": "blood-tinged fluid",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 2272,
+            "score": 42,
+            "spread": 1,
+            "value": "blood-tinged fluid"
+          }
+        ]
+      },
+      {
+        "id": 175,
+        "label": "contrast",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 100,
+            "id": 3049,
+            "score": 42,
+            "spread": 60,
+            "value": "contrast"
+          }
+        ]
+      },
+      {
+        "id": 176,
+        "label": "injection",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 80,
+            "id": 5191,
+            "score": 42,
+            "spread": 25,
+            "value": "injection"
+          }
+        ]
+      },
+      {
+        "id": 177,
+        "label": "intubation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 10,
+            "id": 5396,
+            "score": 42,
+            "spread": 9,
+            "value": "intubation"
+          }
+        ]
+      },
+      {
+        "id": 179,
+        "label": "place",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 40,
+            "id": 8657,
+            "score": 42,
+            "spread": 35,
+            "value": "place"
+          }
+        ]
+      },
+      {
+        "id": 180,
+        "label": "pre-procedure note",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8950,
+            "score": 42,
+            "spread": 1,
+            "value": "pre-procedure note"
+          }
+        ]
+      },
+      {
+        "id": 181,
+        "label": "radiology",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 9341,
+            "score": 42,
+            "spread": 6,
+            "value": "radiology"
+          }
+        ]
+      },
+      {
+        "id": 182,
+        "label": "source",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 10845,
+            "score": 42,
+            "spread": 3,
+            "value": "source"
+          }
+        ]
+      },
+      {
+        "id": 183,
+        "label": "stable",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 54,
+            "id": 10891,
+            "score": 42,
+            "spread": 45,
+            "value": "stable"
+          }
+        ]
+      },
+      {
+        "id": 184,
+        "label": "stable condition",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 4,
+            "id": 10896,
+            "score": 78,
+            "spread": 4,
+            "value": "stable condition"
+          }
+        ]
+      },
+      {
+        "id": 185,
+        "label": "stage",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 10920,
+            "score": 42,
+            "spread": 2,
+            "value": "stage"
+          }
+        ]
+      },
+      {
+        "id": 186,
+        "label": "stenosis",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 27,
+            "id": 11024,
+            "score": 42,
+            "spread": 15,
+            "value": "stenosis"
+          }
+        ]
+      },
+      {
+        "id": 187,
+        "label": "writing",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 13202,
+            "score": 42,
+            "spread": 1,
+            "value": "writing"
+          }
+        ]
+      },
+      {
+        "id": 188,
+        "label": "gauze",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4495,
+            "score": 36,
+            "spread": 1,
+            "value": "gauze"
+          }
+        ]
+      },
+      {
+        "id": 189,
+        "label": "images",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 61,
+            "id": 4971,
+            "score": 36,
+            "spread": 41,
+            "value": "images"
+          }
+        ]
+      },
+      {
+        "id": 190,
+        "label": "5 mm axial images",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 625,
+            "score": 42,
+            "spread": 1,
+            "value": "5 mm axial images"
+          }
+        ]
+      },
+      {
+        "id": 191,
+        "label": "manual compression",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 6626,
+            "score": 36,
+            "spread": 3,
+            "value": "manual compression"
+          }
+        ]
+      },
+      {
+        "id": 192,
+        "label": "approximately 900 cc",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 1705,
+            "score": 32,
+            "spread": 1,
+            "value": "approximately 900 cc"
+          }
+        ]
+      },
+      {
+        "id": 193,
+        "label": "coil embolization",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 2844,
+            "score": 32,
+            "spread": 3,
+            "value": "coil embolization"
+          }
+        ]
+      },
+      {
+        "id": 194,
+        "label": "continuous divided doses",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 3030,
+            "score": 32,
+            "spread": 1,
+            "value": "continuous divided doses"
+          }
+        ]
+      },
+      {
+        "id": 195,
+        "label": "explanation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4001,
+            "score": 32,
+            "spread": 1,
+            "value": "explanation"
+          }
+        ]
+      },
+      {
+        "id": 196,
+        "label": "complete explanation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 10,
+            "id": 2921,
+            "score": 640,
+            "spread": 10,
+            "value": "complete explanation"
+          }
+        ]
+      },
+      {
+        "id": 198,
+        "label": "manual pressure",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 6627,
+            "score": 32,
+            "spread": 7,
+            "value": "manual pressure"
+          }
+        ]
+      },
+      {
+        "id": 199,
+        "label": "no extravasation",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 7,
+            "id": 7551,
+            "score": 32,
+            "spread": 7,
+            "value": "no extravasation"
+          }
+        ]
+      },
+      {
+        "id": 200,
+        "label": "patietn",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8453,
+            "score": 32,
+            "spread": 1,
+            "value": "patietn"
+          }
+        ]
+      },
+      {
+        "id": 201,
+        "label": "risk",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 20,
+            "id": 10071,
+            "score": 32,
+            "spread": 11,
+            "value": "risk"
+          }
+        ]
+      },
+      {
+        "id": 202,
+        "label": "risks",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 39,
+            "id": 10073,
+            "score": 1196,
+            "spread": 36,
+            "value": "risks"
+          }
+        ]
+      },
+      {
+        "id": 203,
+        "label": "septic shock",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 10296,
+            "score": 32,
+            "spread": 1,
+            "value": "septic shock"
+          }
+        ]
+      },
+      {
+        "id": 204,
+        "label": "son",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 2,
+            "id": 10837,
+            "score": 32,
+            "spread": 1,
+            "value": "son"
+          }
+        ]
+      },
+      {
+        "id": 205,
+        "label": "person",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8631,
+            "score": 42,
+            "spread": 1,
+            "value": "person"
+          }
+        ]
+      },
+      {
+        "id": 206,
+        "label": "temperature",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11436,
+            "score": 32,
+            "spread": 1,
+            "value": "temperature"
+          }
+        ]
+      },
+      {
+        "id": 207,
+        "label": "hemorrhage",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 30,
+            "id": 4758,
+            "score": 28,
+            "spread": 25,
+            "value": "hemorrhage"
+          }
+        ]
+      },
+      {
+        "id": 208,
+        "label": "subarachnoid hemorrhage",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 6,
+            "id": 11093,
+            "score": 64,
+            "spread": 6,
+            "value": "subarachnoid hemorrhage"
+          }
+        ]
+      },
+      {
+        "id": 209,
+        "label": "right groin",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 21,
+            "id": 9761,
+            "score": 28,
+            "spread": 17,
+            "value": "right groin"
+          }
+        ]
+      },
+      {
+        "id": 210,
+        "label": "telephone",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 3,
+            "id": 11434,
+            "score": 28,
+            "spread": 3,
+            "value": "telephone"
+          }
+        ]
+      },
+      {
+        "id": 211,
+        "label": "dissection",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 24,
+            "id": 3554,
+            "score": 25,
+            "spread": 15,
+            "value": "dissection"
+          }
+        ]
+      },
+      {
+        "id": 212,
+        "label": "icu team",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4928,
+            "score": 25,
+            "spread": 1,
+            "value": "icu team"
+          }
+        ]
+      },
+      {
+        "id": 213,
+        "label": "manipulating",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 6625,
+            "score": 25,
+            "spread": 1,
+            "value": "manipulating"
+          }
+        ]
+      },
+      {
+        "id": 214,
+        "label": "operator supervision",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 8133,
+            "score": 25,
+            "spread": 1,
+            "value": "operator supervision"
+          }
+        ]
+      },
+      {
+        "id": 215,
+        "label": "proceedure",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 9142,
+            "score": 25,
+            "spread": 1,
+            "value": "proceedure"
+          }
+        ]
+      },
+      {
+        "id": 216,
+        "label": "subsegment",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11138,
+            "score": 25,
+            "spread": 1,
+            "value": "subsegment"
+          }
+        ]
+      },
+      {
+        "id": 217,
+        "label": "infection",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 16,
+            "id": 5100,
+            "score": 23,
+            "spread": 16,
+            "value": "infection"
+          }
+        ]
+      },
+      {
+        "id": 218,
+        "label": "treatment plan",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 11880,
+            "score": 23,
+            "spread": 1,
+            "value": "treatment plan"
+          }
+        ]
+      },
+      {
+        "id": 219,
+        "label": "angiography table",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 9,
+            "id": 1497,
+            "score": 21,
+            "spread": 9,
+            "value": "angiography table"
+          }
+        ]
+      },
+      {
+        "id": 220,
+        "label": "clot",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 12,
+            "id": 2822,
+            "score": 21,
+            "spread": 9,
+            "value": "clot"
+          }
+        ]
+      },
+      {
+        "id": 221,
+        "label": "death",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 11,
+            "id": 3259,
+            "score": 21,
+            "spread": 11,
+            "value": "death"
+          }
+        ]
+      },
+      {
+        "id": 222,
+        "label": "nursing staff",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 7997,
+            "score": 21,
+            "spread": 1,
+            "value": "nursing staff"
+          }
+        ]
+      },
+      {
+        "id": 223,
+        "label": "icu nursing staff",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 4927,
+            "score": 32,
+            "spread": 1,
+            "value": "icu nursing staff"
+          }
+        ]
+      },
+      {
+        "id": 224,
+        "label": "members",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 6750,
+            "score": 18,
+            "spread": 1,
+            "value": "members"
+          }
+        ]
+      },
+      {
+        "id": 225,
+        "label": "portal vein",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 27,
+            "id": 8787,
+            "score": 18,
+            "spread": 14,
+            "value": "portal vein"
+          }
+        ]
+      },
+      {
+        "id": 226,
+        "label": "witness",
+        "type": "entity",
+        "entities": [
+          {
+            "frequency": 1,
+            "id": 13172,
+            "score": 16,
+            "spread": 1,
+            "value": "witness"
+          }
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "source": 0,
+        "target": 1,
+        "type": "related"
+      },
+      {
+        "source": 1,
+        "target": 2,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 4,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 5,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 6,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 7,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 9,
+        "type": "similar"
+      },
+      {
+        "source": 9,
+        "target": 10,
+        "type": "similar"
+      },
+      {
+        "source": 9,
+        "target": 11,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 12,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 13,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 14,
+        "type": "similar"
+      },
+      {
+        "source": 1,
+        "target": 15,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 21,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 23,
+        "type": "related"
+      },
+      {
+        "source": 23,
+        "target": 24,
+        "type": "similar"
+      },
+      {
+        "source": 24,
+        "target": 25,
+        "type": "similar"
+      },
+      {
+        "source": 25,
+        "target": 26,
+        "type": "similar"
+      },
+      {
+        "source": 26,
+        "target": 27,
+        "type": "similar"
+      },
+      {
+        "source": 26,
+        "target": 28,
+        "type": "similar"
+      },
+      {
+        "source": 23,
+        "target": 29,
+        "type": "similar"
+      },
+      {
+        "source": 29,
+        "target": 30,
+        "type": "similar"
+      },
+      {
+        "source": 23,
+        "target": 31,
+        "type": "similar"
+      },
+      {
+        "source": 31,
+        "target": 32,
+        "type": "similar"
+      },
+      {
+        "source": 31,
+        "target": 33,
+        "type": "similar"
+      },
+      {
+        "source": 31,
+        "target": 34,
+        "type": "similar"
+      },
+      {
+        "source": 31,
+        "target": 35,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 36,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 37,
+        "type": "related"
+      },
+      {
+        "source": 37,
+        "target": 38,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 42,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 43,
+        "type": "related"
+      },
+      {
+        "source": 43,
+        "target": 44,
+        "type": "similar"
+      },
+      {
+        "source": 43,
+        "target": 45,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 50,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 51,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 52,
+        "type": "related"
+      },
+      {
+        "source": 52,
+        "target": 53,
+        "type": "similar"
+      },
+      {
+        "source": 52,
+        "target": 54,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 55,
+        "type": "related"
+      },
+      {
+        "source": 55,
+        "target": 58,
+        "type": "similar"
+      },
+      {
+        "source": 55,
+        "target": 59,
+        "type": "similar"
+      },
+      {
+        "source": 59,
+        "target": 60,
+        "type": "similar"
+      },
+      {
+        "source": 59,
+        "target": 61,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 67,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 68,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 69,
+        "type": "related"
+      },
+      {
+        "source": 69,
+        "target": 70,
+        "type": "similar"
+      },
+      {
+        "source": 69,
+        "target": 71,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 72,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 74,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 76,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 77,
+        "type": "related"
+      },
+      {
+        "source": 77,
+        "target": 78,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 79,
+        "type": "related"
+      },
+      {
+        "source": 79,
+        "target": 80,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 81,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 82,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 83,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 84,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 85,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 86,
+        "type": "related"
+      },
+      {
+        "source": 86,
+        "target": 87,
+        "type": "similar"
+      },
+      {
+        "source": 87,
+        "target": 88,
+        "type": "similar"
+      },
+      {
+        "source": 87,
+        "target": 89,
+        "type": "similar"
+      },
+      {
+        "source": 87,
+        "target": 90,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 91,
+        "type": "related"
+      },
+      {
+        "source": 91,
+        "target": 92,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 93,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 94,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 95,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 96,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 97,
+        "type": "related"
+      },
+      {
+        "source": 97,
+        "target": 98,
+        "type": "similar"
+      },
+      {
+        "source": 97,
+        "target": 99,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 100,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 101,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 102,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 103,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 104,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 105,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 106,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 107,
+        "type": "related"
+      },
+      {
+        "source": 107,
+        "target": 108,
+        "type": "similar"
+      },
+      {
+        "source": 107,
+        "target": 109,
+        "type": "similar"
+      },
+      {
+        "source": 107,
+        "target": 110,
+        "type": "similar"
+      },
+      {
+        "source": 107,
+        "target": 111,
+        "type": "similar"
+      },
+      {
+        "source": 107,
+        "target": 112,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 113,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 115,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 116,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 117,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 118,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 119,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 120,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 121,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 122,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 123,
+        "type": "related"
+      },
+      {
+        "source": 123,
+        "target": 124,
+        "type": "similar"
+      },
+      {
+        "source": 124,
+        "target": 125,
+        "type": "similar"
+      },
+      {
+        "source": 125,
+        "target": 126,
+        "type": "similar"
+      },
+      {
+        "source": 124,
+        "target": 127,
+        "type": "similar"
+      },
+      {
+        "source": 124,
+        "target": 128,
+        "type": "similar"
+      },
+      {
+        "source": 123,
+        "target": 129,
+        "type": "similar"
+      },
+      {
+        "source": 129,
+        "target": 130,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 131,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 132,
+        "type": "related"
+      },
+      {
+        "source": 132,
+        "target": 133,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 134,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 135,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 136,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 137,
+        "type": "related"
+      },
+      {
+        "source": 137,
+        "target": 139,
+        "type": "similar"
+      },
+      {
+        "source": 139,
+        "target": 140,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 141,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 142,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 143,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 144,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 145,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 146,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 147,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 148,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 149,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 150,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 151,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 152,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 153,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 155,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 156,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 157,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 158,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 159,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 160,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 161,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 162,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 163,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 164,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 165,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 166,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 167,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 168,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 169,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 170,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 171,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 173,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 174,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 175,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 176,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 177,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 179,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 180,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 181,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 182,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 183,
+        "type": "related"
+      },
+      {
+        "source": 183,
+        "target": 184,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 185,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 186,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 187,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 188,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 189,
+        "type": "related"
+      },
+      {
+        "source": 189,
+        "target": 190,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 191,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 192,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 193,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 194,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 195,
+        "type": "related"
+      },
+      {
+        "source": 195,
+        "target": 196,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 198,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 199,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 200,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 201,
+        "type": "related"
+      },
+      {
+        "source": 201,
+        "target": 202,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 203,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 204,
+        "type": "related"
+      },
+      {
+        "source": 204,
+        "target": 205,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 206,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 207,
+        "type": "related"
+      },
+      {
+        "source": 207,
+        "target": 208,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 209,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 210,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 211,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 212,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 213,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 214,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 215,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 216,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 217,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 218,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 219,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 220,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 221,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 222,
+        "type": "related"
+      },
+      {
+        "source": 222,
+        "target": 223,
+        "type": "similar"
+      },
+      {
+        "source": 0,
+        "target": 224,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 225,
+        "type": "related"
+      },
+      {
+        "source": 0,
+        "target": 226,
+        "type": "related"
+      }
+    ]
+  }
+}

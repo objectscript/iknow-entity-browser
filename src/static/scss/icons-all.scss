@@ -1,0 +1,12 @@
+@import "mixins";
+
+[class*="icon-"] {
+    @include user-select(none);
+    cursor: pointer;
+    &.ui { font-size: 24pt; }
+}
+
+.uiIconGroup {
+    position: fixed;
+    &.topRight { top: 5px; right: 5px; }
+}

@@ -1,0 +1,28 @@
+@import "const";
+
+table {
+
+    border-spacing: 0;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: $defaultShadow;
+
+    td, th {
+        padding: $defaultPadding / 2;
+    }
+
+    td:not(:last-child), th:not(:last-child) {
+        border-right: 1px solid #ddd;
+    }
+
+    tr:nth-child(2n) {
+        background-color: #eee;
+    }
+
+    th {
+        background-color: rgb(2, 173, 139);
+        color: white;
+        text-shadow: 0 1px 1px black;
+    }
+
+}

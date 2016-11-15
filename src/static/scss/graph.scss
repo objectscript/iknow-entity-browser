@@ -1,11 +1,23 @@
+@import "mixins";
+
 #graph {
 
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
 
     .links line {
-        //stroke: #999;
-        stroke-opacity: 0.6;
+        &.similar {
+            stroke: #70d9ff;
+        }
+        &.related {
+            stroke: #ccc;
+        }
+        &.other {
+            stroke: #c11;
+        }
     }
 
     .nodes {
@@ -18,6 +30,10 @@
                 fill: #7ca1ff;
             }
 
+            &.selected circle {
+                stroke: #000;
+            }
+
             text {
                 text-anchor: middle;
                 pointer-events: none;
@@ -25,6 +41,12 @@
 
         }
 
+    }
+
+    .brush .extent {
+        fill-opacity: .1;
+        stroke: #fff;
+        shape-rendering: crispEdges;
     }
 
 }
