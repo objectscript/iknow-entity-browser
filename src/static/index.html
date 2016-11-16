@@ -12,25 +12,30 @@
 <div id="windows">
     <svg id="graph"></svg>
     <div id="table">
-        <h1>Selected Nodes</h1>
+        <i id="tableToggle" class="ui icon-window-list"></i>
         <div class="wrapper">
-            <table>
-                <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Label</th>
-                    <th>Frequency</th>
-                </tr>
-                </thead>
-                <tbody>
+            <div>
+                <i id="exportCSV" class="ui icon-page-export-csv"></i>
+            </div>
+            <h1>Selected Nodes</h1>
+            <div class="wrapper">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Label</th>
+                        <th>Score</th>
+                        <th>Frequency</th>
+                        <th>Spread</th>
+                    </tr>
+                    </thead>
+                    <tbody>
 
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
-</div>
-<div class="uiIconGroup topRight">
-    <i id="tableToggle" class="ui icon-window-list"></i>
 </div>
 </body>
 </html>

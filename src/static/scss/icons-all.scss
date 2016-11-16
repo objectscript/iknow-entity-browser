@@ -1,9 +1,16 @@
 @import "mixins";
+@import "const";
 
 [class*="icon-"] {
     @include user-select(none);
+    @include transition($defaultTransition);
     cursor: pointer;
-    &.ui { font-size: 24pt; }
+    &.ui { font-size: 28px; }
+    &:hover { color: $colorA; }
+    &.toggled {
+        color: $colorA;
+        &:hover { color: black; }
+    }
 }
 
 .uiIconGroup {

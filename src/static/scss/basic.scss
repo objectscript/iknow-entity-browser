@@ -20,9 +20,13 @@ table {
     }
 
     th {
-        background-color: rgb(2, 173, 139);
+        background-color: $colorA;
         color: white;
         text-shadow: 0 1px 1px black;
     }
 
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0 0 .3em 0;
 }

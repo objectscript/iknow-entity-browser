@@ -5,28 +5,42 @@
 
     position: absolute;
     top: 0;
-    left: 0;
-    width: 50%;
+    right: 0;
     height: 100%;
+    max-width: 100%;
     box-sizing: border-box;
-    padding: $defaultPadding;
     background: white;
-    overflow: auto;
+    overflow: visible;
     box-shadow: $defaultShadow;
     @include transition($defaultTransition);
-    @include transform(translate(200%,0));
+    @include transform(translate(100%,0));
     &.active {
-        @include transform(translate(100%,0));
+        @include transform(translate(0,0));
     }
 
-    .wrapper {
+    > .wrapper {
 
-        position: relative;
+        overflow: auto;
+        height: 100%;
+        padding: $defaultPadding;
+        box-sizing: border-box;
 
-        table {
-            width: 100%;
+        > .wrapper {
+
+            position: relative;
+
+            table {
+                width: 100%;
+            }
+
         }
 
     }
 
+}
+
+#tableToggle {
+    position: absolute;
+    left: -35px;
+    top: 6px;
 }

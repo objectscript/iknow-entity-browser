@@ -1,14 +1,20 @@
 import sampleData from "./sample_output2.json";
+import { uiState } from "./ui";
+import { csv } from "./export";
 
 var graph = preprocess(sampleData.graph);
 
 function preprocess (graph) {
-    graph.nodes.forEach(node => node.radius = 5 + Math.sqrt(node.entities[0].frequency || 25));
+    graph.nodes.forEach(node => node.radius = 5 + Math.sqrt(node.entities[0].score/4 || 25));
     return graph;
 }
 
 function updateSelectedNodes () {
-    let data = graph.nodes.filter(node => !!node.selected),
+    if (!uiState.tableToggled)
+        return;
+    let data = graph.nodes.filter(node => !!node.selected).sort((a, b) =>
+            a.entities[0].score > b.entities[0].score ? -1 : 1
+        ),
         table = document.querySelector("#table table tbody");
     table.textContent = "";
     for (let i = 0; i < data.length; i++) {
@@ -16,7 +22,9 @@ function updateSelectedNodes () {
             node = data[i];
         row.insertCell(0).textContent = node.id;
         row.insertCell(1).textContent = node.label;
-        row.insertCell(2).textContent = node.entities[0].frequency;
+        row.insertCell(2).textContent = node.entities[0].score;
+        row.insertCell(3).textContent = node.entities[0].frequency;
+        row.insertCell(4).textContent = node.entities[0].spread;
     }
 }
 
@@ -91,7 +99,7 @@ window.init = () => {
             if (!ctrlKey) {
                 node.classed("selected", (p) => p.selected = p.previouslySelected = false)
             }
-            d3.select(this).classed("selected", d.selected = !d.previouslySelected);
+            d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
             updateSelectedNodes();
         });
 
@@ -197,10 +205,18 @@ window.init = () => {
     }
 
     d3.select("#tableToggle")
-        .data([{ toggled: false }])
-        .on("click", (d) => {
-            d.toggled = !d.toggled;
-            d3.select("#table").classed("active", d.toggled);
+        .data([uiState])
+        .on("click", function (d) {
+            d.tableToggled = !d.tableToggled;
+            d3.select(this).classed("toggled", d.tableToggled);
+            d3.select("#table").classed("active", d.tableToggled);
+            updateSelectedNodes();
         });
+
+    d3.select("#exportCSV").on("click", () => {
+        csv([].slice.call(document.querySelector("#table table").rows).map(row =>
+            [].slice.call(row.cells).map(cell => cell.textContent)
+        ));
+    });
 
 };
