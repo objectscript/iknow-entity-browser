@@ -7,6 +7,20 @@ Preview
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20325678/5efeecde-ab8e-11e6-8d8d-f4955a1afa4d.png)
 
+Usage
+-----
+
+[Build](#development) the project, then open `index.html` file.
+
++ Click and drag on empty space to move around nodes.
++ Click and drag on a node to move the node.
++ Single-click a node to select it.
++ CTRL-click nodes to select many of them.
++ CTRL-click and drag on empty space to select a bunch of nodes.
++ Scroll down or up to scale.
++ Click on menu button to open a table containing information about selected nodes.
++ Click on export button to save the table as a file.
+
 Development
 -----------
 
