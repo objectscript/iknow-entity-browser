@@ -1,5 +1,6 @@
 import { updateSelectedNodes } from "../tabular";
 import { getGraphData } from "../model";
+import { updateSelection } from "../selection";
 
 export function update () {
 
@@ -75,7 +76,7 @@ export function update () {
                 node.classed("selected", (p) => p.selected = p.previouslySelected = false)
             }
             d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
-            updateSelectedNodes();
+            updateSelection();
         });
 
     var circle = node.append("circle")
@@ -116,7 +117,7 @@ export function update () {
             if (!d3.event.sourceEvent) return;
             setTimeout(() => {
                 brush.call(brusher.move, null);
-                updateSelectedNodes();
+                updateSelection();
             }, 25);
         });
 

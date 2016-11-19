@@ -11,6 +11,10 @@
         color: $colorA;
         &:hover { color: black; }
     }
+    &.disabled {
+        color: gray;
+        &:hover { color: gray; }
+    }
 }
 
 .uiIconGroup {

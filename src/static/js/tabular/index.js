@@ -1,12 +1,13 @@
 import { csv } from "./export";
 import * as model from "../model";
+import { onSelectionUpdate, updateSelection } from "../selection";
 
 var graph;
 
-export function updateSelectedNodes () {
-    if (!model.uiState.tableToggled)
+onSelectionUpdate((selection) => {
+    if (!model.uiState.tabularToggled)
         return;
-    let data = graph.nodes.filter(node => !!node.selected).sort((a, b) =>
+    let data = selection.sort((a, b) =>
             a.entities[0].score > b.entities[0].score ? -1 : 1
         ),
         table = document.querySelector("#table table tbody");
@@ -20,7 +21,7 @@ export function updateSelectedNodes () {
         row.insertCell(3).textContent = node.entities[0].frequency;
         row.insertCell(4).textContent = node.entities[0].spread;
     }
-}
+});
 
 export function init () {
 
@@ -29,10 +30,10 @@ export function init () {
     d3.select("#tableToggle")
         .data([model.uiState])
         .on("click", function (d) {
-            d.tableToggled = !d.tableToggled;
-            d3.select(this).classed("toggled", d.tableToggled);
-            d3.select("#table").classed("active", d.tableToggled);
-            updateSelectedNodes();
+            d.tabularToggled = !d.tabularToggled;
+            d3.select(this).classed("toggled", d.tabularToggled);
+            d3.select("#table").classed("active", d.tabularToggled);
+            updateSelection();
         });
 
     d3.select("#exportCSV").on("click", () => {
