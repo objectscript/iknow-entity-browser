@@ -1,4 +1,5 @@
 @import "mixins";
+@import "const";
 
 html, body {
     position: relative;
@@ -10,10 +11,19 @@ html, body {
 }
 
 #windows {
+
     position: relative;
     overflow: hidden;
+    top: 0;
     width: 100%;
     height: 100%;
+    @include transition($defaultTransition);
+
+    &.offScreen {
+        top: 100%;
+        overflow: visible;
+    }
+
 }
 
 @import "basic";
@@ -22,3 +32,4 @@ html, body {
 @import "graph";
 @import "tabular";
 @import "nodeDetails";
+@import "settings";

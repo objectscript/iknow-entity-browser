@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>iKnow Entity Browser</title>
     <meta name="author" content="ZitRo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link rel="stylesheet" href="css/index.css"/>
     <script src="lib/d3.v4.min.js"></script>
     <script type="text/javascript" src="js/index.js"></script>
@@ -13,8 +14,11 @@
     <svg id="graph"></svg>
     <div id="table">
         <i id="tableToggle" class="ui icon-window-list"></i>
+        <div id="rightTopIcons">
+            <i id="settingsToggle" class="ui icon-cog"></i>
+        </div>
         <div class="wrapper">
-            <div>
+            <div class="controls">
                 <i id="exportCSV" class="ui icon-page-export-csv"></i>
             </div>
             <h1>Selected Nodes</h1>
@@ -44,10 +48,28 @@
             <div class="text">Please, select a node.</div>
         </div>
         <div class="content">
-            <h1>WELCOME</h1>
-            <h3>THIS IS A GAME</h3>
-            <h5>TEST GAME!</h5>
+            <!--h1>
+                <span id="nodeDetails-label">Duck</span>
+                <span style="color: darkgray">ID=<span id="nodeDetails-id">0</span></span>
+            </h1-->
+            <table id="nodeDetails-entitiesTable">
+                <thead>
+                <tr>
+                    <th>Entity</th>
+                    <th>ID</th>
+                    <th>Frequency</th>
+                    <th>Score</th>
+                    <th>Spread</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
         </div>
+    </div>
+    <div id="settings">
+        <i id="closeSettingsToggle" class="ui icon-close"></i>
     </div>
 </div>
 </body>

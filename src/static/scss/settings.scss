@@ -1,0 +1,26 @@
+@import "const";
+@import "mixins";
+
+#settings {
+
+    position: absolute;
+    top: -100%;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    background: white;
+    padding: $defaultPadding;
+
+    &.active {
+
+    }
+
+}
+
+#closeSettingsToggle {
+
+    position: absolute;
+    right: 7px;
+    top: 7px;
+
+}

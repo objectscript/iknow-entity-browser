@@ -1,6 +1,6 @@
 import { updateSelectedNodes } from "../tabular";
 import { getGraphData } from "../model";
-import { updateSelection } from "../selection";
+import { updateSelection, setLastSelectedNode } from "../selection";
 
 export function update () {
 
@@ -76,6 +76,7 @@ export function update () {
                 node.classed("selected", (p) => p.selected = p.previouslySelected = false)
             }
             d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
+            setLastSelectedNode(d.selected ? d : null);
             updateSelection();
         });
 
@@ -108,9 +109,10 @@ export function update () {
             if (!extent)
                 return;
             node.classed("selected", (d) => {
-                return d.selected = d.previouslySelected ^
-                    (extent[0][0] <= d.x && d.x < extent[1][0]
+                let selected = (extent[0][0] <= d.x && d.x < extent[1][0]
                     && extent[0][1] <= d.y && d.y < extent[1][1]);
+                if (selected) setLastSelectedNode(d);
+                return d.selected = d.previouslySelected ^ selected;
             });
         })
         .on("end.brush", () => {

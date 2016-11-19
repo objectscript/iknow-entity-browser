@@ -13,5 +13,6 @@ export function getGraphData () {
 
 export var uiState = {
     tabularToggled: false,
-    detailsToggled: false
+    detailsToggled: false,
+    settingsToggled: false
 };

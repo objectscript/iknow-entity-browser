@@ -18,28 +18,32 @@
         @include transform(translate(0,0));
     }
 
+    $headerPadding: 4px;
+    $headerFontSize: 16px;
+
     > .header {
 
         position: absolute;
         left: 0;
         right: 0;
         top: -28px;
-        height: 20px;
+        height: 20px + 2 * $headerPadding;
         max-width: 80%;
         width: 350px;
         margin: 0 auto;
         border-radius: 5px 5px 0 0;
         background: white;
-        padding: 4px;
-        font-size: 16px;
+        padding: $headerPadding;
+        font-size: $headerFontSize;
         box-shadow: 0 0 2px gray;
+        box-sizing: border-box;
+        @include transition($defaultTransition);
 
         > .icons {
             display: block;
             float: left;
             width: 30px;
             font-size: 24px;
-            color: gray;
         }
 
         > .text {
@@ -66,6 +70,22 @@
                 width: 100%;
             }
 
+        }
+
+    }
+
+    &.active {
+
+        > .header {
+            top: 0;
+            border-radius: 0 0 5px 5px;
+            max-width: 100%;
+            width: 100%;
+            box-shadow: none;
+        }
+
+        > .content {
+            padding-top: $defaultPadding + $headerFontSize + $headerPadding;
         }
 
     }

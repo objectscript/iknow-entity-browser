@@ -3,24 +3,58 @@ import { onSelectionUpdate } from "../selection";
 
 let selectedNode = null;
 
-onSelectionUpdate((selection) => {
+onSelectionUpdate((selection, lastNodeSelected) => {
 
-    d3.select("#nodeDetailsToggle").classed("disabled", selection.length !== 1);
-    selectedNode = selection.length === 1 ? selection[0] : null;
+    d3.select("#nodeDetailsToggle").classed("disabled", selection.length === 0);
+    selectedNode = lastNodeSelected
+        ? lastNodeSelected
+        : selection.length > 0
+            ? selection[selection.length - 1]
+            : null;
     updateHeader();
 
 });
 
 function updateHeader () {
 
+    let typeName = ((selectedNode || {}).type || "Node".toString());
+
     d3.select("#nodeDetails .header .text").text(
         selectedNode
-            ? `Node "${ selectedNode.label }" (${ selectedNode.type }) selected.`
+            ? `${ typeName[0].toUpperCase() + typeName.slice(1) } "${ 
+                selectedNode.label }" selected.`
             : "Please, select one node."
     );
 
     if (!selectedNode) {
         d3.select("#nodeDetails").classed("active", model.uiState.detailsToggled = false);
+    } else {
+        updateData();
+    }
+
+}
+
+function updateData () {
+
+    if (!selectedNode)
+        return;
+
+    let tableElement = document.querySelector("#nodeDetails-entitiesTable tbody");
+        // labelElement = document.querySelector("#nodeDetails-label"),
+        // idElement = document.querySelector("#nodeDetails-id");
+
+    // idElement.textContent = selectedNode.id;
+    // labelElement.textContent = selectedNode.label;
+
+    tableElement.textContent = "";
+    for (let i = 0; i < (selectedNode.entities || []).length; i++) {
+        let row = tableElement.insertRow(i),
+            entity = selectedNode.entities[i];
+        row.insertCell(0).textContent = entity.value;
+        row.insertCell(1).textContent = entity.id;
+        row.insertCell(2).textContent = entity.frequency;
+        row.insertCell(3).textContent = entity.score;
+        row.insertCell(4).textContent = entity.spread;
     }
 
 }
