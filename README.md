@@ -10,7 +10,7 @@ Preview
 Usage
 -----
 
-[Build](#development) the project, then open `index.html` file.
+[Build](#development) the project (or [download](https://github.com/intersystems-ru/iknow-entity-browser/releases) a demo), then open `index.html` file.
 
 + Click and drag on empty space to move around nodes.
 + Click and drag on a node to move the node.
