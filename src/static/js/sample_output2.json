@@ -3,7 +3,7 @@
     "nodes": [
       {
         "id": 0,
-        "label": "patient",
+        "label": "medicine",
         "type": "entity",
         "entities": [
           {
@@ -11,7 +11,7 @@
             "id": 8378,
             "score": 3626,
             "spread": 214,
-            "value": "patient"
+            "value": "medicine"
           }
         ]
       },
