@@ -70,6 +70,22 @@
     </div>
     <div id="settings">
         <i id="closeSettingsToggle" class="ui icon-close"></i>
+        <h1>General Settings</h1>
+        <div>
+            <div>
+                <b>Data source:</b>
+                <input type="text" value="http://localhost" id="settings.host" autosize placeholder="http://host.name"/>
+                : <input id="settings.port" autosize type="number" placeholder="port" value="57772"/>
+                / <input id="settings.webAppName" type="text" placeholder="domain" value="EntityBrowser"/>
+                /domain/ <input id="settings.domain" type="text" placeholder="domain" value="1"/>
+                /
+                <select id="settings.queryType">
+                    <option value="related">related</option>
+                    <option value="similar">similar</option>
+                </select>
+                / <input autosize placeholder="seed string" id="settings.seed" value="crew"/>
+            </div>
+        </div>
     </div>
 </div>
 </body>

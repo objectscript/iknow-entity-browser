@@ -312,7 +312,7 @@ ClassMethod AppendChildObjects(ByRef pObjects, ByRef pGraph, ByRef pEntityTokens
 			}
 			set tNodeObj = {"id": (tNodeID), "label": (pEntityTokens(tEntIDx)), "type": "entity", "entities": [ (tEntObj) ]}
 			do pObjects.nodes.%Push(tNodeObj)
-			set tEdgeObj = {"origin": (pParentNodeID), "destination": (tNodeID), "type": (tEdgeType)}
+			set tEdgeObj = {"source": (pParentNodeID), "target": (tNodeID), "type": (tEdgeType)}
 			do pObjects.edges.%Push(tEdgeObj)
 
 			set tSC = ..AppendChildObjects(.pObjects, .pGraph, .pEntityTokens, tNodeID, pLevel+1)

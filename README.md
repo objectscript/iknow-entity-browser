@@ -6,6 +6,7 @@ Preview
 -------
 
 ![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20325678/5efeecde-ab8e-11e6-8d8d-f4955a1afa4d.png)
+![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20610106/becaeac6-b29d-11e6-987b-670998ac048e.png)
 
 Usage
 -----
@@ -39,3 +40,13 @@ gulp
 ```
 
 Then, open `build/static/index.html` file.
+
+To install test REST client, run the following:
+
+```bash
+import
+```
+
+This will put `src/cls/EntityBrowser/Router.cls` class into your Caché (change the `import.*`
+script), and after you set up a web application, go to configure app settings by clicking setting 
+button in the top right corner.
