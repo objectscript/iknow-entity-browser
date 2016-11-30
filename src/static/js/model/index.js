@@ -14,9 +14,10 @@ function fold (tree) {
     }
     let rest = tree.children.splice(MAX_CHILDREN);
     tree.children.push({
-        label: "...",
+        label: `${ rest.length } more`,
         type: "folder",
         _children: rest,
+        children: [],
         radius: 10,
         entities: [],
         id: Math.random()

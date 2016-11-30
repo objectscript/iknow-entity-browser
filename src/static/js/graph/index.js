@@ -174,13 +174,6 @@ export function update (reset = false) {
             edges: flattenEdges(g)
         };
 
-    if (reset) {
-        // link = link.data([]);
-        // link.exit().remove();
-        // node = node.data([]);
-        // node.exit().remove();
-    }
-
     link = links.selectAll("line").data(graph.edges, (d) => d.target.id);
     link.exit().remove();
     let linkEnter = link.enter().append("line")
@@ -197,10 +190,14 @@ export function update (reset = false) {
     let nodeEnter = node.enter().append("g")
         .attr("class", d => `node ${ d.type || "unknown" }`)
         .call(dragger)
-        .on("dblclick", (d) => {
+        .on("dblclick", function (d) {
             d3.event.stopPropagation();
             if (d.type === "folder" && d._children && d._children.length) {
-                d.children = d._children;
+                let next = d._children.splice(0, 20),
+                    left = parseInt(d.label) - 20;
+                d.children = d.children.concat(next);
+                d.label = left > 0 ? `${ left } more` : `Others`;
+                d3.select(this).select("text").text(d.label);
                 update();
             }
         })
