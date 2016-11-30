@@ -2,6 +2,9 @@ import sampleData from "../sample_output2.json";
 import { getData, getOption } from "../source";
 import { toggleLoader } from "../utils";
 
+let SIZE_CRITERIA = "frequency",
+    FOLDING_CRITERIA = "frequency";
+
 function preprocess (graph) {
     let zeroID = null;
     graph.nodes.forEach(node => { if (!zeroID && node.id === 0) zeroID = node; });
@@ -16,7 +19,8 @@ function preprocess (graph) {
             }]
         });
     }
-    graph.nodes.forEach(node => node.radius = 5 + Math.sqrt(node.entities[0].frequency / 4 || 25));
+    graph.nodes.forEach(node =>
+        node.radius = 5 + Math.sqrt(node.entities[0][SIZE_CRITERIA] / 4 || 25));
     console.log(graph);
     return graph;
 }

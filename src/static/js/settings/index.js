@@ -6,7 +6,7 @@ function toggleSettings (uiStateModel) {
     d3.select("#settings").classed("active", uiStateModel.settingsToggled);
     d3.select("#windows").classed("offScreen", uiStateModel.settingsToggled);
     if (!uiStateModel.settingsToggled) {
-        model.update(() => graph.update());
+        model.update(() => graph.update(true));
     }
 }
 

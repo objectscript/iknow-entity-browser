@@ -4,8 +4,7 @@ import { updateSelection, setLastSelectedNode } from "../selection";
 
 let shiftKey, ctrlKey,
     width = window.innerWidth,
-    height = window.innerHeight,
-    foreverUniq = 0;
+    height = window.innerHeight;
 
 let svg = null,
     brush = null,
@@ -132,12 +131,19 @@ export function init () {
         .on("keyup", keyUp);
 }
 
-export function update () {
+export function update (reset = false) {
 
     let graph = getGraphData();
 
+    if (reset) {
+        link = link.data([]);
+        link.exit().remove();
+        node = node.data([]);
+        node.exit().remove();
+    }
+
     link = link
-        .data(graph.edges, (d) => foreverUniq++);
+        .data(graph.edges, (d) => `${ d.source }-${ d.target }`);
     link.exit().remove();
     link = link.enter().append("line")
         .attr("class", d => d.type === "similar"
@@ -148,7 +154,7 @@ export function update () {
         );
 
     node = node
-        .data(graph.nodes, (d) => foreverUniq++);
+        .data(graph.nodes, (d) => d.id);
     node.exit().remove();
     node = node.enter().append("g")
         .attr("class", "node")

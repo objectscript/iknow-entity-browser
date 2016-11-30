@@ -12,6 +12,6 @@ window.init = () => {
     settings.init();
     source.init();
     graph.init();
-    model.update(() => graph.update());
+    model.update(() => graph.update(true));
 
 };
