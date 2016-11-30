@@ -179,7 +179,8 @@ export function update () {
         .nodes(graph.nodes)
         .on("tick", ticked);
 
-    simulation.force("link")
+    simulation
+        .force("link")
         .links(graph.edges);
 
     simulation.restart();

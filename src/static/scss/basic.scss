@@ -30,7 +30,7 @@ table {
 
 input[type=text], input[type=number] {
     border: 0;
-    border-bottom: gray;
+    border-bottom: 1px solid gray;
 }
 
 .central {
@@ -89,6 +89,7 @@ h1, h2, h3, h4, h5, h6 {
                 top: 0;
                 animation: rotate-one 1s linear infinite;
                 border-bottom: 3px solid $colorB;
+                box-shadow: 0 0 3px $colorB;
             }
 
             &.two {
@@ -96,6 +97,7 @@ h1, h2, h3, h4, h5, h6 {
                 top: 0;
                 animation: rotate-two 1s linear infinite;
                 border-right: 3px solid $colorC;
+                box-shadow: 0 0 3px $colorC;
             }
 
             &.three {
