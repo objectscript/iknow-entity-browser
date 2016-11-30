@@ -1,4 +1,3 @@
-import { updateSelectedNodes } from "../tabular";
 import { getGraphData } from "../model";
 import { updateSelection, setLastSelectedNode } from "../selection";
 
@@ -131,35 +130,80 @@ export function init () {
         .on("keyup", keyUp);
 }
 
-export function update (reset = false) {
+function flatten (root) {
 
-    let graph = getGraphData();
+    let nodes = [];
 
-    if (reset) {
-        link = link.data([]);
-        link.exit().remove();
-        node = node.data([]);
-        node.exit().remove();
+    function recurse (node) {
+        if (node.children) node.children.forEach(recurse);
+        // if (!node.id) node.id = ++i;
+        nodes.push(node);
     }
 
-    link = link
-        .data(graph.edges, (d) => `${ d.source }-${ d.target }`);
+    recurse(root);
+
+    return nodes;
+
+}
+
+function flattenEdges (root) {
+
+    let edges = [];
+
+    function recurse (node) {
+        if (!node.children)
+            return;
+        for (let c of node.children) {
+            recurse(c);
+            edges.push({ source: node, target: c, type: c.edgeType });
+        }
+    }
+
+    recurse(root);
+
+    return edges;
+
+}
+
+export function update (reset = false) {
+
+    let g = getGraphData().foldedTree,
+        fl = flatten(g),
+        graph = {
+            nodes: fl,
+            edges: flattenEdges(g)
+        };
+
+    if (reset) {
+        // link = link.data([]);
+        // link.exit().remove();
+        // node = node.data([]);
+        // node.exit().remove();
+    }
+
+    link = links.selectAll("line").data(graph.edges, (d) => d.target.id);
     link.exit().remove();
-    link = link.enter().append("line")
+    let linkEnter = link.enter().append("line")
         .attr("class", d => d.type === "similar"
             ? "similar"
             : d.type === "related"
             ? "related"
             : "other"
         );
+    link = linkEnter.merge(link);
 
-    node = node
-        .data(graph.nodes, (d) => d.id);
+    node = nodes.selectAll(".node").data(graph.nodes, (d) => d.id);
     node.exit().remove();
-    node = node.enter().append("g")
-        .attr("class", "node")
+    let nodeEnter = node.enter().append("g")
+        .attr("class", d => `node ${ d.type || "unknown" }`)
         .call(dragger)
-        .on("dblclick", () => d3.event.stopPropagation())
+        .on("dblclick", (d) => {
+            d3.event.stopPropagation();
+            if (d.type === "folder" && d._children && d._children.length) {
+                d.children = d._children;
+                update();
+            }
+        })
         .on("click", function (d) {
             if (d3.event.defaultPrevented) return;
             if (!ctrlKey) {
@@ -170,16 +214,14 @@ export function update (reset = false) {
             updateSelection();
         });
 
-    node.append("circle")
+    nodeEnter.append("circle")
         .attr("r", d => d.radius);
 
-    node.append("text")
+    nodeEnter.append("text")
         .attr("dy", ".3em")
         .attr("style", d => `font-size:${ Math.round(d.radius / 2) }px`)
         .text(d => d.label);
-
-    node.exit().remove();
-    link.exit().remove();
+    node = nodeEnter.merge(node);
 
     simulation
         .nodes(graph.nodes)
@@ -196,6 +238,8 @@ export function update (reset = false) {
 
     brush.select('.overlay').style('cursor', 'auto');
 
-    for (let i = 100; i > 0; --i) simulation.tick();
+    if (reset) {
+        for (let i = 100; i > 0; --i) simulation.tick();
+    }
 
 }

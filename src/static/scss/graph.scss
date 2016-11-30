@@ -27,7 +27,15 @@
             circle {
                 stroke: #fff;
                 stroke-width: 1px;
+                fill: red;
+            }
+
+            &.entity circle {
                 fill: #7ca1ff;
+            }
+
+            &.folder circle {
+                fill: #b58aff;
             }
 
             &.selected circle {
@@ -37,6 +45,7 @@
             text {
                 text-anchor: middle;
                 pointer-events: none;
+                fill: black;
             }
 
         }

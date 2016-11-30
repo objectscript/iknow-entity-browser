@@ -6,7 +6,7 @@ let selection = [],
 
 export function updateSelection () {
 
-    selection = model.getGraphData().nodes.filter(node => !!node.selected);
+    selection = model.getGraphData().graph.nodes.filter(node => !!node.selected);
 
     if (!selection.length) lastSelectedNode = null;
     if (lastSelectedNode && !lastSelectedNode.selected) {
