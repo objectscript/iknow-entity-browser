@@ -188,7 +188,7 @@ export function update (reset = false) {
     node = nodes.selectAll(".node").data(graph.nodes, (d) => d.id);
     node.exit().remove();
     let nodeEnter = node.enter().append("g")
-        .attr("class", d => `node ${ d.type || "unknown" }`)
+        .attr("class", d => `node${ d.id === 0 ? " root" : "" } ${ d.type || "unknown" }`)
         .call(dragger)
         .on("dblclick", function (d) {
             d3.event.stopPropagation();

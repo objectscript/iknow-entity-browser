@@ -4,7 +4,8 @@ import { toggleLoader } from "../utils";
 
 let SIZE_CRITERIA = "frequency",
     FOLDING_CRITERIA = "frequency",
-    MAX_CHILDREN = 20;
+    MAX_CHILDREN = 20,
+    MIN_RADIUS = 5;
 
 function fold (tree) {
     if (!tree.children || tree.children.length <= MAX_CHILDREN)
@@ -25,8 +26,17 @@ function fold (tree) {
     return tree;
 }
 
+/**
+ * Converts flat input data into a tree using implicit parent-children relationships. This
+ * function also sorts the children data by relevance.
+ * @param graph
+ * @param parent
+ * @returns {*}
+ */
 function toTree (graph, parent) {
+
     parent.children = [];
+
     for (let edge of graph.edges) {
         if (edge.source !== parent.id)
             continue;
@@ -42,12 +52,29 @@ function toTree (graph, parent) {
             parent.children.push(toTree(graph, t));
         }
     }
-    parent.children.sort((a, b) => a[FOLDING_CRITERIA] > b[FOLDING_CRITERIA] ? 1 : -1);
+
+    try {
+        parent.children.sort(
+            (a, b) => a.entities[0][FOLDING_CRITERIA] > b.entities[0][FOLDING_CRITERIA] ? -1 : 1
+        );
+    } catch (e) {
+        console.error(`Error! Most likely, one of the graph nodes does not has any entities.`
+            + ` The folding criteria displayed on the diagram would be random.`);
+    }
+
     return parent;
+
 }
 
+/**
+ * This function converts graph model data to internal application's format.
+ * @param graph
+ * @returns {{graph: *, tree: *, foldedTree: *}}
+ */
 function preprocess (graph) {
+
     let zeroID = null;
+
     graph.nodes.forEach(node => { if (!zeroID && node.id === 0) zeroID = node; });
     if (!zeroID) {
         graph.nodes.unshift(zeroID = {
@@ -56,23 +83,24 @@ function preprocess (graph) {
             type: "entity",
             entities: [{
                 id: -1,
-                value: getOption("seed")
+                value: getOption("seed"),
+                [SIZE_CRITERIA]: 10000
             }]
         });
     }
     graph.nodes.forEach(node =>
-        node.radius = 5 + Math.sqrt(node.entities[0][SIZE_CRITERIA] / 4 || 25));
-    console.log(graph);
-    // fold(graph, zeroID);
+        node.radius = MIN_RADIUS + Math.sqrt(node.entities[0][SIZE_CRITERIA] / 4 || 25));
+    console.log(`Graph:`, graph);
     let tree = toTree(graph, zeroID),
         foldedTree = fold(tree);
-    console.log(tree);
+    console.log(`Tree:`, tree);
 
     return {
         graph: graph,
         tree: tree,
         foldedTree: foldedTree
     };
+
 }
 
 let graph = preprocess(sampleData.graph);
