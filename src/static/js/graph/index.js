@@ -30,7 +30,8 @@ let svg = null,
             d3.forceManyBody()
                 .strength(d => { return -10 * d.radius; })
         )
-        .force("center", d3.forceCenter(width / 2, height / 2)),
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .on("tick", ticked),
     brusher = d3.brush()
         .extent([[-9999999, -9999999], [9999999, 9999999]])
         .on("start.brush", () => {
@@ -61,6 +62,8 @@ let svg = null,
     view = null;
 
 function ticked () {
+    if (!link)
+        return;
     link
         .attr("x1", d => d.source.x)
         .attr("y1", d => d.source.y)
@@ -165,6 +168,17 @@ function flattenEdges (root) {
 
 }
 
+function resetChildrenPosition (parent, children = []) {
+    if (!children || !children.length)
+        return;
+    for (let c of children) {
+        c.x = parent.x;
+        c.y = parent.y;
+        if (c.children)
+            resetChildrenPosition(c, c.children);
+    }
+}
+
 export function update (reset = false) {
 
     let g = getGraphData().foldedTree,
@@ -195,6 +209,7 @@ export function update (reset = false) {
             if (d.type === "folder" && d._children && d._children.length) {
                 let next = d._children.splice(0, 20),
                     left = parseInt(d.label) - 20;
+                resetChildrenPosition(d, next);
                 d.children = d.children.concat(next);
                 d.label = left > 0 ? `${ left } more` : `Others`;
                 d3.select(this).select("text").text(d.label);
@@ -222,9 +237,6 @@ export function update (reset = false) {
 
     simulation
         .nodes(graph.nodes)
-        .on("tick", ticked);
-
-    simulation
         .force("link")
         .links(graph.edges);
 
