@@ -188,6 +188,13 @@ export function update (reset = false) {
             edges: flattenEdges(g)
         };
 
+    if (reset) {
+        link = link.data([]);
+        link.exit().remove();
+        node = node.data([]);
+        node.exit().remove();
+    }
+
     link = links.selectAll("line").data(graph.edges, (d) => d.target.id);
     link.exit().remove();
     let linkEnter = link.enter().append("line")
