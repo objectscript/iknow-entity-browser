@@ -10,13 +10,13 @@
 
     .links line {
         &.similar {
-            stroke: #70d9ff;
+            stroke: #7ca1ff;
         }
         &.related {
-            stroke: #ccc;
+            stroke: #ffb840;
         }
         &.other {
-            stroke: #c11;
+            stroke: #bbb;
         }
     }
 
@@ -35,11 +35,15 @@
             }
 
             &.folder circle {
-                fill: #b58aff;
+                fill: #bbb;
             }
 
             &.selected circle {
                 stroke: #000;
+            }
+
+            &.root circle {
+                fill: #ffb840;
             }
 
             text {

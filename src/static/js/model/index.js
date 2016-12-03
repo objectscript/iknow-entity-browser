@@ -17,6 +17,7 @@ function fold (tree) {
     tree.children.push({
         label: `${ rest.length } more`,
         type: "folder",
+        edgeType: rest[0].edgeType,
         _children: rest,
         children: [],
         radius: 10,
