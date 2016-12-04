@@ -1,7 +1,8 @@
 /**
  * This file describes on-screen controls like UI link/remove buttons, etc.
  */
-import { onSelectionUpdate } from "./selection";
+import { onSelectionUpdate, updateSelection } from "./selection";
+import { dropDescendants } from "./model";
 
 let dropChildrenButton = null,
     removeButton = null,
@@ -14,17 +15,25 @@ onSelectionUpdate((sel) => {
 
 function updateButtons () {
     let display = selection.length ? "block" : "none";
-    dropChildrenButton.style.display = removeButton.style.display = display;
+    dropChildrenButton.style.display = display;
+    removeButton.classList.add("disabled"); // temporary
 }
 
 function deleteSelection () {
 
 }
 
+function dropChildren () {
+    if (!selection.length)
+        return;
+    dropDescendants(selection);
+    updateSelection();
+}
+
 export function init () {
     dropChildrenButton = document.getElementById(`dropChildrenButton`);
-    (removeButton = document.getElementById(`removeButton`)).addEventListener("click",
-        () => deleteSelection()
-    );
+    dropChildrenButton.addEventListener("click", () => dropChildren());
+    removeButton = document.getElementById(`removeButton`);
+    removeButton.addEventListener("click", () => deleteSelection());
     updateButtons();
 }

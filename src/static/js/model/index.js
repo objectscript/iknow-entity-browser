@@ -228,9 +228,9 @@ function resetChildrenPosition (parent, children = []) {
 // }
 
 /**
- * Unfold the node
+ * Unfold the folder by specified amount of nodes.
  * @param node - Node to unfold
- * @param [children] - Number of nodes to unfold
+ * @param [children=20] - Number of nodes to unfold
  * @returns {number} - Number of nodes left to unfold
  */
 export function unfold (node, children = 20) {
@@ -263,4 +263,54 @@ export function unfold (node, children = 20) {
         }
     });
     return res.left;
+}
+
+/**
+ * Delete all node's descendants.
+ * @param {Array|*} nodes - Node to unfold
+ * @returns {number} - Number of nodes unlinked
+ */
+export function dropDescendants (nodes) {
+
+    if (!(nodes instanceof Array))
+        nodes = [nodes];
+
+    let toDrop = 0;
+    for (let node of nodes) {
+        toDrop += (node.children ? node.children.length : 0)
+            + (node._children ? node._children.length : 0);
+    }
+    if (toDrop === 0)
+        return 0;
+
+    let restore = nodes.slice().map(node => {
+        return {
+            node: node,
+            children: node.children,
+            _children: node._children
+        };
+    });
+
+    function f () {
+        for (let node of nodes) {
+            node.children = [];
+            node._children = [];
+        }
+        dataUpdated();
+    }
+    f();
+
+    history.createState({
+        redo: f,
+        undo: () => {
+            for (let res of restore) {
+                res.node.children = res.children;
+                res.node._children = res._children;
+            }
+            dataUpdated();
+        }
+    });
+
+    return toDrop;
+
 }
