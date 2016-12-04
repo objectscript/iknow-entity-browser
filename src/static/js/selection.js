@@ -6,7 +6,16 @@ let selection = [],
 
 export function updateSelection () {
 
-    selection = model.getGraphData().graph.nodes.filter(node => !!node.selected);
+    let tree = model.getGraphData();
+    selection = [];
+
+    function findSelected (node) {
+        if (node.selected)
+            selection.push(node);
+        if (node.children)
+            for (let n of node.children) findSelected(n);
+    }
+    findSelected(tree);
 
     if (!selection.length) lastSelectedNode = null;
     if (lastSelectedNode && !lastSelectedNode.selected) {

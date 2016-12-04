@@ -44,30 +44,3 @@
     }
 
 }
-
-#tableToggle {
-
-    position: absolute;
-    left: -35px;
-    top: 6px;
-    z-index: $zIndexInterface;
-
-    &.toggled {
-        left: 7px;
-    }
-
-}
-
-#rightTopIcons {
-
-    position: absolute;
-    left: -35px;
-    top: 36px;
-    z-index: $zIndexInterface;
-    @include transition($defaultTransition);
-
-}
-
-#table.active #rightTopIcons {
-    top: 6px;
-}

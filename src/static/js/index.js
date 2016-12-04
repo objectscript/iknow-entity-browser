@@ -4,6 +4,7 @@ import * as details from "./details";
 import * as settings from "./settings";
 import * as source from "./source";
 import * as model from "./model";
+import * as controls from "./controls";
 
 window.init = () => {
 
@@ -12,6 +13,8 @@ window.init = () => {
     settings.init();
     source.init();
     graph.init();
+    controls.init();
+    model.init();
     model.update(() => graph.update(true));
 
 };

@@ -1,9 +1,10 @@
-import { getGraphData } from "../model";
+import { onModelUpdate, unfold } from "../model";
 import { updateSelection, setLastSelectedNode } from "../selection";
 
 let shiftKey, ctrlKey,
     width = window.innerWidth,
-    height = window.innerHeight;
+    height = window.innerHeight,
+    lastGraph = null;
 
 let svg = null,
     brush = null,
@@ -20,18 +21,7 @@ let svg = null,
         .on("start", dragstarted)
         .on("drag", dragged)
         .on("end", dragended),
-    simulation = d3.forceSimulation()
-        .force("link",
-            d3.forceLink()
-                .distance(d => 50 + (d.source.radius + d.target.radius) * 2)
-                .id(d => d.id)
-        )
-        .force("charge",
-            d3.forceManyBody()
-                .strength(d => { return -10 * d.radius; })
-        )
-        .force("center", d3.forceCenter(width / 2, height / 2))
-        .on("tick", ticked),
+    simulation = newSimulation(),
     brusher = d3.brush()
         .extent([[-9999999, -9999999], [9999999, 9999999]])
         .on("start.brush", () => {
@@ -60,6 +50,21 @@ let svg = null,
             }, 25);
         }),
     view = null;
+
+function newSimulation () {
+    return d3.forceSimulation()
+        .force("link",
+            d3.forceLink()
+                .distance(d => 30 + (d.source.radius + d.target.radius) * 2)
+                .id(d => d.id)
+        )
+        .force("charge",
+            d3.forceManyBody()
+                .strength(d => { return -7 * d.radius; })
+        )
+        .force("center", d3.forceCenter(width / 2, height / 2))
+        .on("tick", ticked);
+}
 
 function ticked () {
     if (!link)
@@ -168,25 +173,23 @@ function flattenEdges (root) {
 
 }
 
-function resetChildrenPosition (parent, children = []) {
-    if (!children || !children.length)
-        return;
-    for (let c of children) {
-        c.x = parent.x;
-        c.y = parent.y;
-        if (c.children)
-            resetChildrenPosition(c, c.children);
+onModelUpdate((graph, force) => update(graph, force));
+
+export function update (g = lastGraph, reset = false) {
+
+    if (!reset) {
+        // g = JSON.parse(JSON.stringify(g));
+        // g.id = -100;
     }
-}
 
-export function update (reset = false) {
+    let fl = flatten(g);
 
-    let g = getGraphData().foldedTree,
-        fl = flatten(g),
-        graph = {
+    let graph = {
             nodes: fl,
             edges: flattenEdges(g)
         };
+
+    lastGraph = g;
 
     if (reset) {
         link = link.data([]);
@@ -206,21 +209,17 @@ export function update (reset = false) {
         );
     link = linkEnter.merge(link);
 
-    node = nodes.selectAll(".node").data(graph.nodes, (d) => d.id);
+    node = nodes.selectAll(".node").data(graph.nodes, function (d) { return this._id || d.id; });
     node.exit().remove();
     let nodeEnter = node.enter().append("g")
+        .each(function (d) { this._id = d.id; })
         .attr("class", d => `node${ d.id === 0 ? " root" : "" } ${ d.type || "unknown" }`)
         .call(dragger)
         .on("dblclick", function (d) {
             d3.event.stopPropagation();
-            if (d.type === "folder" && d._children && d._children.length) {
-                let next = d._children.splice(0, 20),
-                    left = parseInt(d.label) - 20;
-                resetChildrenPosition(d, next);
-                d.children = d.children.concat(next);
-                d.label = left > 0 ? `${ left } more` : `Others`;
-                d3.select(this).select("text").text(d.label);
-                update();
+            if (unfold(d)) {
+                d.fx = d.x; d.fy = d.y;
+                setTimeout(() => d.fx = d.fy = null, 500);
             }
         })
         .on("click", function (d) {
@@ -242,12 +241,15 @@ export function update (reset = false) {
         .text(d => d.label);
     node = nodeEnter.merge(node);
 
+    if (reset)
+        simulation = newSimulation();
+
     simulation
         .nodes(graph.nodes)
         .force("link")
         .links(graph.edges);
 
-    simulation.restart();
+    simulation.alpha(reset ? 1 : 0.4).restart();
 
     brush.call(brusher)
         .on(".brush", null);
@@ -256,6 +258,7 @@ export function update (reset = false) {
 
     if (reset) {
         for (let i = 100; i > 0; --i) simulation.tick();
+        updateSelection();
     }
 
 }
