@@ -2,12 +2,10 @@ import { csv } from "./export";
 import * as model from "../model";
 import { onSelectionUpdate, updateSelection } from "../selection";
 
-var graph;
-
 onSelectionUpdate((selection) => {
     if (!model.uiState.tabularToggled)
         return;
-    let data = selection.sort((a, b) =>
+    let data = selection.filter(node => node.type === "entity").sort((a, b) =>
             a.entities[0].score > b.entities[0].score ? -1 : 1
         ),
         table = document.querySelector("#table table tbody");
@@ -24,8 +22,6 @@ onSelectionUpdate((selection) => {
 });
 
 export function init () {
-
-    graph = model.getGraphData();
 
     d3.select("#tableToggle")
         .data([model.uiState])
