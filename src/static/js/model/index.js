@@ -115,9 +115,15 @@ export function update () {
             alert(data.error || `No graph data returned`);
         } else {
             graph = preprocess(data.graph);
-            updateCallbacks.forEach(cb => cb(graph, true));
+            dataUpdated(true);
         }
     });
+}
+
+function dataUpdated (reset = false) {
+    if (reset)
+        history.reset();
+    updateCallbacks.forEach(cb => cb(graph, reset));
 }
 
 export function getGraphData () {
@@ -151,7 +157,8 @@ export let uiState = {
 
 export function init () {
     graph = preprocess(sampleData.graph);
-    updateCallbacks.forEach(cb => cb(graph, true));
+    history.init();
+    dataUpdated(true);
 }
 
 function resetChildrenPosition (parent, children = []) {
@@ -238,7 +245,7 @@ export function unfold (node, children = 20) {
             node.children = node.children.concat(next);
             node.label = left > 0 ? `${ left } more` : `Others`;
             resetChildrenPosition(node, next);
-            updateCallbacks.forEach(cb => cb(graph));
+            dataUpdated();
             return {
                 unfolded: next.length,
                 left: left
@@ -252,7 +259,7 @@ export function unfold (node, children = 20) {
             node._children = part.concat(node._children);
             node.id = oldId;
             node.label = node._children.length > 0 ? `${ node._children.length } more` : `Others`;
-            updateCallbacks.forEach(cb => cb(graph));
+            dataUpdated();
         }
     });
     return res.left;

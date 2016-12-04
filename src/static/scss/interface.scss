@@ -36,3 +36,10 @@
     z-index: $zIndexInterface;
 }
 
+#controlIcons {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    z-index: $zIndexInterface;
+    padding-left: 8px;
+}
