@@ -277,8 +277,7 @@ export function dropDescendants (nodes) {
 
     let toDrop = 0;
     for (let node of nodes) {
-        toDrop += (node.children ? node.children.length : 0)
-            + (node._children ? node._children.length : 0);
+        toDrop += (node.children ? node.children.length : 0);
     }
     if (toDrop === 0)
         return 0;
@@ -286,15 +285,13 @@ export function dropDescendants (nodes) {
     let restore = nodes.slice().map(node => {
         return {
             node: node,
-            children: node.children,
-            _children: node._children
+            children: node.children
         };
     });
 
     function f () {
         for (let node of nodes) {
             node.children = [];
-            node._children = [];
         }
         dataUpdated();
     }
@@ -305,7 +302,6 @@ export function dropDescendants (nodes) {
         undo: () => {
             for (let res of restore) {
                 res.node.children = res.children;
-                res.node._children = res._children;
             }
             dataUpdated();
         }

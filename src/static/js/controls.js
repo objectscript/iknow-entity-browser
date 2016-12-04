@@ -14,9 +14,12 @@ onSelectionUpdate((sel) => {
 });
 
 function updateButtons () {
-    let display = selection.length ? "block" : "none";
-    dropChildrenButton.style.display = display;
+    let toDrop = 0;
+    for (let node of selection) {
+        toDrop += (node.children ? node.children.length : 0);
+    }
     removeButton.classList.add("disabled"); // temporary
+    dropChildrenButton.classList[toDrop > 0 ? "remove" : "add"]("disabled");
 }
 
 function deleteSelection () {
