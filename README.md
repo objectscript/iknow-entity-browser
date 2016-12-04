@@ -5,7 +5,7 @@ A visualizer of iKnow entities.
 Preview
 -------
 
-![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20325678/5efeecde-ab8e-11e6-8d8d-f4955a1afa4d.png)
+![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20866693/9b244248-ba3b-11e6-907d-6779e90002b8.png)
 ![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20610106/becaeac6-b29d-11e6-987b-670998ac048e.png)
 
 Usage
