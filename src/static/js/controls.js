@@ -3,9 +3,11 @@
  */
 import { onSelectionUpdate, updateSelection } from "./selection";
 import { dropDescendants, dropNodes } from "./model";
+import { updateSelected } from "./graph"
 
 let dropChildrenButton = null,
     removeButton = null,
+    resetSelectionButton = null,
     selection = [];
 
 onSelectionUpdate((sel) => {
@@ -20,6 +22,15 @@ function updateButtons () {
     }
     removeButton.classList[selection.length > 0 ? "remove" : "add"]("disabled");
     dropChildrenButton.classList[toDrop > 0 ? "remove" : "add"]("disabled");
+    resetSelectionButton.classList[selection.length > 0 ? "remove" : "add"]("icon-outline");
+    resetSelectionButton.classList[selection.length == 0 ? "remove" : "add"]("icon-filled");
+    resetSelectionButton.classList[selection.length > 0 ? "remove" : "add"]("disabled");
+}
+
+function resetSelection () {
+    selection.forEach(n => n.selected = n.wasSelected = false);
+    updateSelection();
+    updateSelected();
 }
 
 function deleteSelection () {
@@ -38,8 +49,10 @@ function dropChildren () {
 
 export function init () {
     dropChildrenButton = document.getElementById(`dropChildrenButton`);
-    dropChildrenButton.addEventListener("click", () => dropChildren());
+    dropChildrenButton.addEventListener("click", dropChildren);
     removeButton = document.getElementById(`removeButton`);
-    removeButton.addEventListener("click", () => deleteSelection());
+    removeButton.addEventListener("click", deleteSelection);
+    resetSelectionButton = document.getElementById(`resetSelectionButton`);
+    resetSelectionButton.addEventListener(`click`, resetSelection);
     updateButtons();
 }

@@ -51,6 +51,10 @@ let svg = null,
         }),
     view = null;
 
+export function updateSelected () {
+    node.classed("selected", p => p.selected);
+}
+
 function newSimulation () {
     return d3.forceSimulation()
         .force("link",
@@ -236,7 +240,7 @@ export function update (g = lastGraph, reset = false) {
                     deselectAll(d);
                 else
                     selectAll(d);
-                node.classed("selected", (p) => p.selected);
+                updateSelected();
             } else {
                 d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
             }
