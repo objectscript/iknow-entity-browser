@@ -5,7 +5,7 @@ A visualizer of iKnow entities.
 Preview
 -------
 
-![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20866693/9b244248-ba3b-11e6-907d-6779e90002b8.png)
+![Screenshot](https://cloud.githubusercontent.com/assets/4989256/21582657/3bb1944c-d06a-11e6-8dc5-e7e637cc5e84.png)
 ![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20610106/becaeac6-b29d-11e6-987b-670998ac048e.png)
 
 Usage
@@ -13,14 +13,18 @@ Usage
 
 [Build](#development) the project (or [download](https://github.com/intersystems-ru/iknow-entity-browser/releases) a demo), then open `index.html` file.
 
-+ Click and drag on empty space to move around nodes.
++ Click and drag on empty space to move around.
 + Click and drag on a node to move the node.
 + Single-click a node to select it.
-+ CTRL-click nodes to select many of them.
++ Shift-click nodes to select nodes and their children.
 + CTRL-click and drag on empty space to select a bunch of nodes.
 + Scroll down or up to scale.
 + Click on menu button to open a table containing information about selected nodes.
 + Click on export button to save the table as a file.
++ Undo/Redo any node operations such as deleting or expanding.
++ Unlink node children by clicking unlink button when nodes selected.
++ Delete selected nodes by clicking delete button.
++ Reset the selection with reset selection button.
 
 Development
 -----------
@@ -41,7 +45,8 @@ gulp
 
 Then, open `build/static/index.html` file.
 
-To install test REST client, run the following:
+To install the REST client, change the constants in the `import.bat` file and then run the
+following:
 
 ```bash
 import
