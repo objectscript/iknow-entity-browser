@@ -1,6 +1,8 @@
 @import "mixins";
 @import "const";
 
+$headerHeight: 36px;
+
 #table {
 
     position: absolute;
@@ -18,27 +20,22 @@
         @include transform(translate(0,0));
     }
 
+    > .controls {
+        position: relative;
+        padding-left: 40px;
+        top: 5px;
+    }
+
     > .wrapper {
 
         overflow: auto;
-        height: 100%;
-        padding: 0 $defaultPadding $defaultPadding $defaultPadding;
+        height: 100%; /* to be compatible with old browsers */
+        height: calc(100% - #{$headerHeight});
+        padding: $defaultPadding;
         box-sizing: border-box;
 
-        > .controls {
-            position: relative;
-            padding-left: 30px;
-            top: 5px;
-        }
-
-        > .wrapper {
-
-            position: relative;
-
-            table {
-                width: 100%;
-            }
-
+        table {
+            width: 100%;
         }
 
     }
