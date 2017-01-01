@@ -1,5 +1,5 @@
 import { onModelUpdate, unfold } from "../model";
-import { updateSelection, setLastSelectedNode } from "../selection";
+import { updateSelection, setLastSelectedNode, selectAll, deselectAll } from "../selection";
 
 let shiftKey, ctrlKey,
     width = window.innerWidth,
@@ -27,7 +27,7 @@ let svg = null,
         .on("start.brush", () => {
             if (!d3.event.sourceEvent) return;
             node.each((d) => {
-                d.previouslySelected = ctrlKey && d.selected;
+                d.wasSelected = ctrlKey && d.selected;
             });
         })
         .on("brush.brush", () => {
@@ -39,7 +39,7 @@ let svg = null,
                 let selected = (extent[0][0] <= d.x && d.x < extent[1][0]
                 && extent[0][1] <= d.y && d.y < extent[1][1]);
                 if (selected) setLastSelectedNode(d);
-                return d.selected = d.previouslySelected ^ selected;
+                return d.selected = d.wasSelected ^ selected;
             });
         })
         .on("end.brush", () => {
@@ -132,7 +132,7 @@ export function init () {
         .append("g")
         .attr("class", "view");
     brush = view.append("g")
-        .datum(() => { return { selected: false, previouslySelected: false }; })
+        .datum(() => { return { selected: false, wasSelected: false }; })
         .attr("class", "brush");
     links = view.append("g").attr("class", "links");
     nodes = view.append("g").attr("class", "nodes");
@@ -220,6 +220,7 @@ export function update (g = lastGraph, reset = false) {
     let nodeEnter = node.enter().append("g")
         .each(function (d) { this._id = d.id; })
         .attr("class", d => `node${ d.id === 0 ? " root" : "" } ${ d.type || "unknown" }`)
+        .classed("selected", (p) => p.selected)
         .call(dragger)
         .on("dblclick", function (d) {
             d3.event.stopPropagation();
@@ -230,10 +231,18 @@ export function update (g = lastGraph, reset = false) {
         })
         .on("click", function (d) {
             if (d3.event.defaultPrevented) return;
-            if (!ctrlKey) {
-                node.classed("selected", (p) => p.selected = p.previouslySelected = false)
+            // if (!ctrlKey) {
+            //     node.classed("selected", (p) => p.selected = p.wasSelected = false)
+            // }
+            if (shiftKey) {
+                if (d.selected)
+                    deselectAll(d);
+                else
+                    selectAll(d);
+                node.classed("selected", (p) => p.selected);
+            } else {
+                d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
             }
-            d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
             setLastSelectedNode(d.selected ? d : null);
             updateSelection();
         });

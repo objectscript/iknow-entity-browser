@@ -37,6 +37,22 @@ export function setLastSelectedNode (node) {
 
 }
 
+export function selectAll (node) {
+    if (!node)
+        return;
+    if (node.children)
+        node.children.forEach(c => selectAll(c));
+    node.selected = true;
+}
+
+export function deselectAll (node) {
+    if (!node)
+        return;
+    if (node.children)
+        node.children.forEach(c => deselectAll(c));
+    node.selected = false;
+}
+
 /**
  * The callback is invoked when selection changes.
  * @param {selectionCallback} callback
