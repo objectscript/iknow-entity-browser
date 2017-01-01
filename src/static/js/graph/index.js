@@ -66,14 +66,19 @@ function newSimulation () {
         .on("tick", ticked);
 }
 
+const ARROW_FWD = 2;
+
 function ticked () {
     if (!link)
         return;
     link
-        .attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+        .attr("x1", d => {
+            d.dir = Math.atan2(d.target.y - d.source.y, d.target.x - d.source.x);
+            return d.source.x + Math.cos(d.dir) * d.source.radius;
+        })
+        .attr("y1", d => d.source.y + Math.sin(d.dir) * d.source.radius)
+        .attr("x2", d => d.target.x - Math.cos(d.dir) * (d.target.radius + ARROW_FWD))
+        .attr("y2", d => d.target.y - Math.sin(d.dir) *(d.target.radius + ARROW_FWD));
     node
         .attr("transform", (d) => `translate(${ d.x },${ d.y })`)
 }
@@ -206,7 +211,8 @@ export function update (g = lastGraph, reset = false) {
             : d.type === "related"
             ? "related"
             : "other"
-        );
+        )
+        .attr("marker-end", d => `url(#svgLineArrow-${ d.type })`);
     link = linkEnter.merge(link);
 
     node = nodes.selectAll(".node").data(graph.nodes, function (d) { return this._id || d.id; });
