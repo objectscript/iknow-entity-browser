@@ -2,7 +2,7 @@
  * This file describes on-screen controls like UI link/remove buttons, etc.
  */
 import { onSelectionUpdate, updateSelection } from "./selection";
-import { dropDescendants } from "./model";
+import { dropDescendants, dropNodes } from "./model";
 
 let dropChildrenButton = null,
     removeButton = null,
@@ -18,12 +18,15 @@ function updateButtons () {
     for (let node of selection) {
         toDrop += (node.children ? node.children.length : 0);
     }
-    removeButton.classList.add("disabled"); // temporary
+    removeButton.classList[selection.length > 0 ? "remove" : "add"]("disabled");
     dropChildrenButton.classList[toDrop > 0 ? "remove" : "add"]("disabled");
 }
 
 function deleteSelection () {
-
+    if (!selection.length)
+        return;
+    dropNodes(selection);
+    updateSelection();
 }
 
 function dropChildren () {

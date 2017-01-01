@@ -40,25 +40,22 @@
     -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-window-list:before {
+.icon-list:before {
     content: "\61";
 }
-.icon-page-export-csv:before {
-    content: "\62";
-}
-.icon-search-plus:before {
+.icon-zoom-in:before {
     content: "\63";
 }
-.icon-search-minus:before {
+.icon-zoom-out:before {
     content: "\64";
 }
 .icon-search:before {
     content: "\65";
 }
-.icon-ios-circle-outline:before {
+.icon-outline:before {
     content: "\66";
 }
-.icon-ios-circle-filled:before {
+.icon-filled:before {
     content: "\67";
 }
 .icon-th-list:before {
@@ -70,7 +67,7 @@
 .icon-circle:before {
     content: "\6a";
 }
-.icon-cog:before {
+.icon-config:before {
     content: "\6b";
 }
 .icon-settings:before {
@@ -82,7 +79,7 @@
 .icon-wrench:before {
     content: "\6f";
 }
-.icon-android-options:before {
+.icon-options:before {
     content: "\6e";
 }
 .icon-close:before {

@@ -61,6 +61,8 @@ function toTree (graph, parent) {
     try {
         parent.children.sort(
             (a, b) => a.entities[0][FOLDING_CRITERIA] > b.entities[0][FOLDING_CRITERIA] ? -1 : 1
+        ).forEach(
+            (e) => e.parent = parent
         );
     } catch (e) {
         console.error(`Error! Most likely, one of the graph nodes does not has any entities.`
@@ -308,5 +310,59 @@ export function dropDescendants (nodes) {
     });
 
     return toDrop;
+
+}
+
+/**
+ * Delete all nodes and their descendants.
+ * @param {Array|*} nodes - Node to delete
+ * @returns {number} - Number of nodes deleted
+ */
+export function dropNodes (nodes) {
+
+    if (!(nodes instanceof Array))
+        nodes = [nodes];
+
+    let restore = nodes.filter(n => !!n.parent).map(node => {
+        return {
+            node: node.parent,
+            children: node.parent.children.slice()
+        };
+    });
+
+    if (restore.length === 0)
+        return 0;
+
+    function f () {
+        for (let node of nodes) {
+            if (!node.parent) // unable to drop root node
+                continue;
+            let i = node.parent.children.indexOf(node);
+            if (i === -1) {
+                console.error(
+                    `There is a mess occurred with the tree model structure while dropping nodes: `
+                    `node's parent is pointing to a node which doesn't have this node as a child.`
+                );
+                continue;
+            }
+            let temp = node.parent.children.slice();
+            temp.splice(i, 1);
+            node.parent.children = temp;
+        }
+        dataUpdated();
+    }
+    f();
+
+    history.createState({
+        redo: f,
+        undo: () => {
+            for (let res of restore) {
+                res.node.children = res.children;
+            }
+            dataUpdated();
+        }
+    });
+
+    return nodes.length;
 
 }
