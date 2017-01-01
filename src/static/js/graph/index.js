@@ -1,5 +1,5 @@
 import { onModelUpdate, unfold } from "../model";
-import { updateSelection, setLastSelectedNode, selectAll, deselectAll } from "../selection";
+import { updateSelection, selectAll, deselectAll } from "../selection";
 
 let shiftKey, ctrlKey,
     width = window.innerWidth,
@@ -38,7 +38,6 @@ let svg = null,
             node.classed("selected", (d) => {
                 let selected = (extent[0][0] <= d.x && d.x < extent[1][0]
                 && extent[0][1] <= d.y && d.y < extent[1][1]);
-                if (selected) setLastSelectedNode(d);
                 return d.selected = d.wasSelected ^ selected;
             });
         })
@@ -244,7 +243,6 @@ export function update (g = lastGraph, reset = false) {
             } else {
                 d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
             }
-            setLastSelectedNode(d.selected ? d : null);
             updateSelection();
         });
 

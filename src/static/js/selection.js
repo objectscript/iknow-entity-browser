@@ -1,8 +1,7 @@
 import * as model from "./model";
 
 let selection = [],
-    callbacks = [],
-    lastSelectedNode = null;
+    callbacks = [];
 
 export function updateSelection () {
 
@@ -17,23 +16,7 @@ export function updateSelection () {
     }
     findSelected(tree);
 
-    if (!selection.length) lastSelectedNode = null;
-    if (lastSelectedNode && !lastSelectedNode.selected) {
-        lastSelectedNode = selection[selection.length - 1];
-    }
-
-    callbacks.forEach(
-        c => c(selection, lastSelectedNode || selection[selection.length - 1] || null)
-    );
-
-}
-
-export function setLastSelectedNode (node) {
-
-    if (node && typeof node.id !== "undefined")
-        lastSelectedNode = node;
-    else
-        lastSelectedNode = null;
+    callbacks.forEach(c => c(selection));
 
 }
 
