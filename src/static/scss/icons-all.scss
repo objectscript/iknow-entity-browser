@@ -4,6 +4,8 @@
 [class*="icon-"] {
     @include user-select(none);
     @include transition($defaultTransition);
+    position: relative;
+    display: inline-block;
     cursor: pointer;
     &.ui { font-size: 28px; }
     &:hover { color: $colorA; }

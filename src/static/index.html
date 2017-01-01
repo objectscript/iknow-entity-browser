@@ -12,8 +12,20 @@
 <body onload="window.init()">
 <div id="windows">
     <div id="controlIcons">
-        <i id="undoButton" class="ui icon-undo"></i>
-        <i id="redoButton" class="ui icon-redo"></i>
+        <div id="undoButton" class="ui icon-undo hint">
+            <div class="right tooltip">
+                <div class="label">
+                    Undo
+                </div>
+            </div>
+        </div>
+        <div id="redoButton" class="ui icon-redo hint">
+            <div class="right tooltip">
+                <div class="label">
+                    Redo
+                </div>
+            </div>
+        </div>
     </div>
     <svg id="graph">
         <defs>
@@ -29,14 +41,44 @@
         </defs>
     </svg>
     <div id="table">
-        <i id="tableToggle" class="ui icon-list"></i>
+        <div id="tableToggle" class="ui icon-list hint">
+            <div class="tooltip">
+                <div class="label">
+                    Tabular view
+                </div>
+            </div>
+        </div>
         <div id="rightTopIcons">
-            <i id="settingsToggle" class="ui icon-settings"></i>
+            <div id="settingsToggle" class="ui icon-settings hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Settings
+                    </div>
+                </div>
+            </div>
         </div>
         <div id="toolbarIcons">
-            <i id="resetSelectionButton" class="ui icon-outline"></i>
-            <i id="dropChildrenButton" class="ui icon-unlink"></i>
-            <i id="removeButton" class="ui icon-remove"></i>
+            <div id="resetSelectionButton" class="ui icon-outline hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Reset selection
+                    </div>
+                </div>
+            </div>
+            <div id="dropChildrenButton" class="ui icon-unlink hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Drop all children
+                    </div>
+                </div>
+            </div>
+            <div id="removeButton" class="ui icon-remove hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Delete selection
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="controls">
             <label>

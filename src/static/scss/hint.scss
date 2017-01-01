@@ -1,0 +1,81 @@
+@import "mixins";
+
+.hint {
+
+    position: relative;
+
+    > .tooltip {
+
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        > .label {
+
+            position: absolute;
+            padding: 3px;
+            width: auto;
+            white-space: nowrap;
+            color: #FFFFFF;
+            background: #000000;
+            font-size: 16px;
+            text-align: center;
+            visibility: hidden;
+            border-radius: 4px;
+            opacity: 0;
+            @include transition(opacity .3s ease);
+
+            &:after {
+                content: '';
+                position: absolute;
+                top: 50%;
+                left: 100%;
+                margin-top: -9px;
+                width: 0;
+                height: 0;
+                border-left: 9px solid #000;
+                border-top: 9px solid transparent;
+                border-bottom: 8px solid transparent;
+            }
+
+        }
+
+        &:hover {
+            overflow: visible;
+            > .label {
+                visibility: visible;
+                right: 100%;
+                top: 50%;
+                margin-top: -15px;
+                margin-right: 15px;
+                z-index: 999;
+                opacity: 0.8;
+            }
+        }
+
+        &.right {
+
+            > .label:after {
+                left: auto;
+                right: 100%;
+                border-left: none;
+                border-right: 9px solid #000;
+                border-top: 9px solid transparent;
+                border-bottom: 8px solid transparent;
+            }
+
+            &:hover > .label {
+                right: auto;
+                left: 100%;
+                margin-right: 0;
+                margin-left: 15px;
+            }
+
+        }
+
+    }
+
+}
