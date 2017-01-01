@@ -231,9 +231,6 @@ export function update (g = lastGraph, reset = false) {
         })
         .on("click", function (d) {
             if (d3.event.defaultPrevented) return;
-            // if (!ctrlKey) {
-            //     node.classed("selected", (p) => p.selected = p.wasSelected = false)
-            // }
             if (shiftKey) {
                 if (d.selected)
                     deselectAll(d);

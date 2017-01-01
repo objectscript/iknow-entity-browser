@@ -26,7 +26,8 @@ function fold (tree) {
         children: [],
         radius: 10,
         entities: [],
-        id: additionalNodeId--
+        id: additionalNodeId--,
+        parent: tree
     });
     return tree;
 }
