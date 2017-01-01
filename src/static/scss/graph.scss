@@ -1,4 +1,5 @@
 @import "mixins";
+@import "const";
 
 #graph {
 
@@ -10,10 +11,10 @@
 
     .links line {
         &.similar {
-            stroke: #7ca1ff;
+            stroke: $similarColor;
         }
         &.related {
-            stroke: #ffb840;
+            stroke: $relatedColor;
         }
         &.other {
             stroke: #bbb;
@@ -27,11 +28,11 @@
             circle {
                 stroke: #fff;
                 stroke-width: 1px;
-                fill: red;
+                fill: $otherColor;
             }
 
             &.entity circle {
-                fill: #7ca1ff;
+                fill: $similarColor;
             }
 
             &.folder circle {
@@ -43,7 +44,7 @@
             }
 
             &.root circle {
-                fill: #ffb840;
+                fill: $relatedColor;
             }
 
             text {
