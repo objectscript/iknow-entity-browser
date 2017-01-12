@@ -40,7 +40,7 @@ To install & test, open up a terminal and execute the following set of commands:
 git clone https://github.com/intersystems-ru/iknow-entity-browser
 cd iknow-entity-browser
 npm install
-gulp
+npm run gulp
 ```
 
 Then, open `build/static/index.html` file.
