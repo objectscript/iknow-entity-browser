@@ -3,7 +3,6 @@ import * as model from "../model";
 import { onSelectionUpdate, updateSelection, getSelection } from "../selection";
 
 let sorting = {
-    enabled: false,
     properties: ["entities", "0", "score"],
     order: 1
 };
@@ -11,8 +10,8 @@ let sorting = {
 let sorter = (a, b) => {
     let i = 0;
     while (i < sorting.properties.length && typeof (a = a[sorting.properties[i]]) !== "undefined"
-    && typeof (b = b[sorting.properties[i]]) !== "undefined") { console.log(i); ++i }
-    return a > b ? -sorting.order : a === b ? 0 : sorting.order;
+    && typeof (b = b[sorting.properties[i]]) !== "undefined") { ++i }
+    return a > b ? sorting.order : a === b ? 0 : -sorting.order;
 };
 
 function updateSelected () {
@@ -38,11 +37,41 @@ function updateOthers () {
 
 }
 
+function updateAll () {
+    updateSelected();
+    updateOthers();
+}
+
 onSelectionUpdate(() => {
     if (!model.uiState.tabularToggled)
         return;
     updateSelected();
 });
+
+/**
+ * @this {HTMLElement} TH
+ */
+function columnClicked () {
+    let attr = this.getAttribute("data-prop"),
+        arr = attr.split(".");
+    if (attr === sorting.properties.join("."))
+        sorting.order = sorting.order === 1 ? -1 : sorting.order === -1 ? 0 : 1;
+    else
+        sorting.order = 1;
+    sorting.properties = arr;
+    updateAll();
+    updateHeaders(attr);
+}
+
+function updateHeaders (dataProp = undefined) {
+    [].slice.call(document.querySelectorAll("#tabular thead th")).forEach((th) => {
+        th.classList.remove("sort-up");
+        th.classList.remove("sort-down");
+        if (th.getAttribute("data-prop") !== dataProp)
+            return;
+        th.classList.toggle(`sort-${ sorting.order === 1 ? "up" : "down" }`, sorting.order !== 0);
+    });
+}
 
 export function init () {
 
@@ -60,5 +89,12 @@ export function init () {
             [].slice.call(row.cells).map(cell => cell.textContent)
         ));
     });
+
+    [].slice.call(document.querySelectorAll("#tabular thead th")).forEach((th) => {
+        if (!th.getAttribute("data-prop")) return;
+        th.addEventListener("click", columnClicked);
+    });
+
+    updateHeaders(sorting.properties.join("."));
 
 }

@@ -41,3 +41,15 @@ $headerHeight: 36px;
     }
 
 }
+
+#tabular th {
+
+    &.sort-up:after {
+        content: " ▼";
+    }
+
+    &.sort-down:after {
+        content: " ▲";
+    }
+
+}
