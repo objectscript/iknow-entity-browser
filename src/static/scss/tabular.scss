@@ -55,6 +55,14 @@ $headerHeight: 36px;
         content: " ▲";
     }
 
+    &:last-child {
+        border-left: none;
+    }
+
+    &:nth-last-child(2) {
+        border-right: none;
+    }
+
 }
 
 #tabular td {
@@ -64,12 +72,56 @@ $headerHeight: 36px;
     text-overflow: ellipsis;
 }
 
+#tabular {
+
+    td:last-child {
+
+        width: 15px;
+        border-left: none;
+
+    }
+
+    tr td:last-child {
+        overflow: visible;
+        text-overflow: clip;
+        & i {
+            position: relative;
+            top: 2px;
+            font-size: 13px;
+            height: 13px;
+            display: none;
+            @include transition(none);
+        }
+    }
+
+    tr:hover td:last-child i {
+        display: inline-block;
+    }
+
+    td:nth-last-child(2) {
+        border-right: none;
+    }
+
+}
+
+#tabular-selected {
+
+    tr td:last-child {
+        color: red;
+    }
+
+}
+
 #tabular-others {
 
     opacity: 0.6;
 
     tr:first-child td {
         border-top: 1px solid black;
+    }
+
+    tr td:last-child {
+        color: green;
     }
 
 }

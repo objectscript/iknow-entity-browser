@@ -14,6 +14,16 @@ let sorter = (a, b) => {
     return a > b ? sorting.order : a === b ? 0 : -sorting.order;
 };
 
+/**
+ * this: node
+ */
+function switchSelected () {
+    if (!this.element)
+        return;
+    d3.select(this.element).classed("selected", this.selected = !this.selected);
+    updateSelection();
+}
+
 function updateSelected () {
     let data = getSelection().filter(node => node.type === "entity").sort(sorter),
         table = document.querySelector("#tabular-selected");
@@ -30,6 +40,10 @@ function updateSelected () {
         (c = row.insertCell(5)).textContent = node.edgeType || "";
         c.className = `${ node.edgeType }Item`;
         row.insertCell(6).textContent = (node.parent || { label: "root" }).label || "?";
+        let ee = document.createElement("i");
+        ee.className = "icon-close";
+        ee.addEventListener("click", switchSelected.bind(node));
+        row.insertCell(7).appendChild(ee);
     }
 }
 
@@ -49,6 +63,10 @@ function updateOthers () {
         (c = row.insertCell(5)).textContent = node.edgeType || "";
         c.className = `${ node.edgeType }Item`;
         row.insertCell(6).textContent = (node.parent || { label: "root" }).label || "?";
+        let ee = document.createElement("i");
+        ee.className = "icon-add";
+        ee.addEventListener("click", switchSelected.bind(node));
+        row.insertCell(7).appendChild(ee);
     }
 }
 
@@ -96,7 +114,8 @@ export function init () {
             d.tabularToggled = !d.tabularToggled;
             d3.select(this).classed("toggled", d.tabularToggled);
             d3.select("#table").classed("active", d.tabularToggled);
-            updateSelection();
+            if (d.tabularToggled)
+                updateAll();
         });
 
     d3.select("#exportCSV").on("click", () => {

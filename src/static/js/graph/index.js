@@ -221,7 +221,7 @@ export function update (g = lastGraph, reset = false) {
     node = nodes.selectAll(".node").data(graph.nodes, function (d) { return this._id || d.id; });
     node.exit().remove();
     let nodeEnter = node.enter().append("g")
-        .each(function (d) { this._id = d.id; })
+        .each(function (d) { this._id = d.id; d.element = this; })
         .attr("class", d => `node${ d.id === 0 ? " root" : "" } ${ d.type || "unknown" }`)
         .classed("selected", (p) => p.selected)
         .call(dragger)
