@@ -20,6 +20,10 @@ export function updateSelection () {
 
 }
 
+export function getSelection () {
+    return selection;
+}
+
 export function selectAll (node) {
     if (!node)
         return;

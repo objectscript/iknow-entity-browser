@@ -104,7 +104,10 @@ function preprocess (graph) {
             entities: [{
                 id: -1,
                 value: getOption("seed"),
-                [SIZE_CRITERIA]: 10000
+                [SIZE_CRITERIA]: 9999,
+                score: 9999,
+                spread: 0,
+                frequency: 9999
             }]
         });
     }

@@ -1,14 +1,23 @@
 import { csv } from "./export";
 import * as model from "../model";
-import { onSelectionUpdate, updateSelection } from "../selection";
+import { onSelectionUpdate, updateSelection, getSelection } from "../selection";
 
-onSelectionUpdate((selection) => {
-    if (!model.uiState.tabularToggled)
-        return;
-    let data = selection.filter(node => node.type === "entity").sort((a, b) =>
-            a.entities[0].score > b.entities[0].score ? -1 : 1
-        ),
-        table = document.querySelector("#table table tbody");
+let sorting = {
+    enabled: false,
+    properties: ["entities", "0", "score"],
+    order: 1
+};
+
+let sorter = (a, b) => {
+    let i = 0;
+    while (i < sorting.properties.length && typeof (a = a[sorting.properties[i]]) !== "undefined"
+    && typeof (b = b[sorting.properties[i]]) !== "undefined") { console.log(i); ++i }
+    return a > b ? -sorting.order : a === b ? 0 : sorting.order;
+};
+
+function updateSelected () {
+    let data = getSelection().filter(node => node.type === "entity").sort(sorter),
+        table = document.querySelector("#tabular-selected");
     table.textContent = "";
     for (let i = 0; i < data.length; i++) {
         let row = table.insertRow(i),
@@ -23,6 +32,16 @@ onSelectionUpdate((selection) => {
         c.className = `${ node.edgeType }Item`;
         row.insertCell(6).textContent = (node.parent || { label: "root" }).label || "?";
     }
+}
+
+function updateOthers () {
+
+}
+
+onSelectionUpdate(() => {
+    if (!model.uiState.tabularToggled)
+        return;
+    updateSelected();
 });
 
 export function init () {
