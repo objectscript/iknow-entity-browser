@@ -1,4 +1,4 @@
-import { onModelUpdate, unfold } from "../model";
+import { onModelUpdate, unfold, dropNodes } from "../model";
 import { updateSelection, selectAll, deselectAll } from "../selection";
 
 let shiftKey, ctrlKey,
@@ -226,10 +226,16 @@ export function update (g = lastGraph, reset = false) {
         .classed("selected", (p) => p.selected)
         .call(dragger)
         .on("dblclick", function (d) {
+            if (d.type !== "folder")
+                return;
             d3.event.stopPropagation();
-            if (unfold(d)) {
+            let left;
+            if (d.parent && (left = unfold(d, d.parent))) {
                 d.fx = d.x; d.fy = d.y;
-                setTimeout(() => d.fx = d.fy = null, 500);
+                setTimeout(() => d.fx = d.fy = null, 1000);
+            }
+            if (left === 0) {
+                dropNodes(d);
             }
         })
         .on("click", function (d) {

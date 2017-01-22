@@ -12,23 +12,35 @@ let SIZE_CRITERIA = "frequency",
     updateCallbacks = [];
 
 function fold (tree) {
-    if (!tree.children || tree.children.length <= MAX_CHILDREN)
-        return tree;
     for (let cld of tree.children) {
         fold(cld);
     }
-    let rest = tree.children.splice(MAX_CHILDREN);
-    tree.children.push({
-        label: `${ rest.length } more`,
-        type: "folder",
-        edgeType: rest[0].edgeType,
-        _children: rest,
-        children: [],
-        radius: 10,
-        entities: [],
-        id: additionalNodeId--,
-        parent: tree
-    });
+    if (tree.children && tree.children.length > MAX_CHILDREN) {
+        let rest = tree.children.splice(MAX_CHILDREN);
+        tree._children = rest;
+        tree.children.push({
+            label: `${ rest.length } more`,
+            type: "folder",
+            edgeType: rest[0].edgeType,
+            children: [],
+            radius: 10,
+            entities: [],
+            id: additionalNodeId--,
+            parent: tree
+        });
+    }
+    // let rest = tree.children.splice(MAX_CHILDREN);
+    // tree.children.push({
+    //     label: `${ rest.length } more`,
+    //     type: "folder",
+    //     edgeType: rest[0].edgeType,
+    //     _children: rest,
+    //     children: [],
+    //     radius: 10,
+    //     entities: [],
+    //     id: additionalNodeId--,
+    //     parent: tree
+    // });
     return tree;
 }
 
@@ -232,21 +244,23 @@ function resetChildrenPosition (parent, children = []) {
 
 /**
  * Unfold the folder by specified amount of nodes.
+ * @param folderNode - Node representing a folder
  * @param node - Node to unfold
  * @param [children=20] - Number of nodes to unfold
  * @returns {number} - Number of nodes left to unfold
  */
-export function unfold (node, children = 20) {
-    if (node.type !== "folder" || !node._children || !node._children.length)
+export function unfold (folderNode, node, children = 20) {
+    if (folderNode.type !== "folder" || !node._children || !node._children.length)
         return 0;
     let newId = additionalNodeId--,
-        oldId = node.id,
+        oldId = folderNode.id,
         f = () => {
-            let next = node._children.splice(0, children),
-                left = node._children.length;
-            node.id = newId;
+            let next = node._children.slice(0, children);
+            node._children = node._children.slice(children);
+            let left = node._children.length;
+            folderNode.id = newId;
             node.children = node.children.concat(next);
-            node.label = left > 0 ? `${ left } more` : `Others`;
+            folderNode.label = left > 0 ? `${ left } more` : `Others`;
             resetChildrenPosition(node, next);
             dataUpdated();
             return {
@@ -258,10 +272,12 @@ export function unfold (node, children = 20) {
     history.createState({
         redo: f,
         undo: () => {
-            let part = node.children.splice(-res.unfolded);
+            let part = node.children.slice(-res.unfolded);
+            node.children = node.children.slice(0, node.children.length - part.length);
             node._children = part.concat(node._children);
-            node.id = oldId;
-            node.label = node._children.length > 0 ? `${ node._children.length } more` : `Others`;
+            folderNode.id = oldId;
+            folderNode.label =
+                node._children.length > 0 ? `${ node._children.length } more` : `Others`;
             dataUpdated();
         }
     });
