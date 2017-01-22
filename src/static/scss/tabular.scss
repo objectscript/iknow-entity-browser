@@ -44,12 +44,32 @@ $headerHeight: 36px;
 
 #tabular th {
 
+    @include user-select(none);
+    cursor: pointer;
+
     &.sort-up:after {
         content: " ▼";
     }
 
     &.sort-down:after {
         content: " ▲";
+    }
+
+}
+
+#tabular td {
+    max-width: 150px;
+    white-space: pre;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#tabular-others {
+
+    opacity: 0.6;
+
+    tr:first-child td {
+        border-top: 1px solid black;
     }
 
 }

@@ -1,6 +1,6 @@
 import { csv } from "./export";
 import * as model from "../model";
-import { onSelectionUpdate, updateSelection, getSelection } from "../selection";
+import { onSelectionUpdate, updateSelection, getSelection, getOthers } from "../selection";
 
 let sorting = {
     properties: ["entities", "0", "score"],
@@ -34,7 +34,22 @@ function updateSelected () {
 }
 
 function updateOthers () {
-
+    let data = getOthers().filter(node => node.type === "entity").sort(sorter),
+        table = document.querySelector("#tabular-others");
+    table.textContent = "";
+    for (let i = 0; i < data.length; i++) {
+        let row = table.insertRow(i),
+            node = data[i],
+            c;
+        row.insertCell(0).textContent = node.id;
+        row.insertCell(1).textContent = node.label;
+        row.insertCell(2).textContent = node.entities[0].score;
+        row.insertCell(3).textContent = node.entities[0].frequency;
+        row.insertCell(4).textContent = node.entities[0].spread;
+        (c = row.insertCell(5)).textContent = node.edgeType || "";
+        c.className = `${ node.edgeType }Item`;
+        row.insertCell(6).textContent = (node.parent || { label: "root" }).label || "?";
+    }
 }
 
 function updateAll () {
@@ -45,7 +60,7 @@ function updateAll () {
 onSelectionUpdate(() => {
     if (!model.uiState.tabularToggled)
         return;
-    updateSelected();
+    updateAll();
 });
 
 /**

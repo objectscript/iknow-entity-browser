@@ -1,16 +1,20 @@
 import * as model from "./model";
 
 let selection = [],
+    others = [],
     callbacks = [];
 
 export function updateSelection () {
 
     let tree = model.getGraphData();
     selection = [];
+    others = [];
 
     function findSelected (node) {
         if (node.selected)
             selection.push(node);
+        else
+            others.push(node);
         if (node.children)
             for (let n of node.children) findSelected(n);
     }
@@ -22,6 +26,10 @@ export function updateSelection () {
 
 export function getSelection () {
     return selection;
+}
+
+export function getOthers () {
+    return others;
 }
 
 export function selectAll (node) {
