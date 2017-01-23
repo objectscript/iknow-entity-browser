@@ -245,7 +245,6 @@ export function update (g = lastGraph, reset = false) {
                     deselectAll(d);
                 else
                     selectAll(d);
-                updateSelected();
             } else {
                 d3.select(this).classed("selected", d.selected = !d.selected); // (!prevSel)
             }

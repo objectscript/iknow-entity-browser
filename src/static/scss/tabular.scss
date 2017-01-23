@@ -76,7 +76,7 @@ $headerHeight: 36px;
 
     td:last-child {
 
-        width: 15px;
+        width: 30px;
         border-left: none;
 
     }
@@ -106,7 +106,7 @@ $headerHeight: 36px;
 
 #tabular-selected {
 
-    tr td:last-child {
+    tr td:last-child .icon-close {
         color: red;
     }
 
@@ -120,7 +120,7 @@ $headerHeight: 36px;
         border-top: 1px solid black;
     }
 
-    tr td:last-child {
+    tr td:last-child .icon-add {
         color: green;
     }
 

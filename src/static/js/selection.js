@@ -32,20 +32,22 @@ export function getOthers () {
     return others;
 }
 
-export function selectAll (node) {
+export function selectAll (node, nodeItself = true) {
     if (!node)
         return;
     if (node.children)
         node.children.forEach(c => selectAll(c));
-    node.selected = true;
+    if (nodeItself)
+        d3.select(node.element).classed("selected", node.selected = true);
 }
 
-export function deselectAll (node) {
+export function deselectAll (node, nodeItself = true) {
     if (!node)
         return;
     if (node.children)
         node.children.forEach(c => deselectAll(c));
-    node.selected = false;
+    if (nodeItself)
+        d3.select(node.element).classed("selected", node.selected = false);
 }
 
 /**
