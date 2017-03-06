@@ -1,8 +1,21 @@
 import { httpGet } from "../utils";
+import * as storage from "../storage";
 
-let settings = {
+const STORAGE_KEY = "settings";
 
+let settings = { // assign defaults here
+    host: "http://localhost",
+    port: "57772",
+    webAppName: "EntityBrowser",
+    domain: "1",
+    queryType: "related",
+    seed: "crew"
 };
+
+let initialStorage = storage.load(STORAGE_KEY);
+for (let option in initialStorage) {
+    settings[option] = initialStorage[option];
+}
 
 export function getOption (opt) {
     return settings[opt];
@@ -33,17 +46,28 @@ export function getData (callback) {
 }
 
 function bind (elements) {
-    elements.forEach(e => {
-        setValue(document.getElementById(e)).addEventListener(`change`, setValue)
-    });
+    for (let e of elements) {
+        setValue(document.getElementById(e)).addEventListener(`change`, setValue);
+    }
+}
+
+function saveSettings () {
+    storage.save(STORAGE_KEY, settings);
 }
 
 function setValue (e = {}) {
-    let id, el = e instanceof HTMLElement ? e : (e.target || e.srcElement);
+    let isEvent = !(e instanceof HTMLElement),
+        id, el = isEvent ? (e.target || e.srcElement) : e;
     if (!el)
         return e;
     if ((id = el.getAttribute(`id`)).indexOf(`settings.`) === 0) {
-        settings[id.replace(/^settings\./, ``)] = el.value;
+        let key = id.replace(/^settings\./, ``);
+        if (isEvent) {
+            settings[key] = el.value;
+            saveSettings();
+        } else {
+            el.value = settings[key];
+        }
     }
     return e;
 }
