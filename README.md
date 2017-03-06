@@ -29,7 +29,7 @@ Usage
 Development
 -----------
 
-Requires [Node.JS](https://nodejs.org) (v0.10.0-6.2.2+),
+Requires [Node.JS](https://nodejs.org) (v4.0.0-7.5.0+) (but may work on previous versions),
 [Git](https://git-scm.com) and
 [Caché](http://www.intersystems.com/library/software-downloads/) 2017.1+
 to be installed.

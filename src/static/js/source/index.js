@@ -11,10 +11,25 @@ let settings = { // assign defaults here
     queryType: "related",
     seed: "crew"
 };
+let changes = [];
 
 let initialStorage = storage.load(STORAGE_KEY);
 for (let option in initialStorage) {
     settings[option] = initialStorage[option];
+}
+
+/**
+ * This function "applies" settings so that getChanges() will return empty array until
+ */
+export function applyChanges () {
+    changes = [];
+}
+
+/**
+ * @returns {string[]} of changed keys.
+ */
+export function getChanges () {
+    return changes;
 }
 
 export function getOption (opt) {
@@ -63,7 +78,7 @@ function setValue (e = {}) {
     if ((id = el.getAttribute(`id`)).indexOf(`settings.`) === 0) {
         let key = id.replace(/^settings\./, ``);
         if (isEvent) {
-            settings[key] = el.value;
+            changes.push(settings[key] = el.value);
             saveSettings();
         } else {
             el.value = settings[key];
