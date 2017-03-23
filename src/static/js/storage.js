@@ -10,6 +10,10 @@ export function load (key) {
     return storage[key];
 }
 
+export function reset () {
+    localStorage.removeItem(STORAGE_NAME);
+}
+
 function updateLocalStorage () {
     localStorage.setItem(STORAGE_NAME, JSON.stringify(storage));
 }

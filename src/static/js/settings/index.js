@@ -2,6 +2,7 @@ import * as model from "../model";
 import * as graph from "../graph";
 import * as sourceSettings from "./sourceSettings";
 import * as tabularViewSettings from "./tabularViewSettings";
+import * as storage from "../storage";
 import { getChanges, applyChanges } from "./values";
 import { makeAutosizable } from "../utils";
 
@@ -27,6 +28,12 @@ export function init () {
 
     // make inputs auto-sizable
     [].slice.call(document.querySelectorAll(`input[autosize]`)).forEach((i) => makeAutosizable(i));
+    document.getElementById("settings.resetSettings").addEventListener("click", () => {
+        if (!confirm("Do you want to set all the settings to defaults?"))
+            return;
+        storage.reset();
+        location.reload();
+    });
 
     sourceSettings.init();
     tabularViewSettings.init();

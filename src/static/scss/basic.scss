@@ -51,6 +51,26 @@ select {
 
 }
 
+input[type=button], button {
+
+    background-color: $colorA;
+    color: white;
+    text-shadow: 0 1px 1px black;
+    border: 0;
+    border-radius: 12px;
+    padding: 5px;
+    margin: 2px;
+    cursor: pointer;
+    transition: $defaultTransition;
+    box-shadow: 0 1px 1px gray;
+
+    &:hover {
+        color: $highlightColor;
+        box-shadow: 0 2px 5px gray;
+    }
+
+}
+
 .central {
 
     position: absolute;
