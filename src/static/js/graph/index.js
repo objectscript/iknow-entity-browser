@@ -13,7 +13,7 @@ let svg = null,
     links,
     nodes,
     zoomer = d3.zoom()
-        .scaleExtent([1/4, 100])
+        .scaleExtent([1/6, 100])
         .on("zoom", () => {
             view.attr("transform", d3.event.transform);
         }),
@@ -49,6 +49,12 @@ let svg = null,
             }, 25);
         }),
     view = null;
+
+export function translateZoom (x = 0, y = 0) {
+    svg.transition()
+        .duration(300)
+        .call(zoomer.translateBy, x, y);
+}
 
 export function updateSelected () {
     node.classed("selected", p => p.selected);
