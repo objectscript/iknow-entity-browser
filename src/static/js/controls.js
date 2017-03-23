@@ -3,11 +3,14 @@
  */
 import { onSelectionUpdate, updateSelection } from "./selection";
 import { dropDescendants, dropNodes } from "./model";
-import { updateSelected } from "./graph"
+import { updateSelected, scaleBy, resetZoom } from "./graph"
 
 let dropChildrenButton = null,
     removeButton = null,
     resetSelectionButton = null,
+    zoomInButton = null,
+    resetViewButton = null,
+    zoomOutButton = null,
     selection = [];
 
 onSelectionUpdate((sel) => {
@@ -54,5 +57,11 @@ export function init () {
     removeButton.addEventListener("click", deleteSelection);
     resetSelectionButton = document.getElementById(`resetSelectionButton`);
     resetSelectionButton.addEventListener(`click`, resetSelection);
+    zoomInButton = document.getElementById(`zoomInButton`);
+    zoomInButton.addEventListener("click", () => scaleBy(1.5));
+    resetViewButton = document.getElementById(`resetZoomButton`);
+    resetViewButton.addEventListener("click", () => resetZoom());
+    zoomOutButton = document.getElementById(`zoomOutButton`);
+    zoomOutButton.addEventListener("click", () => scaleBy(0.75));
     updateButtons();
 }

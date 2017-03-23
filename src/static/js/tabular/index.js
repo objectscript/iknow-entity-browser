@@ -5,7 +5,7 @@ import {
 } from "../selection";
 import { getOption } from "../settings/values";
 import { getObjProp } from "../utils";
-import { translateZoom } from "../graph";
+import { translateBy } from "../graph";
 
 let sorting = {
     properties: ["entities", "0", "frequency"],
@@ -148,7 +148,7 @@ export function init () {
             if (d.tabularToggled)
                 updateAll();
             let w = document.getElementById("table").getBoundingClientRect().width / 2;
-            translateZoom(d.tabularToggled ? -w : w);
+            translateBy(d.tabularToggled ? -w : w);
         });
 
     d3.select("#exportCSV").on("click", () => {

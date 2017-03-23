@@ -1,4 +1,4 @@
-import { onModelUpdate, unfold, dropNodes } from "../model";
+import { onModelUpdate, unfold, dropNodesm, uiState } from "../model";
 import { updateSelection, selectAll, deselectAll } from "../selection";
 
 let shiftKey, ctrlKey,
@@ -50,10 +50,27 @@ let svg = null,
         }),
     view = null;
 
-export function translateZoom (x = 0, y = 0) {
+export function translateBy (x = 0, y = 0) {
     svg.transition()
         .duration(300)
         .call(zoomer.translateBy, x, y);
+}
+
+export function scaleBy (delta = 1) {
+    svg.transition()
+        .duration(300)
+        .call(zoomer.scaleBy, delta);
+}
+
+export function resetZoom () {
+    svg.transition()
+        .duration(300)
+        .call(zoomer.transform, d3.zoomIdentity.translate(
+            uiState.tabularToggled
+                ? - document.getElementById("table").getBoundingClientRect().width / 2
+                : 0,
+            0)
+        );
 }
 
 export function updateSelected () {
