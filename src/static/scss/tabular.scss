@@ -40,6 +40,18 @@ $headerHeight: 36px;
 
     }
 
+    .related {
+        color: $relatedColor;
+    }
+
+    .similar {
+        color: $similarColor;
+    }
+
+    .root {
+        color: $otherColor;
+    }
+
 }
 
 #tabular th {
@@ -94,8 +106,20 @@ $headerHeight: 36px;
         }
     }
 
-    tr:hover td:last-child i {
-        display: inline-block;
+    tr {
+
+        cursor: pointer;
+
+        &:hover {
+
+            background-color: $highlightColor;
+
+            td:last-child i {
+                display: inline-block;
+            }
+
+        }
+
     }
 
     td:nth-last-child(2) {

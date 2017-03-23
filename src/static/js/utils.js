@@ -52,6 +52,31 @@ let loader = block(`div`, {
 ]);
 
 /**
+ * Make input auto-sizable.
+ * @param {HTMLInputElement} input
+ * @param {number=30} minWidth
+ */
+export function makeAutosizable (input, minWidth = 30) {
+    function updateInput () {
+        let style = window.getComputedStyle(input),
+            ghost = document.createElement(`span`);
+        ghost.style.cssText = `box-sizing:content-box;display:inline-block;height:0;`
+            + `overflow:hidden;position:absolute;top:0;visibility:hidden;white-space:nowrap;`
+            + `font-family:${ style.fontFamily };font-size:${ style.fontSize };`
+            + `padding:${ style.padding }`;
+        ghost.textContent = input.value;
+        document.body.appendChild(ghost);
+        input.style.width = ghost.offsetWidth + 4
+            + (input.getAttribute("type") === "number" ? 20 : 0) + "px";
+        document.body.removeChild(ghost);
+    }
+    input.style.minWidth = `${ minWidth }px`;
+    input.style.maxWidth = "90%";
+    input.addEventListener(`input`, () => updateInput());
+    updateInput();
+}
+
+/**
  * @param {string} theUrl
  * @param {function} callback
  */
@@ -88,4 +113,15 @@ export function toggleLoader (on = true) {
     } else if (loader && loader.parentNode) {
         loader.parentNode.removeChild(loader);
     }
+}
+
+/**
+ * @param {object} obj
+ * @param {*[]} props
+ */
+export function getObjProp (obj, props) {
+    let o = obj, nil = {};
+    for (let p of props)
+        o = typeof o[p] === "undefined" ? nil : o[p];
+    return o === nil ? undefined : o;
 }

@@ -88,16 +88,7 @@
         <div class="wrapper">
             <table id="tabular">
                 <thead>
-                <tr>
-                    <th data-prop="id">ID</th>
-                    <th data-prop="label">Label</th>
-                    <th data-prop="entities.0.score">Score</th>
-                    <th data-prop="entities.0.frequency">Frequency</th>
-                    <th data-prop="entities.0.spread">Spread</th>
-                    <th data-prop="edgeType">Relation</th>
-                    <th data-prop="parent.label">Parent</th>
-                    <th></th>
-                </tr>
+                    <tr></tr>
                 </thead>
                 <tbody id="tabular-selected">
 
@@ -124,6 +115,13 @@
                     <option value="similar">similar</option>
                 </select>
                 / <input autosize placeholder="seed string" id="settings.seed" type="text" value="crew"/>
+            </div>
+        </div>
+        <h1>Tabular View Settings</h1>
+        <div>
+            <div>
+                <b>Columns:</b>
+                <span id="settings.tabularColumns"></span>
             </div>
         </div>
     </div>

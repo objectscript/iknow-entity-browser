@@ -1,5 +1,6 @@
 import sampleData from "../sample_output2.json";
-import { getData, getOption } from "../source";
+import { getData } from "../source";
+import { getOption } from "../settings/values";
 import { toggleLoader } from "../utils";
 import * as history from "./history";
 
@@ -101,13 +102,14 @@ function preprocess (graph) {
             id: 0,
             label: getOption("seed"),
             type: "entity",
+            edgeType: "root",
             entities: [{
                 id: -1,
                 value: getOption("seed"),
-                [SIZE_CRITERIA]: 9999,
                 score: 9999,
                 spread: 0,
-                frequency: 9999
+                frequency: 9999,
+                [SIZE_CRITERIA]: 9999
             }]
         });
     }

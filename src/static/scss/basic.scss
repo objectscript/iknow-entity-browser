@@ -28,21 +28,27 @@ table {
 
 }
 
-.relatedItem {
-    color: $relatedColor;
-}
-
-.similarItem {
-    color: $similarColor;
-}
-
-.otherItem, .undefinedItem {
-    color: $otherColor;
-}
-
 input[type=text], input[type=number] {
     border: 0;
     border-bottom: 1px solid gray;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+}
+
+select {
+
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    text-shadow: inherit;
+
+    option {
+        color: black;
+    }
+
 }
 
 .central {

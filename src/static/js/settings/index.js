@@ -1,6 +1,9 @@
 import * as model from "../model";
 import * as graph from "../graph";
-import { getChanges, applyChanges } from "../source";
+import * as sourceSettings from "./sourceSettings";
+import * as tabularViewSettings from "./tabularViewSettings";
+import { getChanges, applyChanges } from "./values";
+import { makeAutosizable } from "../utils";
 
 function toggleSettings (uiStateModel) {
     uiStateModel.settingsToggled = !uiStateModel.settingsToggled;
@@ -23,29 +26,9 @@ export function init () {
         .on("click", toggleSettings);
 
     // make inputs auto-sizable
-    [].slice.call(document.querySelectorAll(`input[autosize]`)).forEach((input) => {
+    [].slice.call(document.querySelectorAll(`input[autosize]`)).forEach((i) => makeAutosizable(i));
 
-        function updateInput () {
-            let style = window.getComputedStyle(input),
-                ghost = document.createElement(`span`);
-            ghost.style.cssText = `box-sizing:content-box;display:inline-block;height:0;`
-                + `overflow:hidden;position:absolute;top:0;visibility:hidden;white-space:nowrap;`
-                + `font-family:${ style.fontFamily };font-size:${ style.fontSize };`
-                + `padding:${ style.padding }`;
-            ghost.textContent = input.value;
-            document.body.appendChild(ghost);
-            input.style.width = ghost.offsetWidth + 4
-                + (input.getAttribute("type") === "number" ? 20 : 0) + "px";
-            document.body.removeChild(ghost);
-        }
-
-        input.style.minWidth = "30px";
-        input.style.maxWidth = "90%";
-        input.addEventListener(`input`, () => updateInput());
-        updateInput();
-
-        return input;
-
-    });
+    sourceSettings.init();
+    tabularViewSettings.init();
 
 }

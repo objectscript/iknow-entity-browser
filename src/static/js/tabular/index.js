@@ -3,10 +3,12 @@ import * as model from "../model";
 import {
     onSelectionUpdate, updateSelection, getSelection, getOthers, selectAll, deselectAll
 } from "../selection";
+import { getOption } from "../settings/values";
+import { getObjProp } from "../utils";
 
 let sorting = {
-    properties: ["entities", "0", "score"],
-    order: 1
+    properties: ["entities", "0", "frequency"],
+    order: -1
 };
 
 let sorter = (a, b) => {
@@ -44,29 +46,33 @@ function toggleChildrenSelected (e) {
 }
 
 function insertRows (data, table, selected) {
+    let columns = getOption("tabularColumns");
     for (let i = 0; i < data.length; i++) {
         let row = table.insertRow(i),
-            node = data[i],
-            c;
-        row.insertCell(0).textContent = node.id;
-        row.insertCell(1).textContent = node.label;
-        row.insertCell(2).textContent = node.entities[0].score;
-        row.insertCell(3).textContent = node.entities[0].frequency;
-        row.insertCell(4).textContent = node.entities[0].spread;
-        (c = row.insertCell(5)).textContent = node.edgeType || "";
-        c.className = `${ node.edgeType }Item`;
-        row.insertCell(6).textContent = (node.parent || { label: "root" }).label || "?";
+            node = data[i];
+        for (let col = 0; col < columns.length; col++) {
+            let cell = row.insertCell(col),
+                cVal = getObjProp(node, columns[col].property),
+                val = typeof cVal === "undefined"
+                    ? (columns[col].default || "")
+                    : cVal;
+            cell.textContent = val;
+            if (columns[col].class)
+                cell.className = val;
+        }
         let ee = document.createElement("i"),
             ei = document.createElement("i"),
             sel = false,
-            cell = row.insertCell(7);
+            cell = row.insertCell(columns.length);
         for (let o of node.children) { if (o.selected) { sel = true; break; } }
         ei.className = `icon-${ sel ? "filled" : "outline" }`;
+        ei.setAttribute("title", `${ sel ? "Deselect" : "Select" } children`);
         ei.addEventListener("click", toggleChildrenSelected.bind(node));
         ee.className = `icon-${ selected ? "close" : "add" }`;
+        ee.setAttribute("title", `${ selected ? "Remove from" : "Add to" } selection`);
         ee.addEventListener("click", switchSelected.bind(node));
-        cell.appendChild(ei);
         cell.appendChild(ee);
+        if (node.children.length) cell.appendChild(ei);
         row.addEventListener("mouseover", () => { node.element.classList.add("highlighted"); });
         row.addEventListener("mouseout", () => { node.element.classList.remove("highlighted"); });
     }
@@ -87,6 +93,7 @@ function updateOthers () {
 }
 
 function updateAll () {
+    updateHeaders();
     updateSelected();
     updateOthers();
 }
@@ -108,18 +115,25 @@ function columnClicked () {
     else
         sorting.order = 1;
     sorting.properties = arr;
-    updateAll();
     updateHeaders(attr);
+    updateAll();
 }
 
-function updateHeaders (dataProp = undefined) {
-    [].slice.call(document.querySelectorAll("#tabular thead th")).forEach((th) => {
-        th.classList.remove("sort-up");
-        th.classList.remove("sort-down");
-        if (th.getAttribute("data-prop") !== dataProp)
-            return;
-        th.classList.toggle(`sort-${ sorting.order === 1 ? "up" : "down" }`, sorting.order !== 0);
+function updateHeaders (dataProp = sorting.properties.join(".")) {
+    let head = document.querySelector("#tabular thead tr");
+    while (head.firstChild) head.removeChild(head.firstChild);
+    getOption("tabularColumns").forEach((h) => {
+        let el = document.createElement("th");
+        el.textContent = h.label;
+        el.setAttribute("data-prop", h.property.join("."));
+        el.addEventListener("click", columnClicked);
+        if (h.property.join(".") === dataProp) el.classList.toggle(
+            `sort-${ sorting.order === 1 ? "up" : "down" }`,
+            sorting.order !== 0
+        );
+        head.appendChild(el);
     });
+    head.appendChild(document.createElement("th"));
 }
 
 export function init () {
@@ -140,11 +154,6 @@ export function init () {
         ));
     });
 
-    [].slice.call(document.querySelectorAll("#tabular thead th")).forEach((th) => {
-        if (!th.getAttribute("data-prop")) return;
-        th.addEventListener("click", columnClicked);
-    });
-
-    updateHeaders(sorting.properties.join("."));
+    updateHeaders();
 
 }

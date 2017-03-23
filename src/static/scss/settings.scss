@@ -17,6 +17,30 @@
 
 }
 
+#settings\.tabularColumns {
+
+    display: inline-block;
+
+    .column {
+
+        display: inline-block;
+        margin: 3px;
+        padding: 3px 0;
+        background-color: $colorA;
+        border-radius: 12px;
+        color: #fff;
+        text-shadow: 0 1px 1px #000;
+
+        i {
+            position: relative;
+            top: 1px;
+            vertical-align: middle;
+        }
+
+    }
+
+}
+
 #closeSettingsToggle {
 
     position: absolute;
