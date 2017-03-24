@@ -43,5 +43,9 @@ export function init () {
             return;
         apply();
     });
-
+    document.getElementById("settings.seed").addEventListener(`keydown`, (e) => {
+        if (e.keyCode !== 13)
+            return;
+        document.getElementById("settings.seed").blur();
+    });
 }

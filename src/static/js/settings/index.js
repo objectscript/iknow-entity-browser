@@ -26,9 +26,9 @@ export function init () {
         .data([model.uiState])
         .on("click", toggleSettings);
 
-    sourceSettings.init();
     tabularViewSettings.init();
     initValues();
+    sourceSettings.init();
 
     // make inputs auto-sizable
     [].slice.call(document.querySelectorAll(`input[autosize]`)).forEach((i) => makeAutosizable(i));

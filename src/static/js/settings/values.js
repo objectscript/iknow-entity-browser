@@ -1,11 +1,22 @@
 import * as storage from "../storage";
 import { getObjProp } from "../utils";
+import * as url from "../url";
 
 const STORAGE_KEY = "settings";
 
-let settings = { // assign defaults here
+const settingsTypes = {
+    host: String,
+    port: Number,
+    webAppName: String,
+    domain: String,
+    queryType: new Set(["similar", "related"]),
+    seed: String,
+    keepSeedInView: Boolean
+};
+
+const settings = { // assign defaults here
     host: "http://localhost",
-    port: "57772",
+    port: 57772,
     webAppName: "EntityBrowser",
     domain: "1",
     queryType: "related",
@@ -111,5 +122,18 @@ export function setInputValue (e = {}) {
 }
 
 export function init () {
+    let params = url.getSearchString();
+    for (let param in params) {
+        let type = getObjProp(settingsTypes, param.split(".")),
+            v = params[param];
+        if (typeof type === "undefined")
+            continue;
+        settings[param] =
+            type === String ? v :
+            type === Number ? parseFloat(v) :
+            type === Boolean ? (v === "false" ? false : v === "" ? true : !!v) :
+            type instanceof Set ? (type.has(v) ? v : settings[param]) :
+            settings[param];
+    }
     applyFixedClass();
 }

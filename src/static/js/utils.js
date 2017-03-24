@@ -92,7 +92,6 @@ export function httpGet (theUrl, callback)  {
             try {
                 data = JSON.parse(xmlHttp.responseText);
             } catch (e) {
-                console.error(e, xmlHttp.responseText);
                 callback({ error: e });
                 return;
             }
