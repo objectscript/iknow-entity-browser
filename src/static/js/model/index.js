@@ -80,7 +80,7 @@ function toTree (graph, parent) {
         );
     } catch (e) {
         console.error(`Error! Most likely, one of the graph nodes does not has any entities.`
-            + ` The folding criteria displayed on the diagram would be random.`);
+            + ` The folding criteria displayed on the diagram will be random.`);
     }
 
     return parent;

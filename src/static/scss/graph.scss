@@ -53,6 +53,22 @@
                 text-anchor: middle;
                 pointer-events: none;
                 fill: black;
+                transition: transform .3s ease, opacity .3s ease;
+            }
+
+            &:hover text {
+                transform: scale(2);
+            }
+
+            .tooltip {
+                visibility: hidden;
+                opacity: 0;
+                fill: gray;
+            }
+
+            &:hover .tooltip {
+                visibility: visible;
+                opacity: 1;
             }
 
             &.highlighted circle {

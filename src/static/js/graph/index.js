@@ -281,6 +281,16 @@ export function update (g = lastGraph, reset = false) {
         .attr("dy", ".3em")
         .attr("style", d => `font-size:${ Math.round(d.radius / 2) }px`)
         .text(d => d.label);
+
+    nodeEnter.each(function (d) {
+        if (d.type !== "folder")
+            return;
+        d3.select(this).append("text")
+            .classed("tooltip", () => true)
+            .attr("dy", "-0.7em")
+            .attr("style", d => `font-size:${ Math.round(d.radius / 2) }px`)
+            .text(d => `Double-click to display more`);
+    });
     node = nodeEnter.merge(node);
 
     if (reset)
