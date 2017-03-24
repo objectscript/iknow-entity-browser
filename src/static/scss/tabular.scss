@@ -14,6 +14,7 @@ $headerHeight: 36px;
     background: white;
     overflow: visible;
     box-shadow: $defaultShadow;
+    z-index: $zIndexInterface - 1;
     @include transition($defaultTransition);
     @include transform(translate(100%,0));
     &.active {

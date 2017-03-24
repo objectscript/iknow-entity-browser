@@ -15,6 +15,20 @@
 
     }
 
+    &:not(.active) {
+
+        #querySetting.fixed {
+            position: absolute;
+            left: 0;
+            bottom: -20px;
+            width: 100%;
+            text-align: center;
+            display: block;
+            z-index: $zIndexInterface - 2;
+        }
+
+    }
+
 }
 
 #settings\.tabularColumns {

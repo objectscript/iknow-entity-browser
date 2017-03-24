@@ -64,7 +64,6 @@ export function translateBy (x = 0, y = 0) {
 }
 
 export function focusOn (x = 0, y = 0) {
-    console.log(x, y);
     svg.transition()
         .duration(300)
         .call(
@@ -333,6 +332,7 @@ export function update (g = lastGraph, reset = false) {
     if (reset) {
         for (let i = 100; i > 0; --i) simulation.tick();
         updateSelection();
+        resetZoom();
     }
 
 }

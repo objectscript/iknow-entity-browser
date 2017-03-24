@@ -1,8 +1,15 @@
-import { setInputValue } from "./values.js";
+import { setInputValue, getOption, getChanges, applyChanges } from "./values.js";
+import * as model from "../model"
+import * as graph from "../graph";
 
 function bind (elements) {
     for (let e of elements) {
-        setInputValue(document.getElementById(e)).addEventListener(`change`, setInputValue);
+        let el = document.getElementById(e);
+        setInputValue(el);
+        if (el.getAttribute("type") === "text")
+            el.addEventListener(`input`, setInputValue);
+        else
+            el.addEventListener(`change`, setInputValue);
     }
 }
 
@@ -14,7 +21,27 @@ export function init () {
         "settings.domain",
         "settings.queryType",
         "settings.seed",
-        "settings.webAppName"
+        "settings.webAppName",
+        "settings.keepSeedInView"
     ]);
+
+    function apply () {
+        if (getChanges().length !== 0) {
+            applyChanges();
+            model.update(() => graph.update(true));
+        }
+    }
+
+    document.getElementById("settings.queryType").addEventListener(`change`, () => {
+        if (!getOption("keepSeedInView") || model.uiState.settingsToggled)
+            return;
+        apply();
+    });
+
+    document.getElementById("settings.seed").addEventListener(`blur`, () => {
+        if (!getOption("keepSeedInView") || model.uiState.settingsToggled)
+            return;
+        apply();
+    });
 
 }

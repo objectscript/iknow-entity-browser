@@ -3,7 +3,7 @@ import * as graph from "../graph";
 import * as sourceSettings from "./sourceSettings";
 import * as tabularViewSettings from "./tabularViewSettings";
 import * as storage from "../storage";
-import { getChanges, applyChanges } from "./values";
+import { getChanges, applyChanges, init as initValues } from "./values";
 import { makeAutosizable } from "../utils";
 
 function toggleSettings (uiStateModel) {
@@ -26,6 +26,10 @@ export function init () {
         .data([model.uiState])
         .on("click", toggleSettings);
 
+    sourceSettings.init();
+    tabularViewSettings.init();
+    initValues();
+
     // make inputs auto-sizable
     [].slice.call(document.querySelectorAll(`input[autosize]`)).forEach((i) => makeAutosizable(i));
     document.getElementById("settings.resetSettings").addEventListener("click", () => {
@@ -34,8 +38,5 @@ export function init () {
         storage.reset();
         location.reload();
     });
-
-    sourceSettings.init();
-    tabularViewSettings.init();
 
 }

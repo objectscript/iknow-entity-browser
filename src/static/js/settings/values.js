@@ -10,6 +10,7 @@ let settings = { // assign defaults here
     domain: "1",
     queryType: "related",
     seed: "crew",
+    keepSeedInView: false,
     tabularColumns: [
         {
             label: "ID",
@@ -80,7 +81,13 @@ export function setOption (options, value) {
     saveSettings();
 }
 
+function applyFixedClass () {
+    document.getElementById("querySetting")
+        .classList.toggle("fixed", !!settings["keepSeedInView"]);
+}
+
 function saveSettings () {
+    applyFixedClass();
     storage.save(STORAGE_KEY, settings);
 }
 
@@ -90,14 +97,19 @@ export function setInputValue (e = {}) {
     if (!el)
         return e;
     if ((id = el.getAttribute(`id`)).indexOf(`settings.`) === 0) {
-        let key = id.replace(/^settings\./, ``);
+        let key = id.replace(/^settings\./, ``),
+            prop = el.getAttribute("type") === "checkbox" ? "checked" : "value";
         if (isEvent) {
-            settings[key] = el.value;
-            changes.push([key, el.value]);
+            settings[key] = el[prop];
+            changes.push([key, el[prop]]);
             saveSettings();
         } else {
-            el.value = settings[key];
+            el[prop] = settings[key];
         }
     }
     return e;
+}
+
+export function init () {
+    applyFixedClass();
 }
