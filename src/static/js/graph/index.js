@@ -1,4 +1,4 @@
-import { onModelUpdate, unfold, dropNodesm, uiState } from "../model";
+import { onModelUpdate, unfold, dropNodes, uiState } from "../model";
 import { updateSelection, selectAll, deselectAll } from "../selection";
 
 let shiftKey, ctrlKey,
@@ -250,20 +250,23 @@ export function update (g = lastGraph, reset = false) {
         .attr("class", d => `node${ d.id === 0 ? " root" : "" } ${ d.type || "unknown" }`)
         .classed("selected", (p) => p.selected)
         .call(dragger)
-        .on("dblclick", function (d) {
-            if (d.type !== "folder")
-                return;
-            d3.event.stopPropagation();
-            let left;
-            if (d.parent && (left = unfold(d, d.parent))) {
-                d.fx = d.x; d.fy = d.y;
-                setTimeout(() => d.fx = d.fy = null, 1000);
-            }
-            if (left === 0) {
-                dropNodes(d);
-            }
-        })
         .on("click", function (d) {
+            if (d.type === "folder") {
+                d3.event.stopPropagation();
+                let left;
+                if (d.parent && (left = unfold(d, d.parent))) {
+                    d.fx = d.x; d.fy = d.y;
+                    if (d._clickTimeout) clearTimeout(d._clickTimeout);
+                    d._clickTimeout = setTimeout(() => {
+                        d.fx = d.fy = null;
+                        d._clickTimeout = 0;
+                    }, 1000);
+                }
+                if (left === 0) {
+                    dropNodes(d);
+                }
+                return;
+            }
             if (d3.event.defaultPrevented) return;
             if (shiftKey) {
                 if (d.selected)
@@ -291,7 +294,7 @@ export function update (g = lastGraph, reset = false) {
             .classed("tooltip", () => true)
             .attr("dy", "-0.7em")
             .attr("style", d => `font-size:${ Math.round(d.radius / 2) }px`)
-            .text(d => `Double-click to display more`);
+            .text(d => `Click to display more`);
     });
     node = nodeEnter.merge(node);
 

@@ -181,14 +181,23 @@ export function init () {
     dataUpdated(true);
 }
 
-function resetChildrenPosition (parent, children = []) {
+function resetChildrenPosition (folder, children = []) {
     if (!children || !children.length)
         return;
-    for (let c of children) {
-        c.x = parent.x;
-        c.y = parent.y;
+    let xd = folder.x - folder.parent.x,
+        yd = folder.y - folder.parent.y,
+        angle = Math.atan2(yd, xd),
+        d = Math.sqrt(xd * xd + yd * yd),
+        spread = Math.PI / 2;
+    for (let i = 0; i < children.length; i++) {
+        let c = children[i],
+            spd = - spread / 2 + spread * i / (children.length - 1 || 0.5),
+            dx = Math.cos(angle + spd) * d,
+            dy = Math.sin(angle + spd) * d;
+        c.x = folder.parent.x + dx || 0;
+        c.y = folder.parent.y + dy || 0;
         if (c.children)
-            resetChildrenPosition(c, c.children);
+            resetChildrenPosition({ x: c.x + dx, y: c.y + dy, parent: { x: c.x, y: c.y } }, c.children);
     }
 }
 
@@ -266,7 +275,7 @@ export function unfold (folderNode, node, children = 20) {
             folderNode.id = newId;
             node.children = node.children.concat(next);
             folderNode.label = left > 0 ? `${ left } more` : `Others`;
-            resetChildrenPosition(node, next);
+            resetChildrenPosition(folderNode, next);
             dataUpdated();
             return {
                 unfolded: next.length,
