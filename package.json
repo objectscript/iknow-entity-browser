@@ -1,6 +1,6 @@
 {
   "name": "iknow-entity-browser",
-  "version": "0.7.9",
+  "version": "0.7.10",
   "description": "Visualizer for iKnow entities",
   "main": "gulpfile.babel.js",
   "scripts": {

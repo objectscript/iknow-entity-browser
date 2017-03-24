@@ -30,18 +30,6 @@ function fold (tree) {
             parent: tree
         });
     }
-    // let rest = tree.children.splice(MAX_CHILDREN);
-    // tree.children.push({
-    //     label: `${ rest.length } more`,
-    //     type: "folder",
-    //     edgeType: rest[0].edgeType,
-    //     _children: rest,
-    //     children: [],
-    //     radius: 10,
-    //     entities: [],
-    //     id: additionalNodeId--,
-    //     parent: tree
-    // });
     return tree;
 }
 
@@ -115,12 +103,11 @@ function preprocess (graph) {
     }
     graph.nodes.forEach(node =>
         node.radius = MIN_RADIUS + Math.sqrt(node.entities[0][SIZE_CRITERIA] / 4 || 25));
-    console.log(`Graph:`, graph);
-    let tree = toTree(graph, zeroID),
-        foldedTree = fold(tree);
-    console.log(`Tree:`, tree);
+    // console.log(`Graph:`, graph);
+    let tree = toTree(graph, zeroID);
+    // console.log(`Tree:`, tree);
 
-    return foldedTree;
+    return fold(tree);
 
 }
 
@@ -200,61 +187,6 @@ function resetChildrenPosition (folder, children = []) {
             resetChildrenPosition({ x: c.x + dx, y: c.y + dy, parent: { x: c.x, y: c.y } }, c.children);
     }
 }
-
-// /**
-//  * Replaces the tree object, because D3.js does not sensitive to the property changes.
-//  * @param id - ID of the node in the graph
-//  * @param assign - New properties to assign.
-//  */
-// export function assignNodeId (id, assign = {}) {
-//
-//     function rec (parent = null, tree = graph, i) {
-//         if (tree.id === id) {
-//             if (parent === null) {
-//                 graph = Object.assign(Object.assign({}, tree), assign);
-//                 return true;
-//             } else {
-//                 parent.children[i] = Object.assign(Object.assign({}, tree), assign);
-//                 return true;
-//             }
-//         }
-//         for (let c = 0; c < tree.children.length; c++) {
-//             if (rec(tree, tree.children[c], c) === true)
-//                 return true;
-//         }
-//         return false;
-//     }
-//
-//     let res = rec();
-//     console.log(res);
-//     if (res)
-//         updateCallbacks.forEach(cb => cb(graph));
-//
-// }
-//
-// function getNodeById (id) {
-//
-//     let target = null;
-//
-//     function recurse (node) {
-//         if (node.id === id) {
-//             target = node;
-//             return true;
-//         }
-//         if (node.children) {
-//             for (let n of node.children) {
-//                 if (recurse(n))
-//                     return true;
-//             }
-//         }
-//         return false;
-//     }
-//
-//     recurse(graph);
-//
-//     return target;
-//
-// }
 
 /**
  * Unfold the folder by specified amount of nodes.
