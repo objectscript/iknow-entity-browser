@@ -3,7 +3,7 @@ import { getOption } from "../settings/values";
 
 export function getData (callback) {
     let https = (getOption("host") || "").indexOf("https://") === 0;
-    httpGet(`${ getOption("host") }${
+    httpGet(`${ getOption("host") || `http://${ location.hostname }` }${
         getOption("port") === (https ? 443 : 80) ? "" : ":" + getOption("port") 
     }/${ getOption("webAppName") }/domain/${ encodeURIComponent(getOption("domain")) }/${
         encodeURIComponent(getOption("queryType"))

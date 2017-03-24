@@ -5,19 +5,23 @@ A visualizer of iKnow entities.
 Preview
 -------
 
-![Screenshot](https://cloud.githubusercontent.com/assets/4989256/21582657/3bb1944c-d06a-11e6-8dc5-e7e637cc5e84.png)
-![Screenshot](https://cloud.githubusercontent.com/assets/4989256/20610106/becaeac6-b29d-11e6-987b-670998ac048e.png)
+![2017-03-24_235057](https://cloud.githubusercontent.com/assets/4989256/24314970/11139e7e-10ed-11e7-913b-e156c253c820.png)
+![2017-03-24_234839](https://cloud.githubusercontent.com/assets/4989256/24314971/112bbd2e-10ed-11e7-8dfb-66daafb6d430.png)
+<p align="center"><img src="https://cloud.githubusercontent.com/assets/4989256/24315541/3c8b39ec-10f0-11e7-88a4-f0b62980858b.png" height="800" align="center"></p>
 
 Usage
 -----
 
-[Build](#development) the project (or [download](https://github.com/intersystems-ru/iknow-entity-browser/releases) a demo), then open `index.html` file.
+[Build](#development) the project (or [download](https://github.com/intersystems-ru/iknow-entity-browser/releases) 
+the latest demo), then open `index.html` file. Make sure you set up [EntityBrowser.Router](src/cls/EntityBrowser/Router.cls)
+class correctly before using the tool.
 
 + Click and drag on empty space to move around.
 + Click and drag on a node to move the node.
 + Single-click a node to select it.
 + Shift-click nodes to select nodes and their children.
-+ CTRL-click and drag on empty space to select a bunch of nodes.
++ Ctrl-click and drag on empty space to select a bunch of nodes.
++ Click the `X more` node to see the less relevant nodes.
 + Scroll down or up to scale.
 + Click on menu button to open a table containing information about selected nodes.
 + Click on export button to save the table as a file.
@@ -25,6 +29,24 @@ Usage
 + Unlink node children by clicking unlink button when nodes selected.
 + Delete selected nodes by clicking delete button.
 + Reset the selection with reset selection button.
+
+Settings and Embedding
+----------------------
+
+You can change different settings to control application behavior. All settings are stored in
+browser's local storage. Also, you can overwrite any option by passing its name and a value as an
+URL parameter (make sure all URL parameters are properly encoded). The list of supported options is 
+represented in the table below.
+
+| URL Parameter | Default | Description |
+|---|---|---|
+| `host` | `http://hostname` | The host name of the server. |
+| `port` | `57772` | The port of the server. |
+| `webAppName` | `EntityBrowser` | Caché web application name. |
+| `domain` | `1` | iKnow domain name. |
+| `queryType` | `related` | iKnow query type. Can be `related` or `similar`. |
+| `seed` | `crew` | Seed string. |
+| `keepSeedInView` | `false` | A `boolean` value determining whether the `queryType` and `seed` settings will be displayed on the screen all the time. |
 
 Development
 -----------

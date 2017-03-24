@@ -15,7 +15,7 @@ const settingsTypes = {
 };
 
 const settings = { // assign defaults here
-    host: "http://localhost",
+    host: "",
     port: 57772,
     webAppName: "EntityBrowser",
     domain: "1",
