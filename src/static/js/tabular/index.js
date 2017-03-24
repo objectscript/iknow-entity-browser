@@ -137,7 +137,17 @@ function updateHeaders (dataProp = sorting.properties.join(".")) {
     head.appendChild(document.createElement("th"));
 }
 
+function updateToolbarWidth () {
+    document.getElementById("toolbarIcons").style.width =
+        (document.body.getBoundingClientRect().width - (model.uiState.tabularToggled
+            ? document.getElementById("table").getBoundingClientRect().width : 0))
+        + "px";
+}
+
 export function init () {
+
+    window.addEventListener("resize", updateToolbarWidth);
+    updateToolbarWidth();
 
     d3.select("#tableToggle")
         .data([model.uiState])
@@ -147,6 +157,7 @@ export function init () {
             d3.select("#table").classed("active", d.tabularToggled);
             if (d.tabularToggled)
                 updateAll();
+            updateToolbarWidth();
             let w = document.getElementById("table").getBoundingClientRect().width / 2;
             translateBy(d.tabularToggled ? -w : w);
         });

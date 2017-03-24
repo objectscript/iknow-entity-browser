@@ -31,21 +31,8 @@
 #toolbarIcons {
     position: absolute;
     right: 100%;
-    padding-right: 6px;
     bottom: 0;
     z-index: $zIndexInterface;
-}
-
-#controlIcons {
-
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    z-index: $zIndexInterface;
-    padding-left: 8px;
-
-    > div {
-        display: block;
-    }
-
+    text-align: center;
+    @include transition($defaultTransition);
 }

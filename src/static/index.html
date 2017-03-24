@@ -11,45 +11,6 @@
 </head>
 <body onload="window.init()">
 <div id="windows">
-    <div id="controlIcons">
-        <div id="undoButton" class="ui icon-undo hint">
-            <div class="right tooltip">
-                <div class="label">
-                    Undo
-                </div>
-            </div>
-        </div>
-        <div id="redoButton" class="ui icon-redo hint">
-            <div class="right tooltip">
-                <div class="label">
-                    Redo
-                </div>
-            </div>
-        </div>
-        <div id="zoomInButton" class="ui icon-zoom-in hint">
-            <div class="right tooltip">
-                <div class="two-line label">
-                    <div>Zoom In</div>
-                    <div class="sub">Use mouse/gestures as well</div>
-                </div>
-            </div>
-        </div>
-        <div id="resetZoomButton" class="ui icon-search hint">
-            <div class="right tooltip">
-                <div class="label">
-                    Reset View
-                </div>
-            </div>
-        </div>
-        <div id="zoomOutButton" class="ui icon-zoom-out hint">
-            <div class="right tooltip">
-                <div class="two-line label">
-                    <div>Zoom Out</div>
-                    <div class="sub">Use mouse/gestures as well</div>
-                </div>
-            </div>
-        </div>
-    </div>
     <svg id="graph">
         <defs>
             <marker id="svgLineArrow-related" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
@@ -81,22 +42,59 @@
             </div>
         </div>
         <div id="toolbarIcons">
+            <div id="undoButton" class="ui icon-undo hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Undo
+                    </div>
+                </div>
+            </div>
+            <div id="redoButton" class="ui icon-redo hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Redo
+                    </div>
+                </div>
+            </div>
+            <div id="zoomInButton" class="ui icon-zoom-in hint">
+                <div class="top tooltip">
+                    <div class="two-line label">
+                        <div>Zoom In</div>
+                        <div class="sub">Also use mouse/gestures</div>
+                    </div>
+                </div>
+            </div>
+            <div id="resetZoomButton" class="ui icon-search hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Reset View
+                    </div>
+                </div>
+            </div>
+            <div id="zoomOutButton" class="ui icon-zoom-out hint">
+                <div class="top tooltip">
+                    <div class="two-line label">
+                        <div>Zoom Out</div>
+                        <div class="sub">Also use mouse/gestures</div>
+                    </div>
+                </div>
+            </div>
             <div id="resetSelectionButton" class="ui icon-outline hint">
-                <div class="tooltip">
+                <div class="top tooltip">
                     <div class="label">
                         Reset selection
                     </div>
                 </div>
             </div>
             <div id="dropChildrenButton" class="ui icon-unlink hint">
-                <div class="tooltip">
+                <div class="top tooltip">
                     <div class="label">
                         Drop all children
                     </div>
                 </div>
             </div>
             <div id="removeButton" class="ui icon-remove hint">
-                <div class="tooltip">
+                <div class="top tooltip">
                     <div class="label">
                         Delete selection
                     </div>

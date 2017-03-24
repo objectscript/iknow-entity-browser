@@ -84,6 +84,39 @@
 
         }
 
+        &.top {
+
+            > .label {
+
+                top: -20px;
+                width: 160px;
+                box-sizing: border-box;
+                left: calc(-80px + 50%);
+
+                &.two-line {
+                    top: -33px;
+                }
+
+            }
+
+            > .label:after {
+                right: auto;
+                top: calc(100% + 6px);
+                left: calc(50% - 8px);
+                border-bottom: none;
+                border-top: 8px solid #000000;
+                border-right: 8px solid transparent;
+                border-left: 8px solid transparent;
+            }
+
+            &:hover > .label {
+                right: auto;
+                margin-right: 0;
+                margin-left: 0;
+            }
+
+        }
+
     }
 
 }
