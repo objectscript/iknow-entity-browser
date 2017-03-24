@@ -6,7 +6,8 @@ let shiftKey, ctrlKey,
     height = window.innerHeight,
     lastGraph = null;
 
-let svg = null,
+let currentZoomLevel = 1,
+    svg = null,
     brush = null,
     node,
     link,
@@ -15,6 +16,7 @@ let svg = null,
     zoomer = d3.zoom()
         .scaleExtent([1/6, 100])
         .on("zoom", () => {
+            currentZoomLevel = d3.event.transform.k;
             view.attr("transform", d3.event.transform);
         }),
     dragger = d3.drag()
@@ -53,7 +55,7 @@ let svg = null,
 export function translateBy (x = 0, y = 0) {
     svg.transition()
         .duration(300)
-        .call(zoomer.translateBy, x, y);
+        .call(zoomer.translateBy, x / currentZoomLevel, y / currentZoomLevel);
 }
 
 export function scaleBy (delta = 1) {
