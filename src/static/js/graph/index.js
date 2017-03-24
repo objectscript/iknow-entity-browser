@@ -52,10 +52,26 @@ let currentZoomLevel = 1,
         }),
     view = null;
 
+window.addEventListener("resize", () => {
+    width = window.innerWidth;
+    height = window.innerHeight;
+});
+
 export function translateBy (x = 0, y = 0) {
     svg.transition()
         .duration(300)
         .call(zoomer.translateBy, x / currentZoomLevel, y / currentZoomLevel);
+}
+
+export function focusOn (x = 0, y = 0) {
+    console.log(x, y);
+    svg.transition()
+        .duration(300)
+        .call(
+            zoomer.transform,
+            d3.zoomIdentity.translate(width / 2 + getViewDX(), height / 2)
+                .scale(currentZoomLevel).translate(-x, -y)
+        );
 }
 
 export function scaleBy (delta = 1) {
@@ -64,15 +80,16 @@ export function scaleBy (delta = 1) {
         .call(zoomer.scaleBy, delta);
 }
 
+function getViewDX () {
+    return uiState.tabularToggled
+        ? - document.getElementById("table").getBoundingClientRect().width / 2
+        : 0;
+}
+
 export function resetZoom () {
     svg.transition()
         .duration(300)
-        .call(zoomer.transform, d3.zoomIdentity.translate(
-            uiState.tabularToggled
-                ? - document.getElementById("table").getBoundingClientRect().width / 2
-                : 0,
-            0)
-        );
+        .call(zoomer.transform, d3.zoomIdentity.translate(getViewDX(), 0));
 }
 
 export function updateSelected () {

@@ -5,7 +5,7 @@ import {
 } from "../selection";
 import { getOption } from "../settings/values";
 import { getObjProp } from "../utils";
-import { translateBy } from "../graph";
+import { translateBy, focusOn } from "../graph";
 
 let sorting = {
     properties: ["entities", "0", "frequency"],
@@ -76,6 +76,7 @@ function insertRows (data, table, selected) {
         if (node.children.length) cell.appendChild(ei);
         row.addEventListener("mouseover", () => { node.element.classList.add("highlighted"); });
         row.addEventListener("mouseout", () => { node.element.classList.remove("highlighted"); });
+        row.addEventListener("click", () => focusOn(node.x, node.y));
     }
 }
 
