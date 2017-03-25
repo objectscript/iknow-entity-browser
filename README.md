@@ -7,7 +7,10 @@ Preview
 
 ![2017-03-24_235057](https://cloud.githubusercontent.com/assets/4989256/24314970/11139e7e-10ed-11e7-913b-e156c253c820.png)
 ![2017-03-24_234839](https://cloud.githubusercontent.com/assets/4989256/24314971/112bbd2e-10ed-11e7-8dfb-66daafb6d430.png)
-<p align="center"><img src="https://cloud.githubusercontent.com/assets/4989256/24315541/3c8b39ec-10f0-11e7-88a4-f0b62980858b.png" height="800" align="center"></p>
+<p align="center">
+    <img src="https://cloud.githubusercontent.com/assets/4989256/24315541/3c8b39ec-10f0-11e7-88a4-f0b62980858b.png" width="430" align="center">
+    <img src="https://cloud.githubusercontent.com/assets/4989256/24322376/d1d40878-116b-11e7-98fe-f1b86ff2085a.png" width="430" align="center">
+</p>
 
 Usage
 -----
