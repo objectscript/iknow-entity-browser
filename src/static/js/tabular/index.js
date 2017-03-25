@@ -9,7 +9,7 @@ import { translateBy, focusOn } from "../graph";
 
 let sorting = {
     properties: ["entities", "0", "frequency"],
-    order: 1
+    order: -1
 };
 
 let sorter = (a, b) => {
