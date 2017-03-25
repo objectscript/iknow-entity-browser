@@ -46,6 +46,17 @@ function toggleChildrenSelected (e) {
     updateSelection();
 }
 
+function getFolded (initialNode) {
+    let node = initialNode;
+    do {
+        if (!node.parent)
+            return initialNode;
+        if (node.parent.children.indexOf(node) === -1)
+            return node.parent;
+    } while (node = node.parent);
+    return initialNode;
+}
+
 function insertRows (data, table, selected) {
     let columns = getOption("tabularColumns");
     for (let i = 0; i < data.length; i++) {
@@ -61,24 +72,32 @@ function insertRows (data, table, selected) {
             if (columns[col].class)
                 cell.className = val;
         }
+        let cell = row.insertCell(columns.length);
         let ee = document.createElement("i"),
             ei = document.createElement("i"),
-            sel = false,
-            cell = row.insertCell(columns.length);
-        for (let o of node.children) { if (o.selected) { sel = true; break; } }
-        ei.className = `icon-${ sel ? "filled" : "outline" }`;
-        ei.setAttribute("title", `${ sel ? "Deselect" : "Select" } children`);
-        ei.addEventListener("click", toggleChildrenSelected.bind(node));
-        ee.className = `icon-${ selected ? "close" : "add" }`;
-        ee.setAttribute("title", `${ selected ? "Remove from" : "Add to" } selection`);
-        ee.addEventListener("click", switchSelected.bind(node));
-        cell.appendChild(ee);
-        if (node.children.length) cell.appendChild(ei);
-        row.addEventListener("mouseover", () =>
-            node.element && node.element.classList.add("highlighted"));
-        row.addEventListener("mouseout", () =>
-            node.element && node.element.classList.remove("highlighted"));
-        row.addEventListener("click", () => node.element && focusOn(node.x, node.y));
+            sel = false;
+        if (selected !== null) {
+            for (let o of node.children) {
+                if (o.selected) {
+                    sel = true;
+                    break;
+                }
+            }
+            ei.className = `icon-${ sel ? "filled" : "outline" }`;
+            ei.setAttribute("title", `${ sel ? "Deselect" : "Select" } children`);
+            ei.addEventListener("click", toggleChildrenSelected.bind(node));
+            ee.className = `icon-${ selected ? "close" : "add" }`;
+            ee.setAttribute("title", `${ selected ? "Remove from" : "Add to" } selection`);
+            ee.addEventListener("click", switchSelected.bind(node));
+            cell.appendChild(ee);
+            if (node.children.length) cell.appendChild(ei);
+            row.addEventListener("mouseover", () => node.element.classList.add("highlighted"));
+            row.addEventListener("mouseout", () => node.element.classList.remove("highlighted"));
+        }
+        row.addEventListener("click", () => {
+            let n = getFolded(node);
+            focusOn(n.x, n.y);
+        });
     }
 }
 
@@ -101,7 +120,7 @@ function updateHidden () {
         table = document.querySelector("#tabular-hidden");
     table.textContent = "";
     if (getOption("tabularShowHiddenNodes"))
-        insertRows(data, table, false);
+        insertRows(data, table, null);
 }
 
 function updateAll () {
