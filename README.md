@@ -47,6 +47,7 @@ represented in the table below.
 | `queryType` | `related` | iKnow query type. Can be `related` or `similar`. |
 | `seed` | `crew` | Seed string. |
 | `keepSeedInView` | `false` | A `boolean` value determining whether the `queryType` and `seed` settings will be displayed on the screen all the time. |
+| `tabularShowHiddenNodes` | `false` | A `boolean` value determining whether to show entities hidden behind `X more` node in the table. |
 
 URL example: `http://.../index.html?domain=1&queryType=similar&seed=plane`
 

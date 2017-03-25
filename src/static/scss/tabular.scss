@@ -139,7 +139,21 @@ $headerHeight: 36px;
 
 #tabular-others {
 
-    opacity: 0.6;
+    opacity: 0.7;
+
+    tr:first-child td {
+        border-top: 1px solid black;
+    }
+
+    tr td:last-child .icon-add {
+        color: green;
+    }
+
+}
+
+#tabular-hidden {
+
+    opacity: 0.4;
 
     tr:first-child td {
         border-top: 1px solid black;

@@ -22,7 +22,8 @@ export function init () {
         "settings.queryType",
         "settings.seed",
         "settings.webAppName",
-        "settings.keepSeedInView"
+        "settings.keepSeedInView",
+        "settings.tabularShowHiddenNodes"
     ]);
 
     function apply () {

@@ -40,14 +40,14 @@ function deleteSelection () {
     if (!selection.length)
         return;
     dropNodes(selection);
-    updateSelection();
+    // updateSelection();
 }
 
 function dropChildren () {
     if (!selection.length)
         return;
     dropDescendants(selection);
-    updateSelection();
+    // updateSelection();
 }
 
 export function init () {

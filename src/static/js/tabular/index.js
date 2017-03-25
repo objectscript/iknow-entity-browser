@@ -1,7 +1,7 @@
 import { csv } from "./export";
 import * as model from "../model";
 import {
-    onSelectionUpdate, updateSelection, getSelection, getOthers, selectAll, deselectAll
+    onSelectionUpdate, updateSelection, getSelection, getOthers, getHidden, selectAll, deselectAll
 } from "../selection";
 import { getOption } from "../settings/values";
 import { getObjProp } from "../utils";
@@ -74,9 +74,11 @@ function insertRows (data, table, selected) {
         ee.addEventListener("click", switchSelected.bind(node));
         cell.appendChild(ee);
         if (node.children.length) cell.appendChild(ei);
-        row.addEventListener("mouseover", () => { node.element.classList.add("highlighted"); });
-        row.addEventListener("mouseout", () => { node.element.classList.remove("highlighted"); });
-        row.addEventListener("click", () => focusOn(node.x, node.y));
+        row.addEventListener("mouseover", () =>
+            node.element && node.element.classList.add("highlighted"));
+        row.addEventListener("mouseout", () =>
+            node.element && node.element.classList.remove("highlighted"));
+        row.addEventListener("click", () => node.element && focusOn(node.x, node.y));
     }
 }
 
@@ -94,10 +96,19 @@ function updateOthers () {
     insertRows(data, table, false);
 }
 
+function updateHidden () {
+    let data = getHidden().filter(node => node.type === "entity").sort(sorter),
+        table = document.querySelector("#tabular-hidden");
+    table.textContent = "";
+    if (getOption("tabularShowHiddenNodes"))
+        insertRows(data, table, false);
+}
+
 function updateAll () {
     updateHeaders();
     updateSelected();
     updateOthers();
+    updateHidden();
 }
 
 onSelectionUpdate(() => {

@@ -11,7 +11,8 @@ const settingsTypes = {
     domain: String,
     queryType: new Set(["similar", "related"]),
     seed: String,
-    keepSeedInView: Boolean
+    keepSeedInView: Boolean,
+    tabularShowHiddenNodes: Boolean
 };
 
 const settings = { // assign defaults here
@@ -22,6 +23,7 @@ const settings = { // assign defaults here
     queryType: "related",
     seed: "crew",
     keepSeedInView: false,
+    tabularShowHiddenNodes: false,
     tabularColumns: [
         {
             label: "ID",

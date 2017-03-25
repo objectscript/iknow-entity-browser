@@ -2,6 +2,7 @@ import * as model from "./model";
 
 let selection = [],
     others = [],
+    hidden = [],
     callbacks = [];
 
 export function updateSelection () {
@@ -9,6 +10,18 @@ export function updateSelection () {
     let tree = model.getGraphData();
     selection = [];
     others = [];
+    hidden = [];
+
+    function findHidden (node) {
+        if (node.selected)
+            hidden.push(node);
+        else
+            hidden.push(node);
+        if (node.children)
+            for (let n of node.children) findHidden(n);
+        if (node._children)
+            for (let n of node._children) findHidden(n);
+    }
 
     function findSelected (node) {
         if (node.selected)
@@ -17,7 +30,10 @@ export function updateSelection () {
             others.push(node);
         if (node.children)
             for (let n of node.children) findSelected(n);
+        if (node._children)
+            for (let n of node._children) findHidden(n);
     }
+
     findSelected(tree);
 
     callbacks.forEach(c => c(selection));
@@ -30,6 +46,10 @@ export function getSelection () {
 
 export function getOthers () {
     return others;
+}
+
+export function getHidden () {
+    return hidden;
 }
 
 export function selectAll (node, nodeItself = true) {
@@ -58,6 +78,10 @@ export function onSelectionUpdate (callback) {
 
     callbacks.push(callback);
 
+}
+
+export function init () {
+    model.onModelUpdate(() => updateSelection());
 }
 
 /**
