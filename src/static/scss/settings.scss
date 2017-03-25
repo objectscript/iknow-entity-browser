@@ -10,10 +10,7 @@
     box-sizing: border-box;
     background: white;
     padding: $defaultPadding;
-
-    &.active {
-
-    }
+    overflow: auto;
 
     &:not(.active) {
 
@@ -27,6 +24,13 @@
             z-index: $zIndexInterface - 2;
         }
 
+    }
+
+    .footer {
+        text-align: right;
+        font-size: 8pt;
+        color: gray;
+        padding: 0 2px;
     }
 
 }
