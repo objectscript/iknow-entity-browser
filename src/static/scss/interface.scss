@@ -21,9 +21,15 @@
 
     position: absolute;
     left: -35px;
-    top: 36px;
+    top: 40px;
     z-index: $zIndexInterface;
     @include transition($defaultTransition);
+
+    > .ui {
+        display: block;
+        color: inherit;
+        text-decoration: none;
+    }
 
 }
 
