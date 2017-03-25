@@ -10,8 +10,8 @@
     &.ui { font-size: 28px; }
     &:hover { color: $colorA; }
     &.toggled {
-        color: $colorA;
-        &:hover { color: black; }
+        color: $colorD;
+        &:hover { color: $colorA; }
     }
     &.disabled {
         color: gray;

@@ -9,7 +9,10 @@
     z-index: $zIndexInterface;
 
     &.toggled {
-        left: 7px;
+        left: 9px;
+        &:before {
+            content: "\79";
+        }
     }
 
 }
