@@ -9,7 +9,7 @@ import { translateBy, focusOn } from "../graph";
 
 let sorting = {
     properties: ["entities", "0", "frequency"],
-    order: -1
+    order: 1
 };
 
 let sorter = (a, b) => {
@@ -124,9 +124,9 @@ function columnClicked () {
     let attr = this.getAttribute("data-prop"),
         arr = attr.split(".");
     if (attr === sorting.properties.join("."))
-        sorting.order = sorting.order === 1 ? -1 : sorting.order === -1 ? 0 : 1;
+        sorting.order = sorting.order === -1 ? 1 : sorting.order === 1 ? 0 : -1;
     else
-        sorting.order = 1;
+        sorting.order = -1;
     sorting.properties = arr;
     updateHeaders(attr);
     updateAll();
