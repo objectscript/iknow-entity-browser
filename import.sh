@@ -25,6 +25,6 @@ cp -R "$DIR/$BUILD_STATIC_DIR"* "$CSP_DIR"
 cat <<EOT | "$CACHE_DIR/bin/cache" -s "$CACHE_DIR/mgr" -U $NAMESPACE
 $USERNAME
 $PASSWORD
-set st = \$system.Status.GetErrorText(\$system.OBJ.ImportDir("$DIR/$BUILD_DIR",,"ck /checkuptodate=all",,1))
+zn "$NAMESPACE" set st = \$system.Status.GetErrorText(\$system.OBJ.ImportDir("$DIR/$BUILD_DIR",,"ck /checkuptodate=all",,1))
 write "IMPORT STATUS: "_\$case(st="",1:"OK",:st), ! halt
 EOT

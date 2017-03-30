@@ -7,14 +7,34 @@ import to5ify from "6to5ify";
 import streamify from "gulp-streamify";
 import source from "vinyl-source-stream";
 import scss from "gulp-sass";
+import fs from "fs";
+import mime from "mime-types";
 import pkg from "./package.json";
 
 const
+    APP_NAME = `EntityBrowser`,
     SOURCE_DIR = `${ __dirname }/src`,
     BUILD_DIR = `${ __dirname }/build`,
+    STATIC_DATA_FILE = `${ SOURCE_DIR }/cls/${ APP_NAME }/REST/StaticData.cls`,
     context = {
         package: pkg
     };
+
+function getAllFiles (dir) {
+    let results = [];
+    let list = fs.readdirSync(dir);
+    list.forEach(function(file) {
+        file = dir + '/' + file;
+        let stat = fs.statSync(file);
+        if (stat && stat.isDirectory()) results = results.concat(getAllFiles(file));
+        else results.push(file)
+    });
+    return results;
+}
+
+function base64Encode (file) {
+    return (new Buffer(fs.readFileSync(file, 'binary'), 'binary')).toString(`base64`);
+}
 
 gulp.task("clean", () => {
     return gulp.src(BUILD_DIR, { read: false })
@@ -22,7 +42,10 @@ gulp.task("clean", () => {
 });
 
 gulp.task("cls", ["clean"], () => {
-    return gulp.src(SOURCE_DIR + "/cls/**/*.cls")
+    return gulp.src([
+            `!${ STATIC_DATA_FILE }`,
+            `${ SOURCE_DIR }/cls/**/*.cls`
+        ])
         .pipe(preprocess({ context: context }))
         .pipe(gulp.dest(BUILD_DIR + "/cls"));
 });
@@ -60,4 +83,21 @@ gulp.task("css", ["clean"], () => {
         .pipe(gulp.dest(`${ BUILD_DIR }/static/css`));
 });
 
-gulp.task("default", ["cls", "html", "js", "css", "etc"]);
+/// doing file replacement manually because preprocess sucks.
+gulp.task("StaticData", ["html", "js", "css", "etc"], () => {
+    let files = getAllFiles(`${ BUILD_DIR }/static`),
+        staticData = files.map((fileName, i) =>
+`/// ${ fileName.replace(`${ BUILD_DIR }/static/`, "") }\r\n\
+XData File${ i } [ MimeType = ${ mime.lookup(fileName) || "text/plain" } ]\r\n\
+{\r\n\
+${ base64Encode(fileName).replace(/(.{32765})/g, "$1\r\n") }\r\n\
+}`
+        ).join(`\r\n\r\n`);
+    fs.writeFileSync(
+        STATIC_DATA_FILE.replace(SOURCE_DIR, BUILD_DIR),
+        new Buffer(fs.readFileSync(STATIC_DATA_FILE)).toString()
+            .replace("<!-- staticData -->", staticData)
+    );
+});
+
+gulp.task("default", ["cls", "StaticData"]);

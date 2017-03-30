@@ -97,7 +97,7 @@
 ///         items:
 ///           type: string
 /// </example>
-Class EntityBrowser.Router Extends (%iKnow.REST.Base, %iKnow.REST.Utils)
+Class EntityBrowser.REST.API Extends (%iKnow.REST.Base, %iKnow.REST.Utils)
 {
 
 Parameter PAGESIZE = 0;
