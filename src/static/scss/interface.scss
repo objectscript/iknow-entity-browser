@@ -38,6 +38,7 @@
 }
 
 #toolbarIcons {
+
     position: absolute;
     right: 100%;
     bottom: 0;
@@ -46,4 +47,10 @@
     overflow: visible;
     min-width: 30px;
     @include transition($defaultTransition);
+    @include pointer-events(none);
+
+    > * {
+        @include pointer-events(all);
+    }
+
 }
