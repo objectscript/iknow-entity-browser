@@ -13,12 +13,12 @@ $headerHeight: 36px;
     box-sizing: border-box;
     background: white;
     overflow: visible;
-    box-shadow: $defaultShadow;
     z-index: $zIndexInterface - 1;
     @include transition($defaultTransition);
     @include transform(translate(100%,0));
     &.active {
         @include transform(translate(0,0));
+        box-shadow: $defaultShadow;
     }
 
     > .controls {
@@ -70,6 +70,7 @@ $headerHeight: 36px;
 
     &:last-child {
         border-left: none;
+        min-width: 27px;
     }
 
     &:nth-last-child(2) {
