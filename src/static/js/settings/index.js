@@ -41,6 +41,15 @@ export function init () {
         location.reload();
     });
 
+    document.getElementById("expandViewButton").addEventListener("click", () => {
+        setOption("compact", false);
+        updateCompactView();
+    });
+    document.getElementById("collapseCompactViewButton").addEventListener("click", () => {
+        setOption("compact", true);
+        console.log(getOption("compact"));
+        updateCompactView();
+    });
     updateCompactView();
 
 }
@@ -50,21 +59,11 @@ function updateCompactView () {
     let compact = !!getOption("compact");
 
     function toggle (element, flag = true) {
-        element.style.opacity = flag ? 1 : 0;
-        element.style.pointerEvents = flag ? "all" : "none";
+        element.classList.toggle("hidden", !flag);
     }
 
     toggle(document.getElementById("rightTopIcons"), !compact);
     toggle(document.getElementById("rightTopExpandButton"), compact);
     toggle(document.getElementById("toolbarIcons"), !compact);
-
-    document.getElementById("expandViewButton").addEventListener("click", () => {
-        setOption("compact", false);
-        updateCompactView();
-    });
-    document.getElementById("collapseCompactViewButton").addEventListener("click", () => {
-        setOption("compact", true);
-        updateCompactView();
-    });
 
 }

@@ -31,6 +31,11 @@
         text-decoration: none;
     }
 
+    &.hidden {
+        @include pointer-events(none);
+        opacity: 0;
+    }
+
 }
 
 #table.active .rightTopIcons {
@@ -51,6 +56,10 @@
 
     > * {
         @include pointer-events(all);
+    }
+
+    &.hidden {
+        bottom: -35px;
     }
 
 }
