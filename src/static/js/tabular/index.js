@@ -33,14 +33,14 @@ function switchSelected () {
 /**
  * this: node
  */
-function toggleChildrenSelected (e) {
+function toggleChildrenSelected (e, nodeItself = true) {
     let sel = false,
         el = e.target || e.srcElement;
     for (let o of this.children) { if (o.selected) { sel = true; break; } }
     if (sel)
-        deselectAll(this, false);
+        deselectAll(this, nodeItself);
     else
-        selectAll(this, false);
+        selectAll(this, nodeItself);
     el.className = `icon-${ !sel ? "filled" : "outline" }`;
     this.element.classList.remove("highlighted");
     updateSelection();
@@ -84,7 +84,7 @@ function insertRows (data, table, selected) {
                 }
             }
             ei.className = `icon-${ sel ? "filled" : "outline" }`;
-            ei.setAttribute("title", `${ sel ? "Deselect" : "Select" } children`);
+            ei.setAttribute("title", `${ sel ? "Deselect" : "Select" } node and children`);
             ei.addEventListener("click", toggleChildrenSelected.bind(node));
             ee.className = `icon-${ selected ? "close" : "add" }`;
             ee.setAttribute("title", `${ selected ? "Remove from" : "Add to" } selection`);
