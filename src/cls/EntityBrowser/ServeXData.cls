@@ -22,6 +22,12 @@ Parameter CompileTime = {"""" _ $zd($h, 11) _ ", "_ $zdt($NOW(0), 2,1) _ " GMT""
 /// Generated in GenerateFiles generator.
 Parameter Files As CONFIGVALUE;
 
+/// Encoding to use to serve html/css/javascript files
+Parameter Encoding As %String = "utf-8";
+
+/// List of mime types second parts (delimited by slash), which will Encoding be set for.
+Parameter UseEncodingFor = {$LB("html", "css", "javascript", "plain")};
+
 /// A generator for Files parameter.
 ClassMethod FillFiles() As %Status [ CodeMode = objectgenerator ]
 {
@@ -61,15 +67,19 @@ ClassMethod Serve(file As %String) As %Status
     set xdata = ..GetXData(file)
     return:(xdata = "") ..Http404()
 
+    set useCharSet = (0'=$LISTFIND(..#UseEncodingFor, $PIECE(xdata.MimeType, "/", 2)))
     set cTime = $PARAMETER($ClassName(), "CompileTime")
     set %response.ContentType = xdata.MimeType
+    set:useCharSet %response.CharSet = "utf-8"
     do %response.SetHeader("Last-Modified", cTime)
     if (%request.GetCgiEnv("HTTP_IF_MODIFIED_SINCE") = cTime) {
         set %response.Status = "304 Not Modified"
         return $$$OK
     }
 
-    write $System.Encryption.Base64Decode(xdata.Data.Read(xdata.Data.Size))
+    set chunk = $System.Encryption.Base64Decode(xdata.Data.Read(xdata.Data.Size))
+    write:useCharSet $zcvt(chunk, "I", "UTF8")
+    write:'useCharSet chunk
 
 	return $$$OK
 }
