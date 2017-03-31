@@ -17,7 +17,7 @@
 
 }
 
-#rightTopIcons {
+.rightTopIcons {
 
     position: absolute;
     left: -35px;
@@ -33,7 +33,7 @@
 
 }
 
-#table.active #rightTopIcons {
+#table.active .rightTopIcons {
     top: 6px;
 }
 

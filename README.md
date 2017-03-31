@@ -53,6 +53,7 @@ represented in the table below.
 
 | URL Parameter | Default | Description |
 |---|---|---|
+| `compact` | `false` | Hides interface controls when set to `true`. |
 | `host` | `http://hostname` | The host name of the server. |
 | `port` | `57772` | The port of the server. |
 | `webAppName` | `EntityBrowser` | Caché web application name. |

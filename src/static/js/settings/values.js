@@ -5,6 +5,7 @@ import * as url from "../url";
 const STORAGE_KEY = "settings";
 
 const settingsTypes = {
+    compact: Boolean,
     host: String,
     port: Number,
     webAppName: String,
@@ -16,7 +17,9 @@ const settingsTypes = {
     tabularShowHiddenNodes: Boolean
 };
 
-const settings = { // assign defaults here
+// defaults are assigned here
+const settings = {
+    compact: false,
     host: "",
     port: 57772,
     webAppName: "EntityBrowser",

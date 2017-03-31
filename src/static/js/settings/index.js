@@ -3,7 +3,8 @@ import * as graph from "../graph";
 import * as sourceSettings from "./sourceSettings";
 import * as tabularViewSettings from "./tabularViewSettings";
 import * as storage from "../storage";
-import { getChanges, applyChanges, init as initValues, applyFixedClasses } from "./values";
+import { getChanges, getOption, applyChanges, init as initValues, applyFixedClasses, setOption
+       } from "./values";
 import { makeAutosizable } from "../utils";
 
 function toggleSettings (uiStateModel) {
@@ -38,6 +39,32 @@ export function init () {
             return;
         storage.reset();
         location.reload();
+    });
+
+    updateCompactView();
+
+}
+
+function updateCompactView () {
+
+    let compact = !!getOption("compact");
+
+    function toggle (element, flag = true) {
+        element.style.opacity = flag ? 1 : 0;
+        element.style.pointerEvents = flag ? "all" : "none";
+    }
+
+    toggle(document.getElementById("rightTopIcons"), !compact);
+    toggle(document.getElementById("rightTopExpandButton"), compact);
+    toggle(document.getElementById("toolbarIcons"), !compact);
+
+    document.getElementById("expandViewButton").addEventListener("click", () => {
+        setOption("compact", false);
+        updateCompactView();
+    });
+    document.getElementById("collapseCompactViewButton").addEventListener("click", () => {
+        setOption("compact", true);
+        updateCompactView();
     });
 
 }
