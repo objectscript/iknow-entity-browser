@@ -3,13 +3,14 @@ import * as graph from "../graph";
 import * as sourceSettings from "./sourceSettings";
 import * as tabularViewSettings from "./tabularViewSettings";
 import * as storage from "../storage";
-import { getChanges, applyChanges, init as initValues } from "./values";
+import { getChanges, applyChanges, init as initValues, applyFixedClasses } from "./values";
 import { makeAutosizable } from "../utils";
 
 function toggleSettings (uiStateModel) {
     uiStateModel.settingsToggled = !uiStateModel.settingsToggled;
     d3.select("#settings").classed("active", uiStateModel.settingsToggled);
     d3.select("#windows").classed("offScreen", uiStateModel.settingsToggled);
+    applyFixedClasses();
     if (!uiStateModel.settingsToggled && getChanges().length !== 0) {
         applyChanges();
         model.update(() => graph.update(true));
@@ -27,7 +28,7 @@ export function init () {
         .on("click", toggleSettings);
 
     tabularViewSettings.init();
-    initValues();
+    initValues(model.uiState);
     sourceSettings.init();
 
     // make inputs auto-sizable

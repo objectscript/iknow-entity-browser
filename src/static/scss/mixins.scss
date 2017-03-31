@@ -39,6 +39,14 @@
     transform: $options;
 }
 
+@mixin pointer-events ($options) {
+    -webkit-pointer-events: $options;
+    -moz-pointer-events: $options;
+    -ms-pointer-events: $options;
+    -o-pointer-events: $options;
+    pointer-events: $options;
+}
+
 @mixin animation-delay ($options) {
     -webkit-animation-delay: $options;
     -moz-animation-delay: $options;

@@ -169,7 +169,7 @@ function updateHeaders (dataProp = sorting.properties.join(".")) {
 }
 
 function updateToolbarsWidth () {
-    document.getElementById("querySetting").style.width =
+    document.getElementById("preservedToolbar").style.width =
         document.getElementById("toolbarIcons").style.width =
             (document.body.getBoundingClientRect().width - (model.uiState.tabularToggled
                 ? document.getElementById("table").getBoundingClientRect().width : 0))

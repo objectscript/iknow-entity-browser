@@ -1,0 +1,20 @@
+@import "const";
+@import "mixins";
+
+#preservedToolbar {
+
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    padding-top: 4px;
+    z-index: $zIndexInterface - 2;
+    text-align: center;
+    overflow: hidden;
+    @include pointer-events(none);
+
+    > * {
+        @include pointer-events(all);
+    }
+
+}

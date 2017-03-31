@@ -134,6 +134,9 @@
     <div id="settings">
         <i id="closeSettingsToggle" class="ui icon-close"></i>
         <h1>General Settings</h1>
+        <div class="settingsNotice">
+            Changing any settings will refresh all the data.
+        </div>
         <div>
             <div>
                 <b>Data source:</b>
@@ -145,12 +148,15 @@
                 />/<span id="querySetting"><select id="settings.queryType" title="Query Type">
                         <option value="related">related</option>
                         <option value="similar">similar</option>
-                    </select>/ <input autosize placeholder="seed string" id="settings.seed"
-                type="text" value="crew"/>
-                </span>
+                    </select></span><span id="seedSetting"><input autosize placeholder="seed string"
+                id="settings.seed" type="text" value="crew"/></span>
                 <label>
                     <input type="checkbox" id="settings.keepSeedInView"/>
-                    Keep seed string setting in view
+                    Keep seed option in view
+                </label>
+                <label>
+                    <input type="checkbox" id="settings.keepQueryTypeInView"/>
+                    Keep query type option in view
                 </label>
             </div>
         </div>
@@ -174,6 +180,9 @@
         <div class="footer">
             iKnow Entity Browser v<!-- @echo package.version -->
         </div>
+    </div>
+    <div id="preservedToolbar">
+
     </div>
 </div>
 </body>

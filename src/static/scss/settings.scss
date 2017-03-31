@@ -12,18 +12,9 @@
     padding: $defaultPadding;
     overflow: auto;
 
-    &:not(.active) {
-
-        #querySetting.fixed {
-            position: absolute;
-            left: 0;
-            bottom: -30px;
-            width: 100%;
-            text-align: center;
-            display: block;
-            z-index: $zIndexInterface - 2;
-        }
-
+    .settingsNotice {
+        font-size: 8pt;
+        color: gray;
     }
 
     .footer {
@@ -64,9 +55,7 @@
 }
 
 #closeSettingsToggle {
-
     position: absolute;
     right: 7px;
     top: 7px;
-
 }

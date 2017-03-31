@@ -22,6 +22,7 @@ export function init () {
         "settings.queryType",
         "settings.seed",
         "settings.webAppName",
+        "settings.keepQueryTypeInView",
         "settings.keepSeedInView",
         "settings.tabularShowHiddenNodes"
     ]);
@@ -34,7 +35,7 @@ export function init () {
     }
 
     document.getElementById("settings.queryType").addEventListener(`change`, () => {
-        if (!getOption("keepSeedInView") || model.uiState.settingsToggled)
+        if (!getOption("keepQueryTypeInView") || model.uiState.settingsToggled)
             return;
         apply();
     });

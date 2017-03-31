@@ -11,6 +11,7 @@ const settingsTypes = {
     domain: String,
     queryType: new Set(["similar", "related"]),
     seed: String,
+    keepQueryTypeInView: Boolean,
     keepSeedInView: Boolean,
     tabularShowHiddenNodes: Boolean
 };
@@ -22,6 +23,7 @@ const settings = { // assign defaults here
     domain: "1",
     queryType: "related",
     seed: "crew",
+    keepQueryTypeInView: true,
     keepSeedInView: false,
     tabularShowHiddenNodes: false,
     tabularColumns: [
@@ -94,13 +96,21 @@ export function setOption (options, value) {
     saveSettings();
 }
 
-function applyFixedClass () {
-    document.getElementById("querySetting")
-        .classList.toggle("fixed", !!settings["keepSeedInView"]);
+let preservedToolbarElement = null,
+    querySettingElement = null,
+    seedSettingElement = null,
+    uiState = null;
+export function applyFixedClasses () {
+    let queryParent = !uiState.settingsToggled && settings["keepQueryTypeInView"]
+            ? preservedToolbarElement : querySettingElement,
+        seedParent = !uiState.settingsToggled && settings["keepSeedInView"]
+            ? preservedToolbarElement : seedSettingElement;
+    queryParent.appendChild(document.getElementById("settings.queryType"));
+    seedParent.appendChild(document.getElementById("settings.seed"));
 }
 
 function saveSettings () {
-    applyFixedClass();
+    applyFixedClasses();
     storage.save(STORAGE_KEY, settings);
 }
 
@@ -123,7 +133,7 @@ export function setInputValue (e = {}) {
     return e;
 }
 
-export function init () {
+export function init (uiSt) {
     let params = url.getSearchString();
     for (let param in params) {
         let type = getObjProp(settingsTypes, param.split(".")),
@@ -137,5 +147,9 @@ export function init () {
             type instanceof Set ? (type.has(v) ? v : settings[param]) :
             settings[param];
     }
-    applyFixedClass();
+    uiState = uiSt;
+    preservedToolbarElement = document.getElementById("preservedToolbar");
+    querySettingElement = document.getElementById("querySetting");
+    seedSettingElement = document.getElementById("seedSetting");
+    applyFixedClasses();
 }
