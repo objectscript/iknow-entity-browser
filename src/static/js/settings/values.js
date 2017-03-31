@@ -106,12 +106,16 @@ export function setOption (options, value) {
 let preservedToolbarElement = null,
     querySettingElement = null,
     seedSettingElement = null,
-    uiState = null;
+    uiState = null,
+    lastApply = "";
 export function applyFixedClasses () {
-    let queryParent = !uiState.settingsToggled && settings["keepQueryTypeInView"]
-            ? preservedToolbarElement : querySettingElement,
-        seedParent = !uiState.settingsToggled && settings["keepSeedInView"]
-            ? preservedToolbarElement : seedSettingElement;
+    let qt = !uiState.settingsToggled && settings["keepQueryTypeInView"],
+        s = !uiState.settingsToggled && settings["keepSeedInView"],
+        queryParent = qt ? preservedToolbarElement : querySettingElement,
+        seedParent = s ? preservedToolbarElement : seedSettingElement;
+    if (`${ qt }|${ s }` === lastApply)
+        return;
+    lastApply = `${ qt }|${ s }`;
     queryParent.appendChild(document.getElementById("settings.queryType"));
     seedParent.appendChild(document.getElementById("settings.seed"));
 }

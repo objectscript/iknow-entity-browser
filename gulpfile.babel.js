@@ -1,11 +1,8 @@
 import gulp from "gulp";
 import rimraf from "gulp-rimraf";
+import webpack from "webpack";
 import preprocess from "gulp-preprocess";
 import cssMin from "gulp-cssmin";
-import browserify from "browserify";
-import to5ify from "6to5ify";
-import streamify from "gulp-streamify";
-import source from "vinyl-source-stream";
 import scss from "gulp-sass";
 import fs from "fs";
 import mime from "mime-types";
@@ -18,6 +15,28 @@ const
     STATIC_DATA_FILE = `${ SOURCE_DIR }/cls/${ APP_NAME }/StaticData.cls`,
     context = {
         package: pkg
+    },
+    webpackConfig = {
+        context: `${ __dirname }`,
+        entry: {
+            "index": `${ SOURCE_DIR }/static/js/index.js`
+        },
+        output: {
+            path: `${ BUILD_DIR }/static/js`,
+            filename: `[name].js`
+        },
+        module: {
+            loaders: [
+                {
+                    test: /\.js$/,
+                    exclude: /node_modules/,
+                    loader: `babel-loader`,
+                    query: {
+                        presets: [`es2015`]
+                    }
+                }
+            ]
+        }
     };
 
 function getAllFiles (dir) {
@@ -66,14 +85,12 @@ gulp.task("etc", ["clean"], () => {
         .pipe(gulp.dest(BUILD_DIR + "/static"));
 });
 
-gulp.task("js", ["clean"], () => {
-    return browserify(`${ SOURCE_DIR }/static/js/index.js`, { debug: true })
-        .transform(to5ify)
-        .bundle()
-        .on(`error`, (err) => { console.error(err); })
-        .pipe(source("index.js"))
-        .pipe(streamify(preprocess({ context: context })))
-        .pipe(gulp.dest(`${ BUILD_DIR }/static/js`));
+gulp.task("js", ["clean"], (done) => {
+    webpack(webpackConfig, (err, stats) => {
+        if (err) throw new Error(err);
+        console.log(stats.toString());
+        done(err);
+    });
 });
 
 gulp.task("css", ["clean"], () => {

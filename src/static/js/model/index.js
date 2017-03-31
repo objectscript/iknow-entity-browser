@@ -3,6 +3,7 @@ import { getData } from "../source";
 import { getOption } from "../settings/values";
 import { toggleLoader } from "../utils";
 import * as history from "./history";
+import { Toast } from "toaster-js";
 
 let SIZE_CRITERIA = "frequency",
     FOLDING_CRITERIA = "frequency",
@@ -119,7 +120,7 @@ export function update () {
     getData(data => {
         toggleLoader(false);
         if (data.error || !data.graph) {
-            alert(data.error || `No graph data returned`);
+            new Toast(data.error || `No graph data returned`, Toast.TYPE_ERROR);
         } else {
             graph = preprocess(data.graph);
             dataUpdated(true);
@@ -304,7 +305,7 @@ export function dropNodes (nodes) {
             if (i === -1) {
                 console.error(
                     `There is a mess occurred with the tree model structure while dropping nodes: `
-                    `node's parent is pointing to a node which doesn't have this node as a child.`
+                    + `node's parent is pointing to a node which doesn't have this node as a child.`
                 );
                 continue;
             }
