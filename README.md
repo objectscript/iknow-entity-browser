@@ -1,6 +1,6 @@
-# iKnow Entity Browser<sup>[development]</sup>
+# InterSystems iKnow Entity Browser
 
-A visualizer of iKnow entities.
+A visualizer of iKnow entities for IntersSystems iKnow on 2016.2+ platforms.
 
 Preview
 -------
@@ -11,6 +11,16 @@ Preview
     <img src="https://cloud.githubusercontent.com/assets/4989256/24315541/3c8b39ec-10f0-11e7-88a4-f0b62980858b.png" width="430" align="center">
     <img src="https://cloud.githubusercontent.com/assets/4989256/24322376/d1d40878-116b-11e7-98fe-f1b86ff2085a.png" width="430" align="center">
 </p>
+
+Installation
+------------
+
+Download the latest release and import XML file to Caché (iKnow-enabled namespace). Then, open your
+browser at `http://localhost:57772/EntityBrowser/` web page (change the host/port respectively to 
+your server's addresses and always add the trailing slash `/` at the end of the URL).
+
+To delete the application, simply delete the `EntityBrowser` package, the web application will be 
+deleted automatically as well as it gets created during installation.
 
 Usage
 -----
@@ -59,7 +69,7 @@ Development
 
 Requires [Node.JS](https://nodejs.org) (v4.0.0-7.5.0+) (but may work on previous versions),
 [Git](https://git-scm.com) and
-[Caché](http://www.intersystems.com/library/software-downloads/) 2017.1+
+[Caché](http://www.intersystems.com/library/software-downloads/) 2016.2+
 to be installed.
 
 To install & test, open up a terminal and execute the following set of commands:
@@ -73,13 +83,12 @@ npm run gulp
 
 Then, open `build/static/index.html` file.
 
-To install the REST client, change the constants in the `import.bat` file and then run the
-following:
+To install application directly to Caché, modify the constants in the `import.bat` file and then run
+it with the following command:
 
 ```bash
 import
 ```
 
-This will put `src/cls/EntityBrowser/Router.cls` class into your Caché (change the `import.*`
-script), and after you set up a web application, go to configure app settings by clicking setting 
-button in the top right corner.
+This will build the project and put all `src/cls/*` classes into your Caché. Also, this will
+export XML file that can be imported to any Caché system (2016.2+).

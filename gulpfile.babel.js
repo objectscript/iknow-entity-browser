@@ -15,7 +15,7 @@ const
     APP_NAME = `EntityBrowser`,
     SOURCE_DIR = `${ __dirname }/src`,
     BUILD_DIR = `${ __dirname }/build`,
-    STATIC_DATA_FILE = `${ SOURCE_DIR }/cls/${ APP_NAME }/REST/StaticData.cls`,
+    STATIC_DATA_FILE = `${ SOURCE_DIR }/cls/${ APP_NAME }/StaticData.cls`,
     context = {
         package: pkg
     };

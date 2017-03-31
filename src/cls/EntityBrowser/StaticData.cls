@@ -1,5 +1,5 @@
 /// A class containing static web application.
-Class EntityBrowser.REST.StaticData [ GeneratedBy = ExternalTools ]
+Class EntityBrowser.StaticData [ GeneratedBy = ExternalTools ]
 {
 
 <!-- staticData -->

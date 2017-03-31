@@ -1,6 +1,16 @@
 /// Class that serves the static data encoded in Base64 and stored in this class in XData blocks.
-Class EntityBrowser.REST.ServeXData Extends %CSP.REST
+/// @author ZitRo
+Class EntityBrowser.ServeXData Extends %CSP.REST [ Abstract ]
 {
+
+/// This is the <Routes> example. Copy this definitions to the URLMap XData of your class.
+XData UrlMap
+{
+<Routes>
+    <Map Prefix="/api" Forward="YourAPI.Handler"/>
+    <Route Url="/(.*)" Method="GET" Call="Serve"/>
+</Routes>
+}
 
 /// Index file name which will be served when requesting "/".
 Parameter IndexFile = "index.html";
@@ -12,17 +22,10 @@ Parameter CompileTime = {"""" _ $zd($h, 11) _ ", "_ $zdt($NOW(0), 2,1) _ " GMT""
 /// Generated in GenerateFiles generator.
 Parameter Files As CONFIGVALUE;
 
-/// Copy the <Route> definition to the URLMap XData of your class.
-XData UrlMap
-{
-<Routes>
-    <Route Url="/(.*)" Method="GET" Call="StaticDelivery"/>
-</Routes>
-}
-
 /// A generator for Files parameter.
-ClassMethod FillFiles() As %Status [ CodeMode = objectgenerator, ForceGenerate ]
+ClassMethod FillFiles() As %Status [ CodeMode = objectgenerator ]
 {
+    return:%class.Name="EntityBrowser.ServeXData" $$$OK
 	set list = $LB()
 	set (ind, j) = 0
 	for i=1:1:%compiledclass.XDatas.Count() {
@@ -38,7 +41,7 @@ ClassMethod FillFiles() As %Status [ CodeMode = objectgenerator, ForceGenerate ]
 	    set $LIST(list, j*2+1) = ""
         set $LIST(list, j*2+2) = xd.Name
     }
-	do $system.OBJ.UpdateConfigParam("EntityBrowser.REST.ServeXData", "Files", list)
+	do $system.OBJ.UpdateConfigParam("EntityBrowser.ServeXData", "Files", list)
 	return $$$OK
 }
 
@@ -53,7 +56,7 @@ ClassMethod GetXData(fileName As %String) As %Dictionary.CompiledXData
 	return ##class(%Dictionary.CompiledXData).%OpenId($ClassName()_"||"_xdn)
 }
 
-ClassMethod StaticDelivery(file As %String) As %Status
+ClassMethod Serve(file As %String) As %Status
 {
     set xdata = ..GetXData(file)
     return:(xdata = "") ..Http404()
