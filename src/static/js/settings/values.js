@@ -17,6 +17,10 @@ const settingsTypes = {
     tabularShowHiddenNodes: Boolean
 };
 
+// List of settings that cannot be saved to local storage, but can be set explicitly
+// (f.e. URL params).
+const unsaveableSettings = new Set([]);
+
 // defaults are assigned here
 const settings = {
     compact: false,
@@ -114,7 +118,11 @@ export function applyFixedClasses () {
 
 function saveSettings () {
     applyFixedClasses();
-    storage.save(STORAGE_KEY, settings);
+    let sts = Object.assign({}, settings);
+    for (let s of unsaveableSettings) {
+        delete sts[s];
+    }
+    storage.save(STORAGE_KEY, sts);
 }
 
 export function setInputValue (e = {}) {
