@@ -67,28 +67,34 @@ URL example: `http://.../index.html?domain=1&queryType=similar&seed=plane`
 Development
 -----------
 
-Requires [Node.JS](https://nodejs.org) (v4.0.0-7.5.0+) (but may work on previous versions),
-[Git](https://git-scm.com) and
-[Caché](http://www.intersystems.com/library/software-downloads/) 2016.2+
-to be installed.
+Development requires [Node.JS](https://nodejs.org) (v4.0.0-7.5.0+) (but may work on previous 
+versions as well), [Git](https://git-scm.com) and
+[Caché](http://www.intersystems.com/library/software-downloads/) 2016.2+ to be installed.
 
-To install & test, open up a terminal and execute the following set of commands:
+Development of the project lies completely outside of Caché (in any environment you like). The 
+project tree has three main entry points:
+
+1. [Static client files](src/static) at `src/static`. This is the front-end part of the application
+ which will be packed by Gulp and put to `StaticData.cls` class.
+2. [Server package](src/cls) at `src/cls`. It contains all Caché classes in UDL format. The
+ directory structure inside `src/cls` directory corresponds to the package structure in Caché.
+3. [Import scripts](import.cmd) that make the development like a charm: set up once and use one
+ command to import/export project to/from Caché.
+
+There are some steps needed for initial setup:
 
 ```sh
 git clone https://github.com/intersystems-ru/iknow-entity-browser
 cd iknow-entity-browser
 npm install
-npm run gulp
 ```
 
-Then, open `build/static/index.html` file.
-
-To install application directly to Caché, modify the constants in the `import.bat` file and then run
-it with the following command:
+Then, edit `Pre-configured variables` section in `import.*` script to match your system. Now you're
+ready! Run the following:
 
 ```bash
-import
+import                              # or ./import on *nix systems
 ```
 
-This will build the project and put all `src/cls/*` classes into your Caché. Also, this will
-export XML file that can be imported to any Caché system (2016.2+).
+This will build the project and put all classes into your Caché. Also, this will export XML file 
+that can be imported to any Caché system (2016.2+).
