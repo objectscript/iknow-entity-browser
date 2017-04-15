@@ -113,6 +113,13 @@ XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 </Routes>
 }
 
+/// Extend the timeout for the long queries up to 2 hours
+ClassMethod OnPreDispatch(pUrl As %String, pMethod As %String, ByRef pContinue As %Boolean) As %Status
+{
+	set %response.Timeout = 60 * 60 * 2 // 2 hours at max
+	return ##class(%iKnow.REST.Base).OnPreDispatch(pUrl, pMethod, pContinue)
+}
+
 /// <example language="swagger">
 ///       summary: |
 ///         Retrieves the graph representation of all entities similar to a seed string
