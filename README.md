@@ -15,12 +15,20 @@ Preview
 Installation
 ------------
 
-Download the latest release and import XML file to Caché (iKnow-enabled namespace). Then, open your
-browser at `http://localhost:57772/EntityBrowser/` web page (change the host/port respectively to 
-your server's addresses and always add the trailing slash `/` at the end of the URL).
+Download the latest release XML and import it into iKnow-enabled namespace (for example, SAMPLES). 
+Then, open your browser at `http://127.0.0.1:57772/EntityBrowser/` web page (change the host/port 
+respectively to your server's addresses and always append the trailing slash `/` at the end of the 
+URL).
 
 To delete the application, simply delete the `EntityBrowser` package, the web application will be 
-deleted automatically as well as it gets created during installation.
+deleted automatically if it wasn't modified since installation as well as it gets created during the 
+installation.
+
+Currently, to use iKnowEntityBrowser in different namespaces, you need to import the project to each
+iKnow-enabled namespace, and manually set up web application (for example, you can clone
+`/EntityBrowser` application and name it `/EntityBrowserUser`). Change the settings inside 
+application as well in this case. Currently we are working under possibility to change the namespace
+from the UI interface.
 
 Usage
 -----

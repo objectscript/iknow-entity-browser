@@ -25,7 +25,7 @@ const unsaveableSettings = new Set([]);
 const settings = {
     compact: false,
     host: "",
-    port: 57772,
+    port: +location.port || 57772,
     webAppName: "EntityBrowser",
     domain: "1",
     queryType: "related",
