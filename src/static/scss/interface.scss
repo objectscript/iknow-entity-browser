@@ -40,6 +40,7 @@
 
 #table.active .rightTopIcons {
     top: 6px;
+    z-index: $zIndexInterface - 2;
 }
 
 #toolbarIcons {
