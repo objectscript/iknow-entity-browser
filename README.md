@@ -17,10 +17,10 @@ Preview
 Installation
 ------------
 
-Download the latest release XML and import it into iKnow-enabled namespace (for example, SAMPLES). 
-Then, open your browser at `http://127.0.0.1:57772/EntityBrowser/` web page (change the host/port 
-respectively to your server's addresses and always append the trailing slash `/` at the end of the 
-URL).
+Download the [latest release XML](https://github.com/intersystems-ru/iknow-entity-browser/releases) 
+and import it into iKnow-enabled namespace (for example, SAMPLES). Then, open your browser at
+`http://127.0.0.1:57772/EntityBrowser/` web page (change the host/port respectively to your server's 
+addresses and always append the trailing slash `/` at the end of the URL).
 
 To delete the application, simply delete the `EntityBrowser` package, the web application will be 
 deleted automatically if it wasn't modified since installation as well as it gets created during the 
