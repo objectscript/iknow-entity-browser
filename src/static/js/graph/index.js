@@ -100,6 +100,7 @@ function newSimulation () {
         .force("link",
             d3.forceLink()
                 .distance(d => 30 + (d.source.radius + d.target.radius) * 2)
+                .strength(d => 1)
                 .id(d => d.id)
         )
         .force("charge",
@@ -145,18 +146,16 @@ function dragended (d) {
 }
 
 function keyDown () {
+
     shiftKey = d3.event.shiftKey || d3.event.metaKey;
     ctrlKey = d3.event.ctrlKey;
-
-    if (d3.event.keyCode == 67) { // the 'c' key
-        // do stuff
-    }
 
     if (ctrlKey) {
         brush.select('.overlay').style('cursor', 'crosshair');
         brush.call(brusher);
         d3.event.preventDefault();
     }
+    
 }
 
 function keyUp () {

@@ -83,27 +83,32 @@ function toTree (graph, parent) {
  */
 function preprocess (graph) {
 
-    let zeroID = null;
+    let zeroID = null,
+        maxSizeCriteria = 1;
 
     graph.nodes.forEach(node => { if (!zeroID && node.id === 0) zeroID = node; });
+    graph.nodes.forEach(node => {
+        node.radius = MIN_RADIUS + Math.sqrt(node.entities[0][SIZE_CRITERIA] / 4 || 25);
+        if (node.entities[0][SIZE_CRITERIA] > maxSizeCriteria)
+            maxSizeCriteria = node.entities[0][SIZE_CRITERIA];
+    });
     if (!zeroID) {
         graph.nodes.unshift(zeroID = {
             id: 0,
             label: getOption("seed"),
             type: "entity",
             edgeType: "root",
+            radius: MIN_RADIUS + Math.sqrt((maxSizeCriteria + 1) / 4 || 25),
             entities: [{
                 id: -1,
                 value: getOption("seed"),
                 score: 9999,
                 spread: 0,
                 frequency: 9999,
-                [SIZE_CRITERIA]: 9999
+                [SIZE_CRITERIA]: maxSizeCriteria + 1
             }]
         });
     }
-    graph.nodes.forEach(node =>
-        node.radius = MIN_RADIUS + Math.sqrt(node.entities[0][SIZE_CRITERIA] / 4 || 25));
     // console.log(`Graph:`, graph);
     let tree = toTree(graph, zeroID);
     // console.log(`Tree:`, tree);

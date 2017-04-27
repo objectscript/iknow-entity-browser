@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>iKnow Entity Browser</title>
+    <meta name="author" content="ZitRo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <link rel="stylesheet" href="css/index.css"/>
+    <script src="lib/d3.min.js"></script>
+    <script type="text/javascript" src="js/index.js"></script>
+</head>
+<body onload="window.init()">
+<div id="windows">
+    <svg id="graph">
+        <defs>
+            <marker id="svgLineArrow-related" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L9,3 z" fill="#ffb840"></path>
+            </marker>
+            <marker id="svgLineArrow-similar" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L9,3 z" fill="#7ca1ff"></path>
+            </marker>
+            <marker id="svgLineArrow-other" markerWidth="10" markerHeight="10" refX="7" refY="3" orient="auto" markerUnits="strokeWidth">
+                <path d="M0,0 L0,6 L9,3 z" fill="#f00"></path>
+            </marker>
+        </defs>
+    </svg>
+    <div id="table">
+        <div id="tableToggle" class="ui icon-list hint">
+            <div class="tooltip">
+                <div class="label">
+                    Tabular view
+                </div>
+            </div>
+        </div>
+        <div id="rightTopExpandButton" class="rightTopIcons hidden">
+            <div id="expandViewButton" class="ui icon-expand hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Show all controls
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="rightTopIcons" class="rightTopIcons hidden">
+            <div id="settingsToggle" class="ui icon-settings hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Settings
+                    </div>
+                </div>
+            </div>
+            <a id="infoLink" class="ui icon-question hint" target="_blank" href="https://github.com/intersystems-ru/iknow-entity-browser/blob/master/README.md">
+                <div class="tooltip">
+                    <div class="label">
+                        Information
+                    </div>
+                </div>
+            </a>
+            <div id="collapseCompactViewButton" class="ui icon-collapse hint">
+                <div class="tooltip">
+                    <div class="label">
+                        Collapse to compact view
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="toolbarIcons" class="hidden">
+            <div id="undoButton" class="ui icon-undo hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Undo
+                    </div>
+                </div>
+            </div>
+            <div id="redoButton" class="ui icon-redo hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Redo
+                    </div>
+                </div>
+            </div>
+            <div id="zoomInButton" class="ui icon-zoom-in hint">
+                <div class="top tooltip">
+                    <div class="two-line label">
+                        <div>Zoom In</div>
+                        <div class="sub">Also use mouse/gestures</div>
+                    </div>
+                </div>
+            </div>
+            <div id="resetZoomButton" class="ui icon-search hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Reset View
+                    </div>
+                </div>
+            </div>
+            <div id="zoomOutButton" class="ui icon-zoom-out hint">
+                <div class="top tooltip">
+                    <div class="two-line label">
+                        <div>Zoom Out</div>
+                        <div class="sub">Also use mouse/gestures</div>
+                    </div>
+                </div>
+            </div>
+            <div id="resetSelectionButton" class="ui icon-outline hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Reset selection
+                    </div>
+                </div>
+            </div>
+            <div id="dropChildrenButton" class="ui icon-unlink hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Drop all children
+                    </div>
+                </div>
+            </div>
+            <div id="removeButton" class="ui icon-remove hint">
+                <div class="top tooltip">
+                    <div class="label">
+                        Delete selection
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="controls">
+            <label>
+                <i id="exportCSV" class="ui icon-download"></i>
+            </label>
+        </div>
+        <div class="wrapper">
+            <table id="tabular">
+                <thead>
+                    <tr></tr>
+                </thead>
+                <tbody id="tabular-selected">
+
+                </tbody>
+                <tbody id="tabular-others">
+
+                </tbody>
+                <tbody id="tabular-hidden">
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div id="settings">
+        <i id="closeSettingsToggle" class="ui icon-close"></i>
+        <h1>General Settings</h1>
+        <div class="settingsNotice">
+            Changing any settings will refresh all the data.
+        </div>
+        <div>
+            <div>
+                <b>Data source:</b>
+                <input type="text" value="http://localhost" id="settings.host" autosize
+                placeholder="http://host.name"/>:<input id="settings.port" autosize
+                type="number" placeholder="port" value=""/>/<input id="settings.webAppName"
+                autosize type="text" placeholder="app name" value="EntityBrowser"/>/api/domain/
+                <input id="settings.domain" autosize type="text" placeholder="domain" value="1"
+                />/<span id="querySetting"><select id="settings.queryType" title="Query Type">
+                        <option value="related">related</option>
+                        <option value="similar">similar</option>
+                    </select></span><span id="seedSetting"><input autosize placeholder="seed string"
+                id="settings.seed" type="text" value="crew"/></span>
+                <label>
+                    <input type="checkbox" id="settings.keepSeedInView"/>
+                    Keep seed option in view
+                </label>
+                <label>
+                    <input type="checkbox" id="settings.keepQueryTypeInView"/>
+                    Keep query type option in view
+                </label>
+            </div>
+        </div>
+        <h1>Tabular View Settings</h1>
+        <div>
+            <div>
+                <label>
+                    <input id="settings.tabularShowHiddenNodes" type="checkbox"/>
+                    Show hidden nodes in table
+                </label>
+            </div>
+            <div>
+                <b>Columns:</b>
+                <span id="settings.tabularColumns"></span>
+            </div>
+        </div>
+        <hr/>
+        <div>
+            <button id="settings.resetSettings">Reset Settings</button>
+        </div>
+        <div class="footer">
+            iKnow Entity Browser v1.1.5 by
+            <a target="_blank" href="https://zitros.tk">Nikita</a>
+        </div>
+    </div>
+    <div id="preservedToolbar">
+
+    </div>
+</div>
+</body>
+</html>

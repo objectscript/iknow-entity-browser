@@ -11,7 +11,8 @@ import pkg from "./package.json";
 const
     APP_NAME = `EntityBrowser`,
     SOURCE_DIR = `${ __dirname }/src`,
-    BUILD_DIR = `${ __dirname }/build`,
+    BUILD_DIR = `${ __dirname }/docs`,
+    STATIC_BUILD_DIR = BUILD_DIR,
     STATIC_DATA_FILE = `${ SOURCE_DIR }/cls/${ APP_NAME }/StaticData.cls`,
     context = {
         package: pkg
@@ -22,7 +23,7 @@ const
             "index": `${ SOURCE_DIR }/static/js/index.js`
         },
         output: {
-            path: `${ BUILD_DIR }/static/js`,
+            path: `${ STATIC_BUILD_DIR }/js`,
             filename: `[name].js`
         },
         module: {
@@ -70,19 +71,19 @@ gulp.task("cls", ["clean"], () => {
 });
 
 gulp.task("html", ["clean"], () => {
-    return gulp.src(SOURCE_DIR + "/static/**/*.html")
+    return gulp.src(`${ SOURCE_DIR }/static/**/*.html`)
         .pipe(preprocess({ context: context }))
-        .pipe(gulp.dest(BUILD_DIR + "/static"));
+        .pipe(gulp.dest(STATIC_BUILD_DIR));
 });
 
 gulp.task("etc", ["clean"], () => {
     return gulp.src([
-        `${ SOURCE_DIR }/static/**/*.*`,
-        `!${ SOURCE_DIR }/static/js/**/*.*`,
-        `!${ SOURCE_DIR }/static/scss/**/*.*`,
-        `!${ SOURCE_DIR }/static/index.html`
-    ])
-        .pipe(gulp.dest(BUILD_DIR + "/static"));
+            `${ SOURCE_DIR }/static/**/*.*`,
+            `!${ SOURCE_DIR }/static/js/**/*.*`,
+            `!${ SOURCE_DIR }/static/scss/**/*.*`,
+            `!${ SOURCE_DIR }/static/index.html`
+        ])
+        .pipe(gulp.dest(STATIC_BUILD_DIR));
 });
 
 gulp.task("js", ["clean"], (done) => {
@@ -97,14 +98,14 @@ gulp.task("css", ["clean"], () => {
     return gulp.src(`${ SOURCE_DIR }/static/scss/index.scss`)
         .pipe(scss().on("error", scss.logError))
         .pipe(cssMin())
-        .pipe(gulp.dest(`${ BUILD_DIR }/static/css`));
+        .pipe(gulp.dest(`${ STATIC_BUILD_DIR }/css`));
 });
 
 /// doing file replacement manually because preprocess sucks.
 gulp.task("StaticData", ["html", "js", "css", "etc"], () => {
-    let files = getAllFiles(`${ BUILD_DIR }/static`),
+    let files = getAllFiles(STATIC_BUILD_DIR),
         staticData = files.map((fileName, i) =>
-`/// ${ fileName.replace(`${ BUILD_DIR }/static/`, "") }\r\n\
+`/// ${ fileName.replace(`${ STATIC_BUILD_DIR }/`, "") }\r\n\
 XData File${ i } [ MimeType = ${ mime.lookup(fileName) || "text/plain" } ]\r\n\
 {\r\n\
 ${ base64Encode(fileName).replace(/(.{32765})/g, "$1\r\n") }\r\n\

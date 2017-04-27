@@ -4,15 +4,15 @@
 
 :: Configurable variables: change them to fit your system ::
 set CACHE_DIR=C:\Program Files\InterSystems\Ensemble
-set NAMESPACE=SAMPLES
+set NAMESPACE=DCANALYTICS
 set USERNAME=_SYSTEM
 set PASSWORD=SYS
 ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 @echo off
 :: Pre-configured variables
-set BUILD_DIR=build\cls
-set XML_EXPORT_DIR=build
+set BUILD_DIR=docs\cls
+set XML_EXPORT_DIR=docs
 set PACKAGE_NAME=EntityBrowser
 
 :: Build and import application to Caché
@@ -28,6 +28,6 @@ echo s st = $system.Status.GetErrorText($system.OBJ.ExportPackage("%PACKAGE_NAME
 :: Other utilities that may be useful:
 ::
 :: Copy files to CSP folder
-::$ set BUILD_STATIC_DIR=build\static
+::$ set BUILD_STATIC_DIR=docs\static
 ::$ set CSP_DIR=C:\Program Files\InterSystems\Ensemble\CSP\samples\EntityBrowser
 ::$ call xcopy /sy "%~dp0\%BUILD_STATIC_DIR%" "%CSP_DIR%"

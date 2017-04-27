@@ -4,8 +4,8 @@
 # Caché 2016.2+ IS REQUIRED TO PROCEED
 
 # Configurable variables: change them to fit your system #
-CACHE_DIR=/InterSystems/Cache
-NAMESPACE=SAMPLES
+CACHE_DIR="C:\Program Files\InterSystems\Ensemble"
+NAMESPACE=DCANALYTICS
 USERNAME=_SYSTEM
 PASSWORD=SYS
 ##########################################################
@@ -13,8 +13,8 @@ PASSWORD=SYS
 set +v
 # Pre-configured variables
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-BUILD_DIR=build/cls
-XML_EXPORT_DIR=build
+BUILD_DIR=docs/cls
+XML_EXPORT_DIR=docs
 PACKAGE_NAME=EntityBrowser
 
 # Build and import application to Caché

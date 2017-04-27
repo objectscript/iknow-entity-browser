@@ -5,6 +5,8 @@ A visualizer of iKnow entities for IntersSystems iKnow on 2016.2+ platforms.
 Preview
 -------
 
+### [SEE DEMO HERE](https://intersystems-ru.github.io/iknow-entity-browser)
+
 ![2017-03-24_235057](https://cloud.githubusercontent.com/assets/4989256/24314970/11139e7e-10ed-11e7-913b-e156c253c820.png)
 ![2017-03-24_234839](https://cloud.githubusercontent.com/assets/4989256/24314971/112bbd2e-10ed-11e7-8dfb-66daafb6d430.png)
 <p align="center">
@@ -29,6 +31,10 @@ iKnow-enabled namespace, and manually set up web application (for example, you c
 `/EntityBrowser` application and name it `/EntityBrowserUser`). Change the settings inside 
 application as well in this case. Currently we are working under possibility to change the namespace
 from the UI interface.
+
+If you installed iKnow Entity Browser on the server and made the web application public, you
+can connect to this server from any front-end, for example, even
+from [this demo application](https://intersystems-ru.github.io/iknow-entity-browser).
 
 Usage
 -----
