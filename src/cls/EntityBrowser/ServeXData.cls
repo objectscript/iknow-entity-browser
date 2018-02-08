@@ -3,6 +3,9 @@
 Class EntityBrowser.ServeXData Extends %CSP.REST [ Abstract ]
 {
 
+/// Charset to use for REST responses (includes the ones forwarded to EntityBrowser.API)
+Parameter CHARSET = "utf-8";
+	
 /// This is the <Routes> example. Copy this definitions to the URLMap XData of your class.
 XData UrlMap
 {
