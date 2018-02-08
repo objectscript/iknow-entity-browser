@@ -395,9 +395,16 @@ IsSimilar(tOriginIndex, tDestIndex, mode="")
 
 		set similar = 1
 		for posO = 1:1:pEntityTokens(tOriginIndex,0) {
-			set similar = 0
+			set similar = 0, length = $l(pEntityTokens(tOriginIndex,posO))
 			for posD = 1:1:pEntityTokens(tDestIndex,0) {
-				set similar = ''$find(pEntityTokens(tDestIndex,posD),pEntityTokens(tOriginIndex,posO))
+				
+				// for single-character tokens, require starting position
+				if length=1 {
+					set similar = ($e(pEntityTokens(tDestIndex,posD),1,length)=pEntityTokens(tOriginIndex,posO))
+				} else {
+					set similar = ''$find(pEntityTokens(tDestIndex,posD),pEntityTokens(tOriginIndex,posO))
+				}
+				
 				quit:similar
 			}
 			quit:'similar
