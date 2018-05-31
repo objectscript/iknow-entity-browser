@@ -29,7 +29,7 @@ Parameter Files As CONFIGVALUE;
 Parameter Encoding As %String = "utf-8";
 
 /// List of mime types second parts (delimited by slash), which will Encoding be set for.
-Parameter UseEncodingFor = {$LB("html", "css", "javascript", "plain")};
+Parameter UseEncodingFor = {$LB("html", "css", "javascript", "plain", "ttf", "woff")};
 
 /// A generator for Files parameter.
 ClassMethod FillFiles() As %Status [ CodeMode = objectgenerator ]
