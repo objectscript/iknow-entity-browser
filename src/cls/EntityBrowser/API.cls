@@ -466,4 +466,11 @@ ClassMethod TokenizeString(Output pTokens, pString As %String)
 	}
 }
 
+/// Enforce utf-8
+ClassMethod %ProcessResult(pSC As %Status, pResult As %DynamicObject = "") As %Status [ Internal ]
+{
+	set %response.CharSet = "utf-8"
+	quit ##super(pSC, pResult)
+}
+
 }
