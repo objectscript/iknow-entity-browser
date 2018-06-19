@@ -100,7 +100,7 @@
 Class EntityBrowser.API Extends (%iKnow.REST.Base, %iKnow.REST.Utils)
 {
 
-Parameter PAGESIZE = 0;
+Parameter PAGESIZE = 100;
 
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
@@ -445,6 +445,14 @@ ClassMethod TokenizeArray(Output pTokens, ByRef pEntities, pSeedString As %Strin
 			if '$d(pTokens(i,"spread")) {
 				set pTokens(i,"spread") = ##class(%iKnow.Queries.EntityAPI).GetSpread(pDomainId, pTokens(i,"id"),, pFilter)
 			}
+			
+			/// $lb(Likes, Reactions, Comments, Reposts, Views)
+			set impact =  ##class(UAZ.Utils).GetImpact(pTokens(i,"id"))
+			set pTokens(i, "likes") = $lg(impact, 1)
+			set pTokens(i, "reactions") = $lg(impact, 2)
+			set pTokens(i, "comments") = $lg(impact, 3)
+			set pTokens(i, "reposts") = $lg(impact, 4)
+			set pTokens(i, "views") = $lg(impact, 5)
 		}
 
 		set pTokens(i) = $lg(tEntity,tValueIndex),

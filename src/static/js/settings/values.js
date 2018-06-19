@@ -60,6 +60,26 @@ const settings = {
             property: ["entities", 0, "frequency"]
         },
         {
+            label: "Likes",
+            property: ["entities", 0, "likes"]
+        },
+        {
+            label: "Reactions",
+            property: ["entities", 0, "reactions"]
+        },
+        {
+            label: "Comments",
+            property: ["entities", 0, "comments"]
+        },
+        {
+            label: "Reposts",
+            property: ["entities", 0, "reposts"]
+        },
+        {
+            label: "Views",
+            property: ["entities", 0, "views"]
+        },
+        {
             label: "Parent",
             property: ["parent", "label"],
             default: "root"
