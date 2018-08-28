@@ -189,10 +189,10 @@ ClassMethod GetSimilar(pDomainId As %Integer, pString As %String = "") As %Statu
 		set tSC = ..BuildGraph(.tGraph, .tEntityTokens, tSeedIndex, 0, 1, .tAncestry)
 		quit:$$$ISERR(tSC)
 
-#;		k ^bdb
-#;		s ^bdb($i(^bdb)) = pString
-#;		m ^bdb("g") = tGraph
-#;		m ^bdb("t") = tEntities
+		//k ^bdb
+		//s ^bdb($i(^bdb)) = pString
+		//m ^bdb("g") = tGraph
+		//m ^bdb("t") = tEntities
 
 		set tObjects = { "nodes": [], "edges": [] }
 		set tSC = ..AppendChildObjects(.tObjects, .tGraph, .tEntityTokens, 0, 1)
@@ -279,16 +279,16 @@ ClassMethod GetRelated(pDomainId As %Integer, pEntity As %String = "") As %Statu
 		set tSC = ..BuildGraph(.tGraph, .tEntityTokens, -1, 0, 1, .tAncestry)
 		quit:$$$ISERR(tSC)
 
-		k ^bdb
-		s ^bdb($i(^bdb)) = pEntity
-		m ^bdb("g") = tGraph
-		m ^bdb("t") = tEntities
+		//k ^bdb
+		//s ^bdb($i(^bdb)) = pEntity
+		//m ^bdb("g") = tGraph
+		//m ^bdb("t") = tEntities
 
 		set tObjects = { "nodes": [], "edges": [] }
 		set tSC = ..AppendChildObjects(.tObjects, .tGraph, .tEntityTokens, 0, 1)
 		quit:$$$ISERR(tSC)
 		
-		//set tSC = ..UpdateRelated(pDomainId, .tObjects, pEntity)
+		set tSC = ..UpdateRelated(pDomainId, .tObjects, pEntity)
 		
 		set tResult = { "graph": (tObjects) }
 
@@ -328,7 +328,7 @@ ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObjec
 		
 		set stemSource = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableSource, "ru")
 		set stemTarget = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableTarget, "ru")
-		//w sourceEdge_":"_targetEdge,!
+
 		if stemSource = stemTarget
 		{
 			if (nextEdge.source '= targetEdge) && (i'=0)
@@ -347,7 +347,6 @@ ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObjec
 			}
 			elseif (targetEdge = nextEdge.source)
 			{
-				//w "   "_sourceEdge_":"_targetEdge_" -> "_sourceEdge_":"_nextEdge.target,!
 				set obj = {
 					"source": (sourceEdge),
 					"target": (nextEdge.target),
@@ -356,24 +355,22 @@ ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObjec
 
 				do edges.%Remove(i)
 				do nodes.%Remove(targetNode)
-				//do edges.%Remove(i+1)
 				do edges.%Push(obj)
 				set size = size - 1
 				set i = i - 1
 
-				do ..ChengEdges(.edges, targetEdge, sourceEdge, i, size)
+				do ..ChangeEdges(.edges, targetEdge, sourceEdge, i, size)
 			}
-				
 		}
 		set i = i + 1
 	}
-	
 	do pObjects.%Set("edges",edges)
+	do pObjects.%Set("nodes",nodes)
 	
-	q 1
+	quit $$$OK
 }
 
-ClassMethod ChengEdges(ByRef Edges As %DynamicArray, target As %Integer, source As %Integer, i As %Integer, size As %Integer) As %Status
+ClassMethod ChangeEdges(ByRef Edges As %DynamicArray, target As %Integer, source As %Integer, i As %Integer, size As %Integer) As %Status
 {
 	while (i>size)
 	{		
@@ -389,12 +386,11 @@ ClassMethod ChengEdges(ByRef Edges As %DynamicArray, target As %Integer, source 
 				"target": (targetEdge),
 				"type": "similar"
 		  	}	
-			//w "   "_sourceEdge_":"_targetEdge_" -> "_source_":"_targetEdge,!
+			
 			do Edges.%Remove(i)
 			do Edges.%Push(obj)
 			set size = size - 1
 		}
-
 		set i = i + 1
 	}
 	quit $$$OK
