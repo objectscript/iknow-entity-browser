@@ -100,7 +100,7 @@
 Class EntityBrowser.API Extends (%iKnow.REST.Base, %iKnow.REST.Utils)
 {
 
-Parameter PAGESIZE = 50;
+Parameter PAGESIZE = 100;
 
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
@@ -300,9 +300,12 @@ ClassMethod GetRelated(pDomainId As %Integer, pEntity As %String = "") As %Statu
 
 ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObject, pEntity) As %Status
 {
+	k %stem
 	#dim edges As %DynamicArray = pObjects.edges
 	#dim nodes As %DynamicArray = pObjects.nodes
 	
+	do ..UpdateNodes(pDomainId,.pObjects)
+
 	set size = edges.%Size()-2 
 	set i=0
 	
@@ -328,7 +331,17 @@ ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObjec
 		
 		set stemSource = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableSource, "ru")
 		set stemTarget = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableTarget, "ru")
-
+		
+		
+		if ($d(%stem(stemTarget)) = 1)
+		{
+			set %stem(stemTarget) = 2
+		}
+		elseif (targetEdge '= nextEdge.source)
+		{
+			set %stem(stemTarget)=1
+		}
+		
 		if stemSource = stemTarget
 		{
 			if (nextEdge.source '= targetEdge) && (i'=0)
@@ -347,15 +360,10 @@ ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObjec
 			}
 			elseif (targetEdge = nextEdge.source)
 			{
-				set obj = {
-					"source": (sourceEdge),
-					"target": (nextEdge.target),
-					"type": "similar"
-					}
+				set edge.target = nextEdge.target
 
-				do edges.%Remove(i)
+				do edges.%Remove(i+1)
 				do nodes.%Remove(targetNode)
-				do edges.%Push(obj)
 				set size = size - 1
 				set i = i - 1
 
@@ -364,9 +372,68 @@ ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObjec
 		}
 		set i = i + 1
 	}
-	do pObjects.%Set("edges",edges)
-	do pObjects.%Set("nodes",nodes)
+	do ..UpdateRelatedN(pDomainId, .pObjects, pEntity)
+
+	quit $$$OK
+}
+
+ClassMethod UpdateRelatedN(pDomainId As %Integer, ByRef pObjects As %DynamicObject, pEntity) As %Status
+{
+	#dim edges As %DynamicArray = pObjects.edges
+	#dim nodes As %DynamicArray = pObjects.nodes
+
+	set size = edges.%Size()-2 
+	set i=0
 	
+	for
+	{	
+		quit:i>size
+		
+		set edge = edges.%Get(i)
+		
+		set nextEdge = edges.%Get(i+1)
+		
+		set targetEdge = edge.target
+		
+		set targetNode = ..GetObjIdBySourceID(nodes, targetEdge)
+		
+		set targetNode = nodes.%Get(targetNode)
+		
+		set lableTarget = targetNode.label
+		
+		set stemTarget = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableTarget, "ru")
+		
+		if ($d(%stem(stemTarget)) = 1) && (%stem(stemTarget) = 2) && (targetEdge '= nextEdge.source)
+		{
+			if ($d(%stem(stemTarget_"H")) = 1)
+			{
+				do edges.%Remove(i)
+				set size = size - 1
+				continue
+			}
+			set %stem(stemTarget_"H") = 1
+		}
+		set i = i + 1
+	}
+	quit $$$OK
+}
+
+ClassMethod UpdateNodes(pDomainId As %Integer, ByRef pObjects As %DynamicObject) As %Status
+{
+	#dim nodes As %DynamicArray = pObjects.nodes
+	
+	for i=0:1:nodes.%Size()-1
+	{	
+		set node = nodes.%Get(i)
+		
+		if ($l(node.label, " ") = 1)
+		{
+			set stem = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, node.label, "ru")
+			
+			set node.label = stem
+			set node.entities.%Get(0).value = stem
+		}
+	}
 	quit $$$OK
 }
 
