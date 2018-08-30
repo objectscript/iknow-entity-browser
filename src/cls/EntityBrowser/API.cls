@@ -1,6 +1,6 @@
 /// <example language="swagger">
 /// swagger: '2.0'
-///
+/// 
 /// info:
 ///   version: "1.0.0"
 ///   title: iKnow REST APIs
@@ -10,18 +10,18 @@
 ///     Use [swagger-ui](https://github.com/swagger-api/swagger-ui/blob/master/README.md)
 ///     or a similar tool to conveniently browse and test these APIs.
 ///     For more information on iKnow, visit [intersystems.com](http://www.intersystems.com)
-///
+/// 
 ///   contact:
 ///     name: InterSystems
 ///     url: http://wrc.intersystems.com
 ///     email: support@intersystems.com
-///
+/// 
 /// consumes:
 ///   - application/json
 /// produces:
 ///   - application/json
-///
-///
+/// 
+/// 
 /// parameters:
 ///   domainParam:
 ///     name: domain
@@ -29,7 +29,7 @@
 ///     in: path
 ///     description: the ID of the domain to query
 ///     required: true
-///
+/// 
 /// definitions:
 ///   RequestObject:
 ///     type: object
@@ -49,7 +49,7 @@
 ///         default: []
 ///         items:
 ///           type: integer
-///
+/// 
 ///   Filter:
 ///     # TODO: move into proper hierarchy once swagger-ui supports it
 ///     type: object
@@ -100,7 +100,7 @@
 Class EntityBrowser.API Extends (%iKnow.REST.Base, %iKnow.REST.Utils)
 {
 
-Parameter PAGESIZE = 0;
+Parameter PAGESIZE = 100;
 
 XData UrlMap [ XMLNamespace = "http://www.intersystems.com/urlmap" ]
 {
@@ -197,7 +197,9 @@ ClassMethod GetSimilar(pDomainId As %Integer, pString As %String = "") As %Statu
 		set tObjects = { "nodes": [], "edges": [] }
 		set tSC = ..AppendChildObjects(.tObjects, .tGraph, .tEntityTokens, 0, 1)
 		quit:$$$ISERR(tSC)
-
+		
+		set tSC = ..UpdateRelated(pDomainId, .tObjects, pString)
+		
 		set tResult = { "graph": (tObjects) }
 
 	} catch (ex) {
@@ -285,13 +287,192 @@ ClassMethod GetRelated(pDomainId As %Integer, pEntity As %String = "") As %Statu
 		set tObjects = { "nodes": [], "edges": [] }
 		set tSC = ..AppendChildObjects(.tObjects, .tGraph, .tEntityTokens, 0, 1)
 		quit:$$$ISERR(tSC)
-
+		
+		set tSC = ..UpdateRelated(pDomainId, .tObjects, pEntity)
+		
 		set tResult = { "graph": (tObjects) }
 
 	} catch (ex) {
 		set tSC = ex.AsStatus()
 	}
 	quit ..%ProcessResult(tSC, $g(tResult))
+}
+
+ClassMethod UpdateRelated(pDomainId As %Integer, ByRef pObjects As %DynamicObject, pEntity) As %Status
+{
+	k %stem
+	#dim edges As %DynamicArray = pObjects.edges
+	#dim nodes As %DynamicArray = pObjects.nodes
+	
+	do ..UpdateNodes(pDomainId,.pObjects)
+
+	set size = edges.%Size()-2 
+	set i=0
+	
+	for
+	{	
+		quit:i>size
+		
+		set edge = edges.%Get(i)
+		
+		set nextEdge = edges.%Get(i+1)
+		
+		set sourceEdge = edge.source
+		set targetEdge = edge.target
+		
+		set sourceNode = ..GetObjIdBySourceID(nodes, sourceEdge)
+		set targetNode = ..GetObjIdBySourceID(nodes, targetEdge)
+		
+		set sourceNode = nodes.%Get(sourceNode)
+		set targetNode = nodes.%Get(targetNode)
+		
+		set lableSource = $select(sourceEdge=0:pEntity, 1:sourceNode.label)
+		set lableTarget = targetNode.label
+		
+		set stemSource = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableSource, "ru")
+		set stemTarget = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableTarget, "ru")
+		
+		
+		if ($d(%stem(stemTarget)) = 1)
+		{
+			set %stem(stemTarget) = 2
+		}
+		elseif (targetEdge '= nextEdge.source)
+		{
+			set %stem(stemTarget)=1
+		}
+		
+		if stemSource = stemTarget
+		{
+			if (nextEdge.source '= targetEdge) && (i'=0)
+			{
+				do edges.%Remove(i)
+				do nodes.%Remove(targetNode)
+				set size = size - 1
+				set i = i - 1
+			}
+			elseif (targetEdge '= nextEdge.source) && (sourceEdge = 0)
+			{
+				do edges.%Remove(i)
+				do nodes.%Remove(targetNode)
+				set size = size - 1
+				set i = i - 1
+			}
+			elseif (targetEdge = nextEdge.source)
+			{
+				set edge.target = nextEdge.target
+
+				do edges.%Remove(i+1)
+				do nodes.%Remove(targetNode)
+				set size = size - 1
+				set i = i - 1
+
+				do ..ChangeEdges(.edges, targetEdge, sourceEdge, i, size)
+			}
+		}
+		set i = i + 1
+	}
+	do ..UpdateRelatedN(pDomainId, .pObjects, pEntity)
+
+	quit $$$OK
+}
+
+ClassMethod UpdateRelatedN(pDomainId As %Integer, ByRef pObjects As %DynamicObject, pEntity) As %Status
+{
+	#dim edges As %DynamicArray = pObjects.edges
+	#dim nodes As %DynamicArray = pObjects.nodes
+
+	set size = edges.%Size()-2 
+	set i=0
+	
+	for
+	{	
+		quit:i>size
+		
+		set edge = edges.%Get(i)
+		
+		set nextEdge = edges.%Get(i+1)
+		
+		set targetEdge = edge.target
+		
+		set targetNode = ..GetObjIdBySourceID(nodes, targetEdge)
+		
+		set targetNode = nodes.%Get(targetNode)
+		
+		set lableTarget = targetNode.label
+		
+		set stemTarget = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, lableTarget, "ru")
+		
+		if ($d(%stem(stemTarget)) = 1) && (%stem(stemTarget) = 2) && (targetEdge '= nextEdge.source)
+		{
+			if ($d(%stem(stemTarget_"H")) = 1)
+			{
+				do edges.%Remove(i)
+				set size = size - 1
+				continue
+			}
+			set %stem(stemTarget_"H") = 1
+		}
+		set i = i + 1
+	}
+	quit $$$OK
+}
+
+ClassMethod UpdateNodes(pDomainId As %Integer, ByRef pObjects As %DynamicObject) As %Status
+{
+	#dim nodes As %DynamicArray = pObjects.nodes
+	
+	for i=0:1:nodes.%Size()-1
+	{	
+		set node = nodes.%Get(i)
+		
+		if ($l(node.label, " ") = 1)
+		{
+			set stem = ##class(%iKnow.Queries.EntityAPI).GetStem(pDomainId, node.label, "ru")
+			
+			set node.label = stem
+			set node.entities.%Get(0).value = stem
+		}
+	}
+	quit $$$OK
+}
+
+ClassMethod ChangeEdges(ByRef Edges As %DynamicArray, target As %Integer, source As %Integer, i As %Integer, size As %Integer) As %Status
+{
+	while (i>size)
+	{		
+		set edge = Edges.%Get(i)
+		
+		set sourceEdge = edge.source
+		set targetEdge = edge.target
+		
+		if (sourceEdge = target)
+		{
+			set obj = {
+				"source": (source),
+				"target": (targetEdge),
+				"type": "similar"
+		  	}	
+			
+			do Edges.%Remove(i)
+			do Edges.%Push(obj)
+			set size = size - 1
+		}
+		set i = i + 1
+	}
+	quit $$$OK
+}
+
+ClassMethod GetObjIdBySourceID(Nodes As %DynamicArray, source) As %Integer
+{
+	set iter = Nodes.%GetIterator()
+	
+	while iter.%GetNext(.key , .value ) 
+	{
+	      return:value.id=source key
+	}
+	
+	return 0
 }
 
 ClassMethod AppendChildObjects(ByRef pObjects, ByRef pGraph, ByRef pEntityTokens, pParentNodeID As %Integer = 0, pLevel As %Integer = 1) As %Status
@@ -317,6 +498,7 @@ ClassMethod AppendChildObjects(ByRef pObjects, ByRef pGraph, ByRef pEntityTokens
 				quit:tProp=""
 				do tEntObj.%Set(tProp, tPropValue)
 			}
+			//set lable = ##class(%iKnow.Queries.EntityAPI).GetStem(1, pEntityTokens(tEntIDx), "ru")
 			set tNodeObj = {"id": (tNodeID), "label": (pEntityTokens(tEntIDx)), "type": "entity", "entities": [ (tEntObj) ]}
 			do pObjects.nodes.%Push(tNodeObj)
 			set tEdgeObj = {"source": (pParentNodeID), "target": (tNodeID), "type": (tEdgeType)}
